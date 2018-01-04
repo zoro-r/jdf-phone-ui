@@ -2,9 +2,8 @@
  * @Author: chenjia 
  * @Date: 2018-01-04 14:49:56 
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-04 16:59:45
+ * @Last Modified time: 2018-01-04 18:17:29
  */
-
 window.globalConfig = {
 	rootUrl: "http://XXXXX/com.ifp.ipartner/",//微信dat
 	wxUrl: '', //微信安全域名
@@ -19,6 +18,7 @@ window.globalConfig = {
 	transfer: 'GTO2OINTERFACE2017#@!%88', //接口数据交互加密key
 	comId: 'GTO2O20170118' //保险公司编码--保险公司Id(固定为：GTO2O20170118）
 }
+
 // 定义初始化方法
 function init() {
 	let isiOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
@@ -111,11 +111,11 @@ if (window.navigator.platform == 'iPhone') {
 		// 隐藏导航栏
 		window.navigator.splashscreen.hide();
 		//设置顶部bar
-		StatusBar.styleDefault();
+		window.StatusBar.styleDefault();
 		// Keyboard.shrinkView(true)
 		// cordova.plugins.Keyboard.disableScroll(false);
 		//隐藏键盘 accessoryBar
-		Keyboard.hideFormAccessoryBar(true);
+		window.Keyboard.hideFormAccessoryBar(true);
 		// Keyboard.disableScrollingInShrinkView(false)
 		// Keyboard.automaticScrollToTopOnHiding = true;
 	}, false);

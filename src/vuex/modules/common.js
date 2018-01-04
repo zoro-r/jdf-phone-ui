@@ -85,7 +85,7 @@ const mutations = {
 	//存储用户信息
 	[types.USE_RINFO](state, params) {
 		//调试模式下存储用户信息入 storage
-		if (globalConfig.isDebug) {
+		if (window.globalConfig.isDebug) {
 			utils.cache.set("user", params)
 		} else {
 			state.user = params
