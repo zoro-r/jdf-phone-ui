@@ -1,7 +1,9 @@
 <template>
   <div class="address_district">
-    <mt-field style="color:red" @click.native="showPopup" v-model="showDesc.area" :placeholder="label" :disableClear="true" disabled />
-    <mt-popup v-bind:style="{height:(screenHeight *.55 + 45)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
+    
+		<mt-field style="color:red" @click.native="showPopup" v-model="showDesc.area" :placeholder="label" :disableClear="true" disabled />
+    
+		<mt-popup v-bind:style="{height:(screenHeight *.55 + 45)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
       <div class="address_header">
         <span>{{label}}</span>
         <img @click="showPopup" src="./assets/images/close.png" />
@@ -21,7 +23,8 @@ export default {
   name: "baseAddress",
   components: {
     "v-distpicker": VDistpicker
-  },
+	},
+	
   data() {
     return {
       popupVisible: false,
@@ -31,8 +34,9 @@ export default {
         area: utils.help.getAddressOfCn(this.area)
       },
       districts: DISTRICTS
-    };
-  },
+    }
+	},
+	
   props: {
     title: {
       type: String,
@@ -61,15 +65,21 @@ export default {
     value: {}
   },
   methods: {
-    //选中区
+    /**
+		 * @name 选中区
+		 * @param data 选择的数据
+		 */
     onSelected(data) {
       console.log(data);
       this.$emit("update:province", data.province.code);
       this.$emit("update:city", data.city.code);
       this.$emit("update:area", data.area.code);
       this.popupVisible = false;
-    },
-    //显示/关闭弹出框
+		},
+		
+    /**
+		 * @name 显示/隐藏
+		 */
     showPopup() {
 
       if (!this.popupVisible) {
@@ -81,13 +91,16 @@ export default {
         this.popupVisible = !this.popupVisible && !this.disabled;
       }
     },
-    //初始化数据
+    /**
+		 * @name 初始化数据
+		 */
     _initData() {
       this.showDesc.province = utils.help.getAddressOfCn(this.province);
       this.showDesc.city = utils.help.getAddressOfCn(this.city);
       this.showDesc.area = utils.help.getAddressOfCn(this.area);
     }
-  },
+	},
+	
   watch: {
     popupVisible(newVal) {
       // utils.help.disabled(newVal);
