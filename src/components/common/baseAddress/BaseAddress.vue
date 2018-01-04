@@ -4,7 +4,7 @@
     <mt-popup v-bind:style="{height:(screenHeight *.55 + 45)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
       <div class="address_header">
         <span>{{label}}</span>
-        <img @click="showPopup" src="../../assets/images/icon/close.png" />
+        <img @click="showPopup" src="./assets/images/close.png" />
       </div>
       <div v-if="popupVisible">
         <v-distpicker @selected="onSelected" :districts="districts" :province="showDesc.province" :city="showDesc.city" :area="showDesc.area" type="mobile">
@@ -15,8 +15,8 @@
 </template>
 
 <script>
-import DISTRICTS from "@assets/data/districts";
-import VDistpicker from "@assets/lib/vDistpicker/src/Distpicker";
+import DISTRICTS from "./assets/data/districts";
+import VDistpicker from "./../../../assets/lib/vDistpicker/src/Distpicker";
 export default {
   name: "baseAddress",
   components: {

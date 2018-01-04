@@ -10,7 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "awesome-qr": "^1.0.10",
+    "awesome-qr": "1.0.10",
     "axios": "^0.16.2",
     "better-scroll": "^1.4.2",
     "fastclick": "^1.0.6",
@@ -19,7 +19,7 @@
     "vue-amap": "^0.3.1",
     "vue-awesome-swiper": "^2.6.7",
     "vue-navigation": "^1.1.1",
-    "vue-qr": "^1.2.3",
+    "vue-qr": "1.2.3",
     "vue-router": "^2.7.0",
     "vue-scroll-behavior": "^0.1.6",
     "vuex": "^2.4.0"
