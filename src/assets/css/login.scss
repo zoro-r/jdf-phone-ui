@@ -1,0 +1,22 @@
+@import 'vars.scss';
+.yzm {
+  display: flex;
+  align-items: center;
+  .mint-button {
+    font-size: $font-tn;
+    flex: 0 0 90px;
+    height: 30px;
+    width: auto;
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.line {
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: $description-color;
+  border-bottom: 1px solid $divider-color;
+}

@@ -1,0 +1,15 @@
+@import 'vars.scss';
+.mine {
+  font-size: 1.2rem;
+  background: #f0eff5;
+  .section-white {
+    background: $white-color;
+    margin-top: 6px;
+  }
+  input{
+    text-align:left!important;
+  }
+  .mint-cell-title .mint-cell-text {
+    padding-left: 4px;
+  }
+}

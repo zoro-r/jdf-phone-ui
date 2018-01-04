@@ -1,0 +1,8 @@
+{
+  "1": "login",
+  "shop": "product",
+  "product": "productDetail",
+  "order": "myOrderList",
+  "policy": "myInsuranceList",
+  "profile": "myCenter"
+}

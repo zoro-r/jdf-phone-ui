@@ -1,0 +1,41 @@
+  [{
+		"id":"apph",
+    "text": "日志管理",
+    "img": "static/images/icon/1.png",
+    "url": "dateManage"
+  }, {
+		"id":"appg",
+    "text": "签到考勤",
+    "img": "static/images/icon/2.png",
+    "url": "myAttendance"
+  }, {
+		"id":"appphb",
+    "text": "排行榜",
+    "img": "static/images/icon/3.png",
+    "url": ""
+  }, {
+		"id":"appbdcx",
+    "text": "保单查询",
+    "img": "static/images/icon/4.png",
+    "url": "policyList"
+  }, {
+		"id":"appc",
+    "text": "产品中心",
+    "img": "static/images/icon/5.png",
+    "url": "productCenter"
+  }, {
+		"id":"appe",
+    "text": "建议书",
+    "img": "static/images/icon/6.png",
+    "url": "proposalList"
+  }, {
+		"id":"appf",
+    "text": "客户管理",
+    "img": "static/images/icon/7.png",
+    "url": "customer"
+  }, {
+		"id":"appd",
+    "text": "个人中心",
+    "img": "static/images/icon/8.png",
+    "url": "myCenter"
+  }]

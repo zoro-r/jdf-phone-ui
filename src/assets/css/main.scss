@@ -1,0 +1,533 @@
+@import 'vars.scss';
+*{
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+html {
+  font-size: 10px;
+  background-color: $bg-color;
+  overflow: scroll;
+  // -webkit-overflow-scrolling: touch;
+   //去除移动端点击阴影效果
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  -ms-user-select:none;
+	user-select:none;
+	min-height: 100vh;
+	-webkit-touch-callout:none;
+}
+body.modal-open {
+  position: fixed;
+  width: 100%;
+}
+
+//-----------修改平台样式 增加在body上面
+.plat-ios {
+	min-height: calc(100vh - 110px);
+	box-sizing: content-box;
+  .mint-header {
+    padding-top: 20px;
+    height: 70px;
+  }
+  .has-header {
+    margin-top: 70px;
+	}
+	.has-tabs{
+		margin-top: 110px;
+	}
+}
+
+.has-footer, .has-bottom {
+  padding-bottom: 50px;
+}
+
+.has-header {
+  margin-top: 50px;
+}
+.has-tabs{
+	margin-top: 90px;
+}
+
+.title {
+  color: $title-color;
+}
+
+a {
+  color: $primary-color;
+  font-size: $font-lg;
+}
+
+.pd-hg {
+  padding: $pd-hg;
+}
+
+.pd-lg {
+  padding: $pd-lg;
+}
+
+.pd-md {
+  padding: $pd-md;
+}
+
+.pd-sm {
+  padding: $pd-sm;
+}
+
+.pd-tn {
+  padding: $pd-tn;
+}
+
+.mg-hg {
+  margin: $pd-hg;
+}
+
+.mg-lg {
+  margin: $pd-lg;
+}
+
+.mg-md {
+  margin: $pd-md;
+}
+
+.mg-sm {
+  margin: $pd-sm;
+}
+
+.mg-tn {
+  margin: $pd-tn;
+}
+
+.font-hg {
+  font-size: $font-hg;
+}
+
+.font-lg {
+  font-size: $font-lg;
+}
+
+.font-md {
+  font-size: $font-md;
+}
+
+.font-sm {
+  font-size: $font-sm;
+}
+
+.font-tn {
+  font-size: $font-tn;
+}
+
+.font-primary {
+  color: $primary-color;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.box,
+.box-bg {
+  margin-top: 5px;
+  font-size: $font-tn;
+  color: #303030;
+  background-color: $bg-color;
+  text-align: left;
+}
+
+button {
+  outline-style: none;
+}
+
+.button-sm {
+  margin: 0 10px 10px 0;
+  padding: 0 10px;
+  min-width: 65px;
+  height: 30px;
+  line-height: 30px;
+  font-size: $font-sm;
+  border: 1px solid $divider-color;
+  border-radius: 2px;
+  background: none;
+  outline-style: none;
+}
+
+.button-sm-active {
+  border: 1px solid $primary-color;
+  color: $primary-color;
+}
+
+.center {
+  text-align: center;
+}
+
+.no-padding {
+  padding: 0!important;
+}
+
+.no-border {
+  border: none!important;
+}
+
+.padding-bottom {
+  padding: 0px 0px 48px 0px !important;
+}
+
+.page {
+  overflow-y: hidden;
+  background: $bg-color;
+}
+
+.tabs {
+  position: relative;
+}
+
+.tabs .tab-bar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 40px;
+  background: #FFF;
+  border-bottom: 1px solid $divider-color;
+}
+
+.tabs .tab-bar .tab-item {
+  text-align: center;
+  padding: 0 10px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  transition: all .3s;
+}
+
+.tabs .tab-item.active {
+  font-size: 14px;
+  color: $primary-color;
+}
+
+.tabs .tab-line {
+  position: absolute;
+  bottom: 0;
+  border-bottom: 2px solid $primary-color;
+}
+.fixdtab {
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+  top: 0px;
+}
+.mint-header {
+  color: $title-color;
+  background: #F9F9F9;
+  border-bottom: 1px solid $divider-color;
+  height: 50px;
+}
+
+.mint-header-title {
+  font-size: 16px;
+}
+
+.mint-header-button .mint-button {
+  padding: 0 8px;
+}
+
+.mint-button {
+  font-size: 16px;
+}
+
+.mint-button--primary {
+  background-color: #3399FF;
+}
+
+.mint-cell-wrapper {
+  padding-right: 10px;
+  text-align: left;
+}
+
+.mint-cell-title .mint-cell-text {
+  font-size: 1.4rem;
+}
+
+.mint-cell .arrow-right {
+  width: 14px;
+  height: 14px;
+  padding-right: 4px;
+}
+.mint-indicator-mask{
+  z-index:99999;
+}
+.box-card {
+  margin-bottom: 6px;
+  background: none;
+}
+
+.box-details .mint-cell-wrapper .mint-cell-title {
+  font-size: 15px;
+}
+
+.box-list-content {
+  line-height: 24px;
+}
+
+.box-list-title {
+  font-size: 14px;
+  color: $title-color;
+  line-height: 24px;
+}
+
+.box-list-label {
+  display: inline-block;
+  width: 100px;
+  color: $description-color;
+}
+
+.picker-toolbar {
+  background: #F0EFF5;
+}
+
+.picker-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $divider-color;
+  height: 38px;
+}
+
+.picker-item {
+  padding: 0;
+}
+
+.picker-item.picker-selected {
+  color: $primary-color;
+}
+
+.picker-slot {
+  font-size: 14px;
+}
+
+.picker-center-highlight:before,
+.picker-center-highlight:after {
+  background-color: #ccc;
+}
+
+input {
+  outline-style: none;
+}
+
+::-webkit-input-placeholder {
+  color: #ccc;
+}
+
+
+.mint-datetime-confirm {
+  text-align: right;
+  width: 40%;
+  padding-right: 12px;
+  font-size: 16px;
+}
+
+.mint-datetime-cancel {
+  text-align: left;
+  width: 40%;
+  padding-left: 12px;
+  font-size: 16px;
+  color: #5a5a5a;
+}
+
+.gender {
+  margin-right: -10px;
+  .mint-switch-core {
+    width: 60px;
+  }
+  .mint-switch-core::before {
+    width: 58px;
+  }
+  .mint-switch-core::after {
+    z-index: 2;
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 7px;
+  }
+  .mint-switch-input+.mint-switch-core::after {
+    background-image: url('../images/icon/female.png');
+  }
+  .mint-switch-input:checked+.mint-switch-core::after {
+    -webkit-transform: translateX(28px);
+    background-image: url('../images/icon/male.png');
+  }
+  .mint-switch-label .text {
+    position: absolute;
+    top: 0;
+    left: 2px;
+    height: 32px;
+    line-height: 32px;
+    z-index: 1;
+    :first-child {
+      display: inline-block;
+      width: 30px;
+      text-align: center;
+      color: #fff;
+      font-size: 13px;
+    }
+    :last-child {
+      display: inline-block;
+      width: 20px;
+      text-align: center;
+      color: rgb(210, 21, 142);
+      font-size: 13px;
+    }
+  }
+}
+
+.mint-popup {
+  background: $bg-color;
+}
+
+.full-popup {
+  width: 100%;
+  height: 100%;
+}
+
+.content_w {
+  background: white;
+}
+
+//修改cell-swipe的样式
+.auto-cell-swipe .mint-cell-wrapper {
+  padding: 0px !important;
+}
+
+.auto-cell-swipe .mint-cell-title {
+  width: 0px;
+  flex: none;
+}
+
+.auto-cell-swipe .mint-cell-value .proposal-item {
+  width: 100% !important;
+}
+
+.auto-cell-swipe .mint-cell-value {
+  width: 100% !important;
+  flex: none !important;
+}
+
+//修改message-box的按钮字体大小
+.mint-msgbox-btn {
+  font-size: 13px;
+}
+
+.mint-msgbox-message {
+  font-size: 13px;
+}
+
+//baseField 控件
+.input_field {
+  .mint-cell-wrapper {
+    background-image: none;
+    padding: 0 10px 0 0;
+  }
+  .mint-field-core {
+    text-align: left;
+    font-size: 12px;
+  }
+  .icon_img {
+    width: 15px;
+  }
+}
+
+.base-tabs {
+  position: relative;
+  top: 1px;
+  z-index: 999;
+}
+
+.mint-header.is-fixed {
+  z-index: 3;
+}
+
+.mint-cell-value {
+  .mint-field-core {
+    opacity: 1!important;
+    color: black!important;
+  }
+  input:disabled,
+  textarea:disabled {
+    opacity: 1!important;
+		color: black!important;
+		background-color: transparent !important;
+  }
+}
+
+.mint-toast {
+  z-index: 100000;
+}
+
+input:disabled,
+textarea:disabled {
+  opacity: 1 !important;
+	color: black;
+	// background-color: transparent !important;
+}
+input[type="text"]:disabled{
+  background-color: transparent !important;
+}
+
+//loading
+.base-loading{
+  padding: 10px 0px;
+  text-align: center;
+  color: $description-color;
+}
+
+.base-loading-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mint-spinner-fading-circle {
+  flex: none;
+}
+.no-data {
+	font-size: 1.8rem;
+	display: flex;
+	height: calc(100vh - 200px);
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+.page-infinite-loading {
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	//设置字体大小
+	font-size: 1.8rem;
+	span{
+		margin-right: 10px;
+	}
+}
+.page-infinite-list {
+	margin-top: $pd-sm;
+}
+
+//分享
+.share {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 20px 5px;
+}
+.share-item {
+  width: 100px;
+  text-align: center;
+}
+.share-item img {
+  width: 50px;
+}
+.share-item p {
+  color: #999;
+}
+
+// //input在Android5.0有背景色，去掉
+// input[type="text"]:disabled{
+//   background-color: transparent !important;
+// }
