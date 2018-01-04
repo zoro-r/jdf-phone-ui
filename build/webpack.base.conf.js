@@ -27,6 +27,16 @@ module.exports = {
   },
   module: {
     rules: [
+			// {
+      //   test: /\.(js|vue)$/,
+      //   loader: 'eslint-loader',
+      //   enforce: "pre",
+			// 	include: [resolve('src'), resolve('test')],
+			// 	exclude: /assets/,
+      //   options: {
+      //     formatter: require('eslint-friendly-formatter')
+      //   }
+      // },
       {
         test: /\.vue$/,
         loader: 'vue-loader',

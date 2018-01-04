@@ -16,79 +16,80 @@
 </template>
 <script>
 export default {
-  name: 'datePicker',
+  name: "datePicker",
   props: {
     label: {
       type: String,
       default: "请选择"
     },
-    value: {
-    },
+    value: {},
     //类型
     type: {
       type: String,
-      default: 'date'
+      default: "date"
     },
     //最小日期
     startDate: {
       type: Date,
       default: function() {
-        return new Date('1900/01/01')
+        return new Date("1900/01/01");
       }
     },
     //最大日期
     endDate: {
       type: Date,
       default: function() {
-        return new Date('2100/12/31')
+        return new Date("2100/12/31");
       }
-		},
-		//是否禁用
-		disabled:{
-			type:Boolean,
-			default:false
-		}
+    },
+    //是否禁用
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
-      isRender:true,
-      dateValue: this.value?utils.format.parseDate(this.value):new Date(),
-      text: '请选择',
+      isRender: true,
+      dateValue: this.value ? utils.format.parseDate(this.value) : new Date(),
+      text: "请选择",
       showPicker: false
-    }
+    };
   },
-  computed: {
-  },
+  computed: {},
   methods: {
     //点击打开选择框按钮
     open(a) {
-			if(this.disabled) return ;
-      if (a.target.tagName == 'INPUT' || a.target.tagName == 'input') {
-        this.$refs.datepicker.open()
-        utils.help.ModalHelper.afterOpen()
+      if (this.disabled) return;
+      if (a.target.tagName == "INPUT" || a.target.tagName == "input") {
+        this.$refs.datepicker.open();
+        utils.help.ModalHelper.afterOpen();
       }
     },
     //点击关闭按钮
     close() {
       setTimeout(() => {
-        this.$refs.datepicker.close()
-        utils.help.ModalHelper.beforeClose()
-      })
+        this.$refs.datepicker.close();
+        utils.help.ModalHelper.beforeClose();
+      });
     },
     //点击确认按钮
     confirm(value) {
-      let dateValue = utils.format.toDate(value, this.type == 'datetime' ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd')
-      this.$emit('input', dateValue)
-      this.close()
+      let dateValue = utils.format.toDate(
+        value,
+        this.type == "datetime" ? "yyyy-MM-dd HH:mm" : "yyyy-MM-dd"
+      );
+      this.$emit("input", dateValue);
+      this.close();
     }
   },
-  mounted(){
-    this.$el.getElementsByClassName('mint-datetime-cancel')[0].onclick = () => {
-      utils.help.ModalHelper.beforeClose()
+  mounted() {
+    this.$el.getElementsByClassName("mint-datetime-cancel")[0].onclick = () => {
+      utils.help.ModalHelper.beforeClose();
       //this.dateValue = utils.format.toDate(new Date(), this.type == 'datetime' ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd')
-      this.dateValue = new Date()
-      this.$emit('input', '')
-    }
+      this.dateValue = new Date();
+      this.$emit("input", "");
+    };
   }
-}
+};
 </script>

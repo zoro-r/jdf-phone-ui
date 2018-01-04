@@ -286,10 +286,10 @@ export default {
       return value;
     },
     cleanList(name) {
-      this[name] = [];
+      this[name] = []
     }
   }
-};
+}
 </script>
 
 <style lang="scss" scoped>

@@ -17,15 +17,14 @@
 </template>
 
 <script>
-import DISTRICTS from "./assets/data/districts";
-import VDistpicker from "./../../../assets/lib/vDistpicker/src/Distpicker";
+import DISTRICTS from './assets/data/districts'
+import VDistpicker from './../../../assets/lib/vDistpicker/src/Distpicker'
 export default {
-  name: "baseAddress",
+  name: 'baseAddress',
   components: {
-    "v-distpicker": VDistpicker
-	},
-	
-  data() {
+    'v-distpicker': VDistpicker
+  },
+  data () {
     return {
       popupVisible: false,
       showDesc: {
@@ -35,28 +34,27 @@ export default {
       },
       districts: DISTRICTS
     }
-	},
-	
+  },
   props: {
     title: {
       type: String,
-      default: "请选择"
+      default: '请选择'
     },
     province: {
       type: String,
-      default: ""
+      default: ''
     },
     city: {
       type: String,
-      default: ""
+      default: ''
     },
     area: {
       type: String,
-      default: ""
+      default: ''
     },
     label: {
       type: String,
-      default: "请选择地址"
+      default: '请选择地址'
     },
     disabled: {
       type: Boolean,
@@ -65,48 +63,45 @@ export default {
     value: {}
   },
   methods: {
+   /**
+    * @name 选中区
+    * @param data 选择的数据
+    */
+    onSelected (data) {
+      console.log(data)
+      this.$emit('update:province', data.province.code)
+      this.$emit('update:city', data.city.code)
+      this.$emit('update:area', data.area.code)
+      this.popupVisible = false
+    },
     /**
-		 * @name 选中区
-		 * @param data 选择的数据
-		 */
-    onSelected(data) {
-      console.log(data);
-      this.$emit("update:province", data.province.code);
-      this.$emit("update:city", data.city.code);
-      this.$emit("update:area", data.area.code);
-      this.popupVisible = false;
-		},
-		
-    /**
-		 * @name 显示/隐藏
-		 */
-    showPopup() {
-
+     * @name 显示/隐藏
+     */
+    showPopup () {
       if (!this.popupVisible) {
-				//解决安卓键盘弹出导致页面高度不对问题
+        // 解决安卓键盘弹出导致页面高度不对问题
         setTimeout(() => {
-          this.popupVisible = !this.popupVisible && !this.disabled;
-        }, 200);
+          this.popupVisible = !this.popupVisible && !this.disabled
+        }, 200)
       } else {
-        this.popupVisible = !this.popupVisible && !this.disabled;
+        this.popupVisible = !this.popupVisible && !this.disabled
       }
     },
     /**
-		 * @name 初始化数据
-		 */
-    _initData() {
-      this.showDesc.province = utils.help.getAddressOfCn(this.province);
-      this.showDesc.city = utils.help.getAddressOfCn(this.city);
-      this.showDesc.area = utils.help.getAddressOfCn(this.area);
+     * @name 初始化数据
+     */
+    _initData () {
+      this.showDesc.province = utils.help.getAddressOfCn(this.province)
+      this.showDesc.city = utils.help.getAddressOfCn(this.city)
+      this.showDesc.area = utils.help.getAddressOfCn(this.area)
     }
-	},
-	
+  },
   watch: {
-    popupVisible(newVal) {
+    popupVisible (newVal) {
       // utils.help.disabled(newVal);
       newVal
         ? utils.help.ModalHelper.afterOpen()
-        : utils.help.ModalHelper.beforeClose();
+        : utils.help.ModalHelper.beforeClose()
     },
     // province(newVal, oldVal) {
     //   this._initData()
@@ -114,17 +109,17 @@ export default {
     // city(newVal, oldVal) {
     //   this._initData()
     // },
-    area(newVal, oldVal) {
-      newVal && this._initData();
+    area (newVal, oldVal) {
+      newVal && this._initData()
     }
   },
-  mounted() {
-    //初始化数据
+  mounted () {
+    // 初始化数据
     this.$nextTick(() => {
-      this._initData();
-    });
+      this._initData()
+    })
   }
-};
+}
 </script>
 
 <style lang='scss' scoped>

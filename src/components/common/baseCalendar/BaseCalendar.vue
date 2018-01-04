@@ -197,9 +197,9 @@ export default {
     }
   },
   mounted() {
-    this._initDates();
+    this._initDates()
   }
-};
+}
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 $width: 100%/7;
