@@ -83,11 +83,11 @@ const help = {
 
   // 生产UUID
   uuid (len = 36) {
-    let radix = 10
+    // let radix = 10
     let chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'.split('')
     let uuid = [],
       i
-    radix = radix || chars.length
+    // radix = radix || chars.length
     // if (false) {
     //   // Compact form
     //   for (i = 0; i < len; i++) uuid[i] = chars[0 | Math.random() * radix]
@@ -116,7 +116,7 @@ const help = {
    * 键盘弹出 键盘消失
    */
   keyBoardShow () {
-    if (globalConfig.os === 'android') {
+    if (window.globalConfig.os === 'android') {
       let list = document.getElementsByClassName('footer_fixd')
       for (let i = 0; i < list.length; i++) {
         list[i].classList.add('noFixed')
@@ -127,7 +127,7 @@ const help = {
    * 键盘弹出 键盘消失
    */
   keyBoardHide () {
-    if (globalConfig.os === 'android') {
+    if (window.globalConfig.os === 'android') {
       let list = document.getElementsByClassName('footer_fixd')
       for (let i = 0; i < list.length; i++) {
         list[i].classList.remove('noFixed')

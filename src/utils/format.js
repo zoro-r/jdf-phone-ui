@@ -1,4 +1,3 @@
-/* eslint Date prototype is read only: "warn" */
 Date.prototype.format = function (fmt) {
   var o = {
     'M+': this.getMonth() + 1,

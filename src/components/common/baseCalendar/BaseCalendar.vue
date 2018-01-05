@@ -11,7 +11,8 @@
       <swiper :options="swiperOption" class="swiper-box" style="height: auto" ref="mySwiper">
         <swiper-slide  v-for="(day,index) in days" :key="index">
           <div class="content">
-            <div @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',/*item.isFutureDay||*/!_inMonth(item)?'notInMonth':'',chooseDay === item.format ?'choosed':'']">
+						<!-- item.isFutureDay|| -->
+            <div @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',chooseDay === item.format ?'choosed':'']">
               <span> {{item.date | _dateFormat('dd')}}</span>
               <div class="ok-icon">
                 <i v-if="_hasPunch(item)" class="fa fa-check" aria-hidden="true"></i>
@@ -28,7 +29,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
   name: 'baseCalendar',
-  data() {
+  data () {
     return {
       currentDate: this.date,
       chooseDay: utils.format.toDate(new Date(), 'yyyy-MM-dd'),
@@ -39,7 +40,7 @@ export default {
         // loop: true,
         // loopAdditionalSlides: 1,
         preventClicks: false,
-        //3D效果
+        // 3D效果
         // effect: 'coverflow',
         // grabCursor: false,
         // cube: {
@@ -88,14 +89,14 @@ export default {
     swiperSlide
   },
   props: {
-    //已经打卡的日期
+    // 已经打卡的日期
     punchs: {
       type: Array,
       default: () => {
         return []
       }
     },
-    //传入日期
+    // 传入日期
     date: {
       type: Date,
       default: () => {
@@ -113,30 +114,29 @@ export default {
      * @name 跳转到当天
      */
     _currentDay () {
-      this.chooseDay = utils.format.toDate(new Date(), "yyyy-MM-dd")
+      this.chooseDay = utils.format.toDate(new Date(), 'yyyy-MM-dd')
       this.currentDate = new Date()
       this._initDates()
-      this.$emit("choose", { date: new Date() })
+      this.$emit('choose', { date: new Date() })
     },
     /**
      * @name 判断是否在当月
      */
     _inMonth (item) {
       return (
-        utils.format.toDate(item.date, "yyyy-MM") ===
-        utils.format.toDate(this.currentDate, "yyyy-MM")
+        utils.format.toDate(item.date, 'yyyy-MM') === utils.format.toDate(this.currentDate, 'yyyy-MM')
       )
     },
     /**
-		 * @name 初始化页面数据
-		 */
+     * @name 初始化页面数据
+     */
     _initDates () {
       let list = []
-      //塞入上个月
+      // 塞入上个月
       list.push(this._lastMonth(this.currentDate))
-      //塞入当前月份
+      // 塞入当前月份
       list.push(this._getMonthFromDate(this.currentDate))
-      //塞入下个月
+      // 塞入下个月
       list.push(this._nextMonth(this.currentDate))
       this.$refs.mySwiper.swiper.slideTo(1)
       this.days = list
@@ -145,7 +145,7 @@ export default {
      * @name 判断是否打卡
      */
     _hasPunch (item) {
-      let punchStr = this.punchs.join("")
+      let punchStr = this.punchs.join('')
       return punchStr.indexOf(item.format) >= 0
     },
     /**
@@ -155,16 +155,14 @@ export default {
       let list1 = []
       for (let i = 1; i <= 35; i++) {
         let tempDate = new Date(date.getTime())
-        //先判断一下当前月的一号是星期几
-        let one_in_week = new Date(tempDate.setDate("01")).getDay()
-        let date_item = new Date(tempDate.setDate(i - one_in_week))
+        // 先判断一下当前月的一号是星期几
+        let oneInWeek = new Date(tempDate.setDate('01')).getDay()
+        let dateItem = new Date(tempDate.setDate(i - oneInWeek))
         list1.push({
-          date: date_item,
+          date: dateItem,
           // inMonth: date_item.getMonth() === this.date.getMonth(),
-          isToday:
-            utils.format.toDate(date_item, "yyyy-MM-dd") ===
-            utils.format.toDate(date, "yyyy-MM-dd"),
-          format: utils.format.toDate(date_item, "yyyy-MM-dd"),
+          isToday: utils.format.toDate(date_item, 'yyyy-MM-dd') === utils.format.toDate(date, 'yyyy-MM-dd'),
+          format: utils.format.toDate(date_item, 'yyyy-MM-dd'),
           isFutureDay: date_item.getTime() > new Date().getTime()
         })
       }
@@ -190,9 +188,9 @@ export default {
      * @name 选择当前某个日期
      */
     _chooseItem (item) {
-      if (/*!item.isFutureDay*/ this._inMonth(item)) {
-        this.chooseDay = utils.format.toDate(item.date, "yyyy-MM-dd")
-        this.$emit("choose", item)
+      if (this._inMonth(item)) {
+        this.chooseDay = utils.format.toDate(item.date, 'yyyy-MM-dd')
+        this.$emit('choose', item)
       }
     }
   },

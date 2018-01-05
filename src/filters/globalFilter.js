@@ -8,9 +8,7 @@ let allMap = {}
 for (var key in codeData) {
   if (!allMap[key]) allMap[key] = {}
   for (var key_ in codeData[key]) {
-    allMap[key][
-      codeData[key][key_].code
-    ] = codeData[key][key_].desc
+    allMap[key][codeData[key][key_].code] = codeData[key][key_].desc
   }
 }
 
@@ -85,7 +83,7 @@ Vue.filter('productParamFilter', (value, list, name) => {
   outer:for (let i in list) {
     if (list[i].attCode == name) {
       for (let j in list[i].attValueList) {
-        if (list[i].attValueList[j].code = value) {
+        if (list[i].attValueList[j].code == value) {
           returnValue = list[i].attValueList[j].desc
           break outer
         }

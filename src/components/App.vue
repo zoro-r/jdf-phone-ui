@@ -30,22 +30,22 @@
         </mt-tabbar>
       </transition>
 
-      <toast :show="$store.state.common.toast" @update="((val) => $store.state.common.toast = val)">
+      <!-- <toast :show="$store.state.common.toast" @update="((val) => $store.state.common.toast = val)">
         <img v-if="$store.state.common.toastImg != ''" :src="$store.state.common.toastImg">
         <div>{{$store.state.common.toastMsg}}</div>
-      </toast>
+      </toast> -->
     </div>
   </div>
 </template>
 
 <script>
 import user from "./../assets/data/user";
-import Toast from "./common/Toast.vue";
+// import Toast from "./common/Toast.vue";
 
 export default {
   name: "app",
   components: {
-    Toast
+    // Toast
   },
   data () {
     return {
@@ -174,7 +174,7 @@ export default {
       this.$store.commit("USE_RINFO", user);
     }
   }
-};
+}
 </script>
 
 <style lang="scss">

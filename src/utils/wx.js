@@ -1,6 +1,6 @@
 import store from '../vuex/store'
 import axios from 'axios'
-import format from './format'
+// import format from './format'
 
 let instance = axios.create({
   timeout: 50000,
@@ -73,7 +73,7 @@ export default {
   wxUserInfo1 (callback) {
     console.log('微信用户信息', store.state.common.wxUserInfo)
     if (!store.state.common.wxUserInfo) {
-      return instance.get(globalConfig.rootUrl + 'weixin/getInfo&openId=' + utils.cache.get('wxConfig').openId)
+      return instance.get(window.globalConfig.rootUrl + 'weixin/getInfo&openId=' + window.utils.cache.get('wxConfig').openId)
     } else {
       return new Promise(function (resolve) {
         resolve(store.state.common.wxUserInfo)
@@ -84,7 +84,7 @@ export default {
   wxUserInfo (callback) {
     console.log('微信用户信息', store.state.common.wxUserInfo)
     if (!store.state.common.wxUserInfo) {
-      return instance.get(globalConfig.rootUrl + 'weixin/getInfo1?openId=' + utils.cache.get('wxConfig').openId + '&token=' + utils.cache.get('wxConfig').token)
+      return instance.get(window.globalConfig.rootUrl + 'weixin/getInfo1?openId=' + window.utils.cache.get('wxConfig').openId + '&token=' + window.utils.cache.get('wxConfig').token)
     } else {
       return new Promise(function (resolve) {
         resolve(store.state.common.wxUserInfo)
@@ -93,10 +93,10 @@ export default {
   },
   // 微信配置信息
   wxConfig () {
-    let url = globalConfig.rootUrl + 'weixin/getConfig?param=' + encodeURIComponent(window.location.href)
+    let url = window.globalConfig.rootUrl + 'weixin/getConfig?param=' + encodeURIComponent(window.location.href)
     instance.get(url).then((res) => {
       console.log(res)
-      wx.config({
+      window.wx.config({
         debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
         appId: res.appId, // 必填，公众号的唯一标识
         timestamp: res.timestamp, // 必填，生成签名的时间戳
@@ -109,7 +109,7 @@ export default {
   // 微信支付接口
   wxPay () {
     function onBridgeReady () {
-      WeixinJSBridge.invoke(
+      window.WeixinJSBridge.invoke(
         'getBrandWCPayRequest', {
           'appId': 'wx4ab795b130ab802e', // 公众号名称，由商户传入
           'timeStamp': new Date().getTime, // 时间戳，自1970年以来的秒数
@@ -123,12 +123,12 @@ export default {
         }
       )
     }
-    if (typeof WeixinJSBridge === 'undefined') {
+    if (typeof window.WeixinJSBridge === 'undefined') {
       if (document.addEventListener) {
-        document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false)
+        document.addEventListener('window.WeixinJSBridgeReady', onBridgeReady, false)
       } else if (document.attachEvent) {
-        document.attachEvent('WeixinJSBridgeReady', onBridgeReady)
-        document.attachEvent('onWeixinJSBridgeReady', onBridgeReady)
+        document.attachEvent('window.WeixinJSBridgeReady', onBridgeReady)
+        document.attachEvent('onwindow.WeixinJSBridgeReady', onBridgeReady)
       }
     } else {
       onBridgeReady()
@@ -138,7 +138,7 @@ export default {
   // 微信分享朋友
   wxShareFriend (value) {
     let promise = new Promise(function (resolve, reject) {
-      wx.onMenuShareAppMessage({
+      window.wx.onMenuShareAppMessage({
         title: value.title, // 分享标题
         desc: value.desc, // 分享描述
         link: value.link, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
@@ -158,13 +158,13 @@ export default {
 
   // 批量隐藏功能菜单
   wxHideMenuList () {
-    wx.hideMenuItems({
+    window.wx.hideMenuItems({
         // 隐藏：发送给朋友；分享到朋友圈；分享到QQ；分享到Weibo；分享到FaceBook（让他分享脸书，能分享到脸书算我输）；分享到QQ空间
       menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:facebook', 'menuItem:share:QZone'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
     })
   },
   // 关闭微信窗口返回聊天界面
   wxClose () {
-    WeixinJSBridge && WeixinJSBridge.call('closeWindow')
+    window.WeixinJSBridge && window.WeixinJSBridge.call('closeWindow')
   }
 }

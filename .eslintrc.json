@@ -14,7 +14,8 @@
 	"extends": "standard",
 	// required to lint *.vue files
 	"plugins": [
-		"html"
+		"html",
+		"vuefix"
 	],
 	"rules": {
 		"quotes": [ //设置所有字符都只能使用单引号
@@ -29,6 +30,14 @@
 				"null": "ignore"
 			}
 		],
+		"no-new-wrappers":"off",
+		"no-extend-native":"off",
+		"no-eval":["off"],
+		"no-new": ["off"],
+		"handle-callback-err":["off"],
+		"no-labels":"off",
+		"promise/param-names": "off",
+		"one-var":["off"],
 		"no-const-assign": "warn",
 		"no-this-before-super": "warn",
 		"no-undef": "warn",

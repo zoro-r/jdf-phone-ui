@@ -22,17 +22,17 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
+      '@': resolve('src')
     }
   },
   module: {
     rules: [
-			// {
+      // {
       //   test: /\.(js|vue)$/,
       //   loader: 'eslint-loader',
-      //   enforce: "pre",
-			// 	include: [resolve('src'), resolve('test')],
-			// 	exclude: /assets/,
+      //   enforce: 'pre',
+      //   include: [resolve('src'), resolve('test')],
+      //   exclude: /assets/,
       //   options: {
       //     formatter: require('eslint-friendly-formatter')
       //   }

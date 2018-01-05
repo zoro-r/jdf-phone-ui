@@ -19,22 +19,22 @@
 
 <script>
 export default {
-  name: "baseField",
-  data() {
-    return {};
+  name: 'baseField',
+  data () {
+    return {}
   },
   props: {
-		//显示文字
+    // 显示文字
     label: {
       type: String
-		},
-		//标红的文字
+    },
+    // 标红的文字
     need: {
       type: String,
       default: ''
     }
   }
-};
+}
 </script>
 <style lang="scss">
 .input_field {

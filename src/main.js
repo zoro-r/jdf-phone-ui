@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 16:19:06
+ * @Last Modified time: 2018-01-05 17:01:45
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -48,7 +48,7 @@ import utils from './utils'
 import FastClick from 'fastclick'
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function () {
-    FastClick.attach(document.body) 
+    FastClick.attach(document.body)
   }, false)
 }
 // *****************************************************************************

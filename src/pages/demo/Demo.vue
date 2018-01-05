@@ -10,31 +10,31 @@
 
 <script>
 export default {
-  name: "demo",
+  name: 'demo',
   components: {
   },
   directives: {
     validate: {
-      params:['v-model'],
-      bind: function(el, binding, vnode, oldVnode) {
+      params: ['v-model'],
+      bind: function (el, binding, vnode, oldVnode) {
         // console.log(binding,vnode);
       },
-      update: function(el, binding) {
-        el.style.color = "red";
+      update: function (el, binding) {
+        el.style.color = 'red'
       },
-      unbind: function() {}
+      unbind: function () {}
     }
   },
-  data() {
+  data () {
     return {
     }
   },
   methods: {
   },
   computed: {},
-  mounted() {
+  mounted () {
   }
-};
+}
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";

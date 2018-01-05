@@ -30,7 +30,7 @@ const ui = {
   },
   // 新增普通提示
   alert (msg, callback = e => {}) {
-    let instance = Toast({
+    Toast({
       message: (msg instanceof Array) ? msg[0] : msg,
       position: 'top',
       duration: 3000

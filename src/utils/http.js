@@ -1,5 +1,5 @@
 import axios from 'axios'
-import format from './format'
+// import format from './format'
 import store from '../vuex/store'
 import { Indicator } from 'mint-ui'
 
@@ -33,8 +33,8 @@ instance.interceptors.request.use(config => {
   }
 
   // 新增自动塞入token属性
-  if (utils.cache.get('token')) {
-  // config.data.token = utils.cache.get("token");
+  if (window.utils.cache.get('token')) {
+  // config.data.token = window.utils.cache.get("token");
   }
 
   let params = {
@@ -42,27 +42,25 @@ instance.interceptors.request.use(config => {
       'packages': {
         'header': {
           'requestType': config.url,
-          'comId': globalConfig.comId,
-          'from': globalConfig.from,
+          'comId': window.globalConfig.comId,
+          'from': window.globalConfig.from,
           'sendTime': new Date().format('yyyy-MM-dd HH:mm:ss'),
           'orderSerial': 'orderId',
           'comSerial': 'comSerial',
-          'productCode': utils.cache.get('token')
+          'productCode': window.utils.cache.get('token')
         },
-        request: DES3.encrypt('', JSON.stringify({
-          requestPayload: Base64.encode(JSON.stringify(config.data))
+        request: window.DES3.encrypt('', JSON.stringify({
+          requestPayload: window.Base64.encode(JSON.stringify(config.data))
         }).replace(/\s/g, ''))
       }
     }
   }
   let paramStr = JSON.stringify(params)
-  let sign = hex_hmac_md5(globalConfig.transfer, paramStr)
-  config.url = globalConfig.rootUrl + 'interfaceChannel?sign=' + sign + '&com_id=' + globalConfig.comId
+  let sign = window.hex_hmac_md5(window.globalConfig.transfer, paramStr)
+  config.url = window.globalConfig.rootUrl + 'interfaceChannel?sign=' + sign + '&com_id=' + window.globalConfig.comId
   config.data = paramStr
   return config
-},
-/* eslint handle-callback-err: "warn" */
-error => {
+}, error => {
   // store.commit('TOGGLE_TOAST', {
   //   toast: true,
   //   toastMsg: '发送请求失败！'
@@ -89,7 +87,7 @@ instance.interceptors.response.use(response => {
   }
 
   try {
-    response.data.packageList.packages.response = JSON.parse(DES3.decrypt('', response.data.packageList.packages.response))
+    response.data.packageList.packages.response = JSON.parse(window.DES3.decrypt('', response.data.packageList.packages.response))
     responsePayload = response.data.packageList.packages.response.responsePayload
     console.log('%c 返回数据>>>>>>>', 'color:green', response)
     if (typeof responsePayload.data === 'string') {
