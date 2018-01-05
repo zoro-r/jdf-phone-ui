@@ -1,4 +1,4 @@
-# n22-phone-ui 振利软件移动端框架组件
+# n22-phone-ui 移动端框架组件
 #  前期准备
 
 项目依赖node如果没有安装node的同事，请自行去官网下载安装 : [nodejs ]( https://nodejs.org/en/)
