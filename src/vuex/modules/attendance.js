@@ -1,9 +1,9 @@
 const types = {
-  SETOUTAPPLICATION: 'SETOUTAPPLICATION',
+  SETOUTAPPLICATION: 'SETOUTAPPLICATION'
 }
 
 const state = {
-  outApplication: {},
+  outApplication: {}
 }
 
 const getters = {
@@ -15,10 +15,9 @@ const actions = {
 }
 
 const mutations = {
-  [types.SETOUTAPPLICATION](state, param) {
-    console.log('store', param)
+  [types.SETOUTAPPLICATION] (state, param) {
     state.outApplication = param.outApplication
-  },
+  }
 }
 
 export default {

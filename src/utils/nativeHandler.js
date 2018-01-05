@@ -1,7 +1,6 @@
 const handler = {
-  uploadImg() {
+  uploadImg () {
     let promise = new Promise()
-
     return promise
   }
 }

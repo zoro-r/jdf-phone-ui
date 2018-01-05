@@ -10,6 +10,6 @@ export default new Vuex.Store({
   modules: {
     common: common,
     attendance: attendance,
-    news: news,
+    news: news
   }
 })

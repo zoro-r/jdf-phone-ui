@@ -24,14 +24,15 @@
   </div>
 </template>
 <script>
-import { swiper, swiperSlide } from "vue-awesome-swiper";
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
 export default {
-  name: "baseCalendar",
+  name: 'baseCalendar',
   data() {
     return {
       currentDate: this.date,
-      chooseDay: utils.format.toDate(new Date(), "yyyy-MM-dd"),
-      dayNames: ["日", "一", "二", "三", "四", "五", "六"],
+      chooseDay: utils.format.toDate(new Date(), 'yyyy-MM-dd'),
+      dayNames: '日-一-二-三-四-五-六'.split('-'),
       days: [],
       activeIndex: 1,
       swiperOption: {
@@ -52,35 +53,35 @@ export default {
         spaceBetween: 0,
         // mousewheelControl: true,
         onTransitionStart: swiper => {
-          this.activeIndex = swiper.activeIndex;
+          this.activeIndex = swiper.activeIndex
         },
 
         onSlideNextStart: swiper => {
           this.$nextTick(() => {
-            this.$refs.mySwiper.swiper.slideTo(1, 0);
-          }, 0);
+            this.$refs.mySwiper.swiper.slideTo(1, 0)
+          }, 0)
         },
         onSlideNextEnd: swiper => {
           let tempDate = this.currentDate.setMonth(
             this.currentDate.getMonth() - 1
-          );
-          this.currentDate = new Date(tempDate);
-          this._initDates();
+          )
+          this.currentDate = new Date(tempDate)
+          this._initDates()
         },
         onSlidePrevStart: swiper => {
           this.$nextTick(() => {
-            this.$refs.mySwiper.swiper.slideTo(1, 0);
-          }, 0);
+            this.$refs.mySwiper.swiper.slideTo(1, 0)
+          }, 0)
         },
         onSlidePrevEnd: swiper => {
           let tempDate = this.currentDate.setMonth(
             this.currentDate.getMonth() + 1
-          );
-          this.currentDate = new Date(tempDate);
-          this._initDates();
+          )
+          this.currentDate = new Date(tempDate)
+          this._initDates()
         }
       }
-    };
+    }
   },
   components: {
     swiper,
@@ -91,73 +92,72 @@ export default {
     punchs: {
       type: Array,
       default: () => {
-        return [];
+        return []
       }
     },
     //传入日期
     date: {
       type: Date,
       default: () => {
-        return new Date();
+        return new Date()
       }
     }
   },
   filters: {
-    _dateFormat(val, format) {
-      return utils.format.toDate(val, format);
+    _dateFormat (val, format) {
+      return utils.format.toDate(val, format)
     }
   },
   methods: {
     /**
-     * 跳转到当天
+     * @name 跳转到当天
      */
-    _currentDay() {
-      this.chooseDay = utils.format.toDate(new Date(), "yyyy-MM-dd");
-      this.currentDate = new Date();
-      this._initDates();
-      this.$emit("choose", { date: new Date() });
+    _currentDay () {
+      this.chooseDay = utils.format.toDate(new Date(), "yyyy-MM-dd")
+      this.currentDate = new Date()
+      this._initDates()
+      this.$emit("choose", { date: new Date() })
     },
     /**
-     * 判断是否在当月
+     * @name 判断是否在当月
      */
-    _inMonth(item) {
+    _inMonth (item) {
       return (
         utils.format.toDate(item.date, "yyyy-MM") ===
         utils.format.toDate(this.currentDate, "yyyy-MM")
-      );
+      )
     },
     /**
-   * 初始化页面数据
-   */
-    _initDates() {
-      let list = [];
+		 * @name 初始化页面数据
+		 */
+    _initDates () {
+      let list = []
       //塞入上个月
-      list.push(this._lastMonth(this.currentDate));
+      list.push(this._lastMonth(this.currentDate))
       //塞入当前月份
-      list.push(this._getMonthFromDate(this.currentDate));
+      list.push(this._getMonthFromDate(this.currentDate))
       //塞入下个月
-      list.push(this._nextMonth(this.currentDate));
-      this.$refs.mySwiper.swiper.slideTo(1);
-      this.days = list;
+      list.push(this._nextMonth(this.currentDate))
+      this.$refs.mySwiper.swiper.slideTo(1)
+      this.days = list
     },
     /**
-     * @argument
-     * 判断是否打卡
+     * @name 判断是否打卡
      */
-    _hasPunch(item) {
-      let punchStr = this.punchs.join(";");
-      return punchStr.indexOf(item.format) >= 0;
+    _hasPunch (item) {
+      let punchStr = this.punchs.join("")
+      return punchStr.indexOf(item.format) >= 0
     },
     /**
-     * 根据日期获取当前月的每一天·2
+     * @name 根据日期获取当前月的每一天·2
      */
-    _getMonthFromDate(date) {
-      let list1 = [];
+    _getMonthFromDate (date) {
+      let list1 = []
       for (let i = 1; i <= 35; i++) {
-        let tempDate = new Date(date.getTime());
+        let tempDate = new Date(date.getTime())
         //先判断一下当前月的一号是星期几
-        let one_in_week = new Date(tempDate.setDate("01")).getDay();
-        let date_item = new Date(tempDate.setDate(i - one_in_week));
+        let one_in_week = new Date(tempDate.setDate("01")).getDay()
+        let date_item = new Date(tempDate.setDate(i - one_in_week))
         list1.push({
           date: date_item,
           // inMonth: date_item.getMonth() === this.date.getMonth(),
@@ -166,37 +166,37 @@ export default {
             utils.format.toDate(date, "yyyy-MM-dd"),
           format: utils.format.toDate(date_item, "yyyy-MM-dd"),
           isFutureDay: date_item.getTime() > new Date().getTime()
-        });
+        })
       }
-      return list1;
+      return list1
     },
     /**
-     * 上个月
+     * @name 上个月
      */
-    _lastMonth(date, index = 1) {
-      let tempDate = new Date(date.getTime());
-      let lastDate = new Date(tempDate.setMonth(tempDate.getMonth() - index));
-      return this._getMonthFromDate(lastDate);
+    _lastMonth (date, index = 1) {
+      let tempDate = new Date(date.getTime())
+      let lastDate = new Date(tempDate.setMonth(tempDate.getMonth() - index))
+      return this._getMonthFromDate(lastDate)
     },
     /**
-     * 下个月
+     * @name 下个月
      */
-    _nextMonth(date, index = 1) {
-      let tempDate = new Date(date.getTime());
-      let nextDate = new Date(tempDate.setMonth(tempDate.getMonth() + index));
-      return this._getMonthFromDate(nextDate);
+    _nextMonth (date, index = 1) {
+      let tempDate = new Date(date.getTime())
+      let nextDate = new Date(tempDate.setMonth(tempDate.getMonth() + index))
+      return this._getMonthFromDate(nextDate)
     },
     /**
-     * 选择当前某个日期
+     * @name 选择当前某个日期
      */
-    _chooseItem(item) {
+    _chooseItem (item) {
       if (/*!item.isFutureDay*/ this._inMonth(item)) {
-        this.chooseDay = utils.format.toDate(item.date, "yyyy-MM-dd");
-        this.$emit("choose", item);
+        this.chooseDay = utils.format.toDate(item.date, "yyyy-MM-dd")
+        this.$emit("choose", item)
       }
     }
   },
-  mounted() {
+  mounted () {
     this._initDates()
   }
 }
@@ -219,7 +219,7 @@ $width: 100%/7;
       width: 100%;
     }
     span {
-      flex: 0 0 50px;
+      flex: 0 0 50px
     }
   }
   .content {
@@ -227,10 +227,10 @@ $width: 100%/7;
     flex-wrap: wrap;
     font-size: 12px;
     .content-item {
-      text-align: center; // display: flex;
-      // align-items: center;
-      // justify-content: center;
-      // min-height: 50px;
+      text-align: center; // display: flex
+      // align-items: center
+      // justify-content: center
+      // min-height: 50px
       flex: 0 0 $width;
       border-bottom: 1px solid rgba(1, 1, 1, 0.21);
       box-sizing: border-box;

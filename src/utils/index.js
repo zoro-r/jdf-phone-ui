@@ -15,9 +15,9 @@ const utils = {
   validator: validator,
   nativeHandler: nativeHandler,
   ui: ui,
-  help:help,
-  proposalHandler:proposalHandler,
-  popup:popup,
+  help: help,
+  proposalHandler: proposalHandler,
+  popup: popup
 }
 
 export default utils

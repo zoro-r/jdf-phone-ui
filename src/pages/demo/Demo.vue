@@ -4,6 +4,7 @@
 		<baseField :label="'地址控件'" :need="'*'">
 			<baseAddress slot="select" ></baseAddress>
 		</baseField>
+		<baseCalendar></baseCalendar>
   </div>
 </template>
 

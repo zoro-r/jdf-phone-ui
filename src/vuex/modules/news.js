@@ -1,9 +1,9 @@
 const types = {
-  SETNEWS: 'SETNEWS',
+  SETNEWS: 'SETNEWS'
 }
 
 const state = {
-  news: {},
+  news: {}
 }
 
 const getters = {
@@ -15,10 +15,10 @@ const actions = {
 }
 
 const mutations = {
-  [types.SETNEWS](state, param) {
+  [types.SETNEWS] (state, param) {
     console.log('store', param)
     state.news = param.news
-  },
+  }
 }
 
 export default {

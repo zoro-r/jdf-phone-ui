@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 09:42:16
+ * @Last Modified time: 2018-01-05 13:47:43
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -18,7 +18,7 @@ window.globalConfig = {
   transfer: 'GTO2OINTERFACE2017#@!%88', // 接口数据交互加密key
   comId: 'GTO2O20170118' // 保险公司编码--保险公司Id(固定为：GTO2O20170118）
 }
-// 定义初始化方法
+// 定义初始化方法 @待修改
 function init () {
   let isiOS = !!navigator.userAgent.match(/\(i[^]+( U)? CPU.+Mac OS X/) // ios终端
   window.globalConfig.os = isiOS ? 'ios' : 'android'
@@ -81,7 +81,7 @@ Vue.mixin({
     return {
       screenWidth: document.documentElement.clientWidth,
       screenHeight: document.documentElement.clientHeight,
-      // 定义常量 用于页面判断
+      // 定义常量 用于页面判断 @待修改
       os: window.navigator.platform === 'iPhone' ? 'ios' : 'android'
     }
   },
@@ -111,7 +111,7 @@ if (window.navigator.platform === 'iPhone') {
   document.body.classList.add('plat-ios')
   document.addEventListener('deviceready', function () {
     console.log('deviceready')
-    // 隐藏导航栏
+    // 隐藏导航
     window.navigator.splashscreen.hide()
     // 设置顶部bar
     window.StatusBar.styleDefault()
