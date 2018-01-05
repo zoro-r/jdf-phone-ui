@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 13:47:43
+ * @Last Modified time: 2018-01-05 16:19:06
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -121,8 +121,8 @@ if (window.navigator.platform === 'iPhone') {
     window.Keyboard.hideFormAccessoryBar(true)
     // Keyboard.disableScrollingInShrinkView(false)
     // Keyboard.automaticScrollToTopOnHiding = true
-    Vue.use(vm)
+    new Vue(vm)
   }, false)
 } else {
-  Vue.use(vm)
+  new Vue(vm)
 }
