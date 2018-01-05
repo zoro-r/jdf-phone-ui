@@ -1,7 +1,5 @@
 # n22-phone-ui 振利软件移动端框架组件
-# 前言
-
- 1. 前期准备
+#  前期准备
 
 项目依赖node如果没有安装node的同事，请自行去官网下载安装 : [nodejs ]( https://nodejs.org/en/)
 
@@ -15,20 +13,25 @@
       
   vuex：[官网 ]( https://cn.vuejs.org/v2/guide/migration-vuex.html#ad)、[GitHub]( https://github.com/vuejs/vuex)
   
- 2. 目录结构
+  axios：[GitHub]( https://github.com/axios/axios)
+  
+#  目录结构
   
   <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365"/>
 
 ## Build Setup
 
 ``` bash
-# install dependencies
+# 将项目克隆到本地
+复制 git clone https://github.com/jdfdcc/n22-phone-ui.git
+
+# 安装项目依赖性
 npm install
 
-# serve with hot reload at localhost:9000
+# 启动项目 
 npm run dev
 
-# build for production with minification
+# 编译打包项目
 npm run build
 
 # build for production and view the bundle analyzer report
