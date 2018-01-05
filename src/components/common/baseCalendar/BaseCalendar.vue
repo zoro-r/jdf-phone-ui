@@ -32,7 +32,7 @@ export default {
   data () {
     return {
       currentDate: this.date,
-      chooseDay: utils.format.toDate(new Date(), 'yyyy-MM-dd'),
+      chooseDay: window.utils.format.toDate(new Date(), 'yyyy-MM-dd'),
       dayNames: '日-一-二-三-四-五-六'.split('-'),
       days: [],
       activeIndex: 1,
@@ -106,7 +106,7 @@ export default {
   },
   filters: {
     _dateFormat (val, format) {
-      return utils.format.toDate(val, format)
+      return window.utils.format.toDate(val, format)
     }
   },
   methods: {
@@ -114,7 +114,7 @@ export default {
      * @name 跳转到当天
      */
     _currentDay () {
-      this.chooseDay = utils.format.toDate(new Date(), 'yyyy-MM-dd')
+      this.chooseDay = window.utils.format.toDate(new Date(), 'yyyy-MM-dd')
       this.currentDate = new Date()
       this._initDates()
       this.$emit('choose', { date: new Date() })
@@ -124,7 +124,7 @@ export default {
      */
     _inMonth (item) {
       return (
-        utils.format.toDate(item.date, 'yyyy-MM') === utils.format.toDate(this.currentDate, 'yyyy-MM')
+        window.utils.format.toDate(item.date, 'yyyy-MM') === window.utils.format.toDate(this.currentDate, 'yyyy-MM')
       )
     },
     /**
@@ -161,9 +161,9 @@ export default {
         list1.push({
           date: dateItem,
           // inMonth: date_item.getMonth() === this.date.getMonth(),
-          isToday: utils.format.toDate(date_item, 'yyyy-MM-dd') === utils.format.toDate(date, 'yyyy-MM-dd'),
-          format: utils.format.toDate(date_item, 'yyyy-MM-dd'),
-          isFutureDay: date_item.getTime() > new Date().getTime()
+          isToday: window.utils.format.toDate(dateItem, 'yyyy-MM-dd') === window.utils.format.toDate(date, 'yyyy-MM-dd'),
+          format: window.utils.format.toDate(dateItem, 'yyyy-MM-dd'),
+          isFutureDay: dateItem.getTime() > new Date().getTime()
         })
       }
       return list1
@@ -189,7 +189,7 @@ export default {
      */
     _chooseItem (item) {
       if (this._inMonth(item)) {
-        this.chooseDay = utils.format.toDate(item.date, 'yyyy-MM-dd')
+        this.chooseDay = window.utils.format.toDate(item.date, 'yyyy-MM-dd')
         this.$emit('choose', item)
       }
     }

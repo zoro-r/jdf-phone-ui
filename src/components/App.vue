@@ -71,7 +71,7 @@ export default {
       window.utils.cache.set('hasPop', hasObj)
       window.utils.http
         .post('RHUSERINFO', {
-          password: utils.cache.get('LOGINMSG').password
+          password: window.utils.cache.get('LOGINMSG').password
         })
         .then(response => {
           // 存储用户信息
@@ -88,12 +88,12 @@ export default {
             temp.password = ''
             window.utils.cache.set('LOGINMSG', temp)
           } else if (error.data && error.data.data == '-2') {
-            let temp = utils.cache.get('LOGINMSG')
+            let temp = window.utils.cache.get('LOGINMSG')
             temp.usercode = ''
             temp.password = ''
             window.utils.cache.set('LOGINMSG', temp)
           }
-          error.isLogicError && utils.ui.alert(error.errorMessage)
+          error.isLogicError && window.utils.ui.alert(error.errorMessage)
           this.$router.push({ name: 'login' })
         })
     },
@@ -132,10 +132,10 @@ export default {
 
       // 首页不可修改
       if (selectedId == 'home') {
-        this.$router.push({ name: this.menuConfig[newVal] });
+        this.$router.push({ name: this.menuConfig[newVal] })
       } else {
         // 点击tab判断是否有访问权限
-        if (!utils.help.hasAccessTo(selectedId, this.$store.state.common.user.menuTree)) {
+        if (!window.utils.help.hasAccessTo(selectedId, this.$store.state.common.user.menuTree)) {
           window.utils.ui.alert('您无权限访问！请联系管理员')
           this.selected = oldVal
         } else {
@@ -158,7 +158,7 @@ export default {
 
     if (!window.globalConfig.isDebug) {
       // 当存在token的时候 向后台发送请求获取用户信息
-      if (utils.cache.get('token') && window.utils.cache.get('LOGINMSG')) {
+      if (window.utils.cache.get('token') && window.utils.cache.get('LOGINMSG')) {
         this.getUserMsg()
       } else {
         setTimeout(() => {

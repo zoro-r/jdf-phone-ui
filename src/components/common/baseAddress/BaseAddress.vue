@@ -28,9 +28,9 @@ export default {
     return {
       popupVisible: false,
       showDesc: {
-        province: utils.help.getAddressOfCn(this.province),
-        city: utils.help.getAddressOfCn(this.city),
-        area: utils.help.getAddressOfCn(this.area)
+        province: window.utils.help.getAddressOfCn(this.province),
+        city: window.utils.help.getAddressOfCn(this.city),
+        area: window.utils.help.getAddressOfCn(this.area)
       },
       districts: DISTRICTS
     }
@@ -91,17 +91,17 @@ export default {
      * @name 初始化数据
      */
     _initData () {
-      this.showDesc.province = utils.help.getAddressOfCn(this.province)
-      this.showDesc.city = utils.help.getAddressOfCn(this.city)
-      this.showDesc.area = utils.help.getAddressOfCn(this.area)
+      this.showDesc.province = window.utils.help.getAddressOfCn(this.province)
+      this.showDesc.city = window.utils.help.getAddressOfCn(this.city)
+      this.showDesc.area = window.utils.help.getAddressOfCn(this.area)
     }
   },
   watch: {
     popupVisible (newVal) {
-      // utils.help.disabled(newVal);
+      // window.utils.help.disabled(newVal);
       newVal
-        ? utils.help.ModalHelper.afterOpen()
-        : utils.help.ModalHelper.beforeClose()
+        ? window.utils.help.ModalHelper.afterOpen()
+        : window.utils.help.ModalHelper.beforeClose()
     },
     // province(newVal, oldVal) {
     //   this._initData()

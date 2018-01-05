@@ -44,7 +44,8 @@
 		"no-unreachable": "warn",
 		"no-unused-vars": "warn",
 		"constructor-super": "warn",
-		"valid-typeof": "warn"
+		"valid-typeof": "warn",
+		"no-useless-computed-key":"off"
 		// "no-multi-spaces": 2, //不允许出现多余的空格
 		// "guard-for-in": 0, //监视for in循环，防止出现不可预料的情况
 		// "no-div-regex": 2, //不能使用看起来像除法的正则表达式
