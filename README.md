@@ -1,6 +1,10 @@
-# n22-ui
-
-> A Vue.js project 
+# n22-phone-ui 振利软件移动端框架组件
+# 前言
+  技术栈 vue、mint-ui、vue-router，vuex
+  
+  1、目录结构
+  
+  <img src="https://github.com/jdfdcc/n22-phone-ui/static/images/process/m_process.jpg" width="365" height="619"/>
 
 ## Build Setup
 
