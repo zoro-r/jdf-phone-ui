@@ -38,4 +38,6 @@ npm run build
 npm run build --report
 ```
 
+欢迎Star 如有问题 欢迎issues
+
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
