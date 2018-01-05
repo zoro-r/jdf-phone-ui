@@ -4,7 +4,7 @@
   
   1、目录结构
   
-  <img src="https://github.com/jdfdcc/n22-phone-ui/static/images/process/m_process.jpg" width="365" height="619"/>
+  <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365" height="619"/>
 
 ## Build Setup
 
