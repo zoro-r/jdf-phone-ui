@@ -19,7 +19,7 @@
   
   <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365"/>
 
-## Build Setup
+## 构建项目
 
 ``` bash
 # 将项目克隆到本地
