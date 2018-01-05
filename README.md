@@ -1,10 +1,12 @@
 # n22-phone-ui 振利软件移动端框架组件
 # 前言
+
+	项目依赖node如果没有安装node的同事，请自行去官网下载安装 : [nodejs ]( https://nodejs.org/en/)
   技术栈 vue、mint-ui、vue-router，vuex
   
   1、目录结构
   
-  <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365" height="619"/>
+  <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365"/>
 
 ## Build Setup
 
