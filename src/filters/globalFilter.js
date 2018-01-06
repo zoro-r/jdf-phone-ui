@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import codeData from '../assets/data/CodeData'
+import codeData from '../assets/data/codeData'
 import addressData from '../assets/data/addressData' // 地址码表Json
 import utils from '../utils/index'
 // import format from '../utils/format'
@@ -92,4 +92,3 @@ Vue.filter('productParamFilter', (value, list, name) => {
   }
   return returnValue
 })
-

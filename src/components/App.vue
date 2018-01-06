@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import user from './../assets/data/user'
+// import user from './../assets/data/user'
 // import Toast from "./common/Toast.vue";
 
 export default {
@@ -167,7 +167,7 @@ export default {
         }, 300)
       }
     } else {
-      this.$store.commit('USE_RINFO', user)
+      this.$store.commit('USE_RINFO', {})
     }
   }
 }
