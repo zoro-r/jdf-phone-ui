@@ -2,19 +2,25 @@
  * @Author: jdf
  * @Date: 2018-01-04 16:18:23
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 17:13:12
+ * @Last Modified time: 2018-01-06 21:14:32
  * @desc 自定义组件集合
  */
 // 引入组件
 import BaseField from './common/baseField'
 import BaseAddress from './common/baseAddress'
 import BaseCalendar from './common/baseCalendar'
+import Page from './common/page'
+import Tab from './common/tab'
+import Zoom from './common/zoom'
 
 // 定义组件集合
 const components = {
   BaseField,
   BaseAddress,
-  BaseCalendar
+  BaseCalendar,
+  Page,
+  Tab,
+  Zoom
 }
 
 // 初始化组件
@@ -31,5 +37,8 @@ export default {
   install,
   BaseField,
   BaseAddress,
-  BaseCalendar
+  BaseCalendar,
+  Page,
+  Tab,
+  Zoom
 }
