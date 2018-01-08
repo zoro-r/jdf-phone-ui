@@ -332,52 +332,6 @@ input {
   color: #5a5a5a;
 }
 
-.gender {
-  margin-right: -10px;
-  .mint-switch-core {
-    width: 60px;
-  }
-  .mint-switch-core::before {
-    width: 58px;
-  }
-  .mint-switch-core::after {
-    z-index: 2;
-    background-color: white;
-    background-repeat: no-repeat;
-    background-size: 16px 16px;
-    background-position: 7px;
-  }
-  .mint-switch-input+.mint-switch-core::after {
-    // background-image: url('../images/icon/female.png');
-  }
-  .mint-switch-input:checked+.mint-switch-core::after {
-    -webkit-transform: translateX(28px);
-    // background-image: url('../images/icon/male.png');
-  }
-  .mint-switch-label .text {
-    position: absolute;
-    top: 0;
-    left: 2px;
-    height: 32px;
-    line-height: 32px;
-    z-index: 1;
-    :first-child {
-      display: inline-block;
-      width: 30px;
-      text-align: center;
-      color: #fff;
-      font-size: 13px;
-    }
-    :last-child {
-      display: inline-block;
-      width: 20px;
-      text-align: center;
-      color: rgb(210, 21, 142);
-      font-size: 13px;
-    }
-  }
-}
-
 .mint-popup {
   background: $bg-color;
 }
