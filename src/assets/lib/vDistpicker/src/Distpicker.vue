@@ -51,7 +51,7 @@
 </template>
 
 <script>
-const DEFAULT_CODE = "xx";
+const DEFAULT_CODE = "xx"
 
 export default {
   name: "v-distpicker",

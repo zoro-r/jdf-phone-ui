@@ -20,7 +20,7 @@
 import DISTRICTS from './assets/data/districts'
 import VDistpicker from './../../../assets/lib/vDistpicker/src/Distpicker'
 export default {
-  name: 'baseAddress',
+  name: 'n22Address',
   components: {
     'v-distpicker': VDistpicker
   },

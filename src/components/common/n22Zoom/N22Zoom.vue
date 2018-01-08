@@ -9,7 +9,7 @@
 
 <script>
   export default {
-    name: 'zoom',
+    name: 'n22Zoom',
     props: ['show', 'title', 'dialog'],
     data () {
       return {

@@ -1,10 +1,10 @@
 <template>
   <div>
 		<h2>控件展示列表（请用chome手机模式查看）</h2>
-		<baseField :label="'地址控件'" :need="'*'">
-			<baseAddress slot="select" ></baseAddress>
-		</baseField>
-		<baseCalendar></baseCalendar>
+		<n22Field :label="'地址控件'" :need="'*'">
+			<n22Address slot="select" ></n22Address>
+		</n22Field>
+		<n22Calendar></n22Calendar>
   </div>
 </template>
 

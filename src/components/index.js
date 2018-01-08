@@ -2,25 +2,25 @@
  * @Author: jdf
  * @Date: 2018-01-04 16:18:23
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-06 21:14:32
+ * @Last Modified time: 2018-01-08 13:25:29
  * @desc 自定义组件集合
  */
 // 引入组件
-import BaseField from './common/baseField'
-import BaseAddress from './common/baseAddress'
-import BaseCalendar from './common/baseCalendar'
-import Page from './common/page'
-import Tab from './common/tab'
-import Zoom from './common/zoom'
+import N22Field from './common/n22Field'
+import N22Address from './common/n22Address'
+import N22Calendar from './common/n22Calendar'
+import N22Page from './common/n22Page'
+import N22Tab from './common/n22Tab'
+import N22Zoom from './common/n22Zoom'
 
 // 定义组件集合
 const components = {
-  BaseField,
-  BaseAddress,
-  BaseCalendar,
-  Page,
-  Tab,
-  Zoom
+  N22Field,
+  N22Address,
+  N22Calendar,
+  N22Page,
+  N22Tab,
+  N22Zoom
 }
 
 // 初始化组件
@@ -35,10 +35,10 @@ if (typeof window !== 'undefined' && window.Vue) install(window.Vue)
 
 export default {
   install,
-  BaseField,
-  BaseAddress,
-  BaseCalendar,
-  Page,
-  Tab,
-  Zoom
+  N22Field,
+  N22Address,
+  N22Calendar,
+  N22Page,
+  N22Tab,
+  N22Zoom
 }

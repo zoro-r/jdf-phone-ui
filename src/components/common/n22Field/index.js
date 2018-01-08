@@ -8,5 +8,5 @@
  *   <validatorInput :disabled="!canEdit" v-model="customer.name" :form.sync="validateObj.name" :validator="ruleObj.name" slot="input" :inputType="3" hintText="请输入投保人姓名" :hasIcon="true" />
  * </baseField>
  */
-import BaseField from './BaseField'
-export default BaseField
+import N22Field from './N22Field'
+export default N22Field

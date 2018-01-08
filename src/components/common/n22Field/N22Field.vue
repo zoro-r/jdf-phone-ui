@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  name: 'baseField',
+  name: 'n22Field',
   data () {
     return {}
   },

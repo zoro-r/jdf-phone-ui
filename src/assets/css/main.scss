@@ -348,11 +348,11 @@ input {
     background-position: 7px;
   }
   .mint-switch-input+.mint-switch-core::after {
-    background-image: url('../images/icon/female.png');
+    // background-image: url('../images/icon/female.png');
   }
   .mint-switch-input:checked+.mint-switch-core::after {
     -webkit-transform: translateX(28px);
-    background-image: url('../images/icon/male.png');
+    // background-image: url('../images/icon/male.png');
   }
   .mint-switch-label .text {
     position: absolute;

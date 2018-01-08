@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'tab',
+  name: 'n22Tab',
   props: ['tabs', 'tabIndex'],
   data () {
     return {

@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 17:01:45
+ * @Last Modified time: 2018-01-08 12:07:20
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -54,7 +54,7 @@ if ('addEventListener' in document) {
 // *****************************************************************************
 window.utils = utils
 // ************************************扩展vue类-start***************************
-// Vue.prototype.utils = utils //绑定utils 调用方法 this.utils
+// Vue.prototype.utils = utils // 绑定utils 调用方法 this.utils
 // ************************************结束扩展-end******************************
 // mintUi
 Vue.use(MintUI)

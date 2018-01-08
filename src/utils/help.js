@@ -1,6 +1,6 @@
 import addressData from '../assets/data/districts'
 // import profession from '../assets/data/profession'
-import codeData from '../assets/data/CodeData.js'
+import codeData from '../assets/data/codeData.js'
 
 const help = {
   pushState (title, url) {

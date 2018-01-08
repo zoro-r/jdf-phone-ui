@@ -28,7 +28,7 @@
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
 export default {
-  name: 'baseCalendar',
+  name: 'n22Calendar',
   data () {
     return {
       currentDate: this.date,
