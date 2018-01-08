@@ -1,10 +1,13 @@
 <template>
-  <div>
-		<h2>控件展示列表（请用chome手机模式查看）</h2>
-		<n22Field :label="'地址控件'" :need="'*'">
-			<n22Address slot="select" ></n22Address>
-		</n22Field>
-		<n22Calendar></n22Calendar>
+  <div class="demo_page">
+		<h2>组件列表</h2>
+		<mt-cell v-for="(item,index) in components" 
+			:key="index"
+			:title="item.name"
+		  :to="{ name: 'n22Field' }"
+			is-link
+			value="带链接">
+		</mt-cell>
   </div>
 </template>
 
@@ -13,20 +16,16 @@ export default {
   name: 'demo',
   components: {
   },
-  directives: {
-    validate: {
-      params: ['v-model'],
-      bind: function (el, binding, vnode, oldVnode) {
-        // console.log(binding,vnode);
-      },
-      update: function (el, binding) {
-        el.style.color = 'red'
-      },
-      unbind: function () {}
-    }
-  },
   data () {
     return {
+      components: [
+        {name: 'cell控件', url: {name: 'n22Field'}},
+        {name: '地址控件', url: {name: 'n22Field'}},
+        {name: '男女控件', url: {name: 'n22Field'}},
+        {name: '日历控件', url: {name: 'n22Field'}},
+        {name: '切换控件', url: {name: 'n22Field'}},
+        {name: '缩放控件', url: {name: 'n22Field'}}
+      ]
     }
   },
   methods: {
@@ -38,4 +37,7 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
+.demo_page{
+	text-align: center
+}
 </style>

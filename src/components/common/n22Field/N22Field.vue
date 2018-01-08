@@ -2,6 +2,8 @@
   <div class="input_field">
     <span v-if="label"><font style="color:red">{{need}}</font>{{label}}</span>
     <div class="text">
+			<slot class="right" name="right">
+      </slot>
       <slot class="input" name="input">
       </slot>
       <slot class="select" name="select">
