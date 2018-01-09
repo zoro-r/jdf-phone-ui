@@ -4,7 +4,7 @@
 		<mt-cell v-for="(item,index) in components" 
 			:key="index"
 			:title="item.name"
-		  :to="{ name: 'n22Field' }"
+		  :to="item.url"
 			is-link
 			value="带链接">
 		</mt-cell>
@@ -23,7 +23,7 @@ export default {
         {name: '地址控件', url: {name: 'n22Field'}},
         {name: '男女控件', url: {name: 'n22Field'}},
         {name: '日历控件', url: {name: 'n22Field'}},
-        {name: '切换控件', url: {name: 'n22Field'}},
+        {name: '滚动控件', url: {name: 'n22Scroll'}},
         {name: '缩放控件', url: {name: 'n22Field'}}
       ]
     }

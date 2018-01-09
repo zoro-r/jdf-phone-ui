@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-08 12:07:20
+ * @Last Modified time: 2018-01-08 16:59:19
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -107,7 +107,7 @@ let vm = {
 }
 
 // 移动端组件****************-start****************-
-if (window.navigator.platform === 'iPhone') {
+if (window.navigator.platform === 'i212Phone') {
   document.body.classList.add('plat-ios')
   document.addEventListener('deviceready', function () {
     console.log('deviceready')

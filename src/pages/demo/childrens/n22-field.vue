@@ -12,6 +12,8 @@
 		<n22Field :label="'性别'">
 			<n22Switch   :value.sync="sex" slot="choose" />
 		</n22Field>
+
+    <n22Calendar></n22Calendar>
   </div>
 </template>
 

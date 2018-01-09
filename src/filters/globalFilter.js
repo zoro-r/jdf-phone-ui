@@ -23,15 +23,15 @@ Vue.filter('commonFilter', (value, type, default1) => {
 })
 
 // 时间戳过滤
-Vue.filter('dateFilter', (value) => {
-  let tempDate = new Date(value)
-  let tempMonth = (tempDate.getMonth() + 1) < 10 ? '0' + (tempDate.getMonth() + 1) : (tempDate.getMonth() + 1)
-  let tempDay = tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate()
-  let tempHours = tempDate.getHours() < 10 ? '0' + tempDate.getHours() : tempDate.getHours()
-  let tempMinutes = tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes()
-  let tempSeconds = tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds()
-  return tempDate.getFullYear() + '-' + tempMonth + '-' + tempDay + ' ' + tempHours + ':' + tempMinutes + ':' + tempSeconds
-})
+// Vue.filter('dateFilter', (value) => {
+//   let tempDate = new Date(value)
+//   let tempMonth = (tempDate.getMonth() + 1) < 10 ? '0' + (tempDate.getMonth() + 1) : (tempDate.getMonth() + 1)
+//   let tempDay = tempDate.getDate() < 10 ? '0' + tempDate.getDate() : tempDate.getDate()
+//   let tempHours = tempDate.getHours() < 10 ? '0' + tempDate.getHours() : tempDate.getHours()
+//   let tempMinutes = tempDate.getMinutes() < 10 ? '0' + tempDate.getMinutes() : tempDate.getMinutes()
+//   let tempSeconds = tempDate.getSeconds() < 10 ? '0' + tempDate.getSeconds() : tempDate.getSeconds()
+//   return tempDate.getFullYear() + '-' + tempMonth + '-' + tempDay + ' ' + tempHours + ':' + tempMinutes + ':' + tempSeconds
+// })
 
 // 地址过滤
 Vue.filter('addressFilter', (value) => {

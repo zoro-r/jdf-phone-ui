@@ -13,7 +13,7 @@
   "dependencies": {
     "awesome-qr": "1.0.10",
     "axios": "^0.16.2",
-    "better-scroll": "^1.4.2",
+    "better-scroll": "^1.7.2",
     "fastclick": "^1.0.6",
     "mint-ui": "^2.2.9",
     "vue": "^2.4.2",
