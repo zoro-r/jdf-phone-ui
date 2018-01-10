@@ -20,7 +20,7 @@ export default {
     return {
       components: [
         {name: 'cell控件', url: {name: 'n22Field'}},
-        {name: '地址控件', url: {name: 'n22Field'}},
+        {name: '地址控件', url: {name: 'n22Address'}},
         {name: '男女控件', url: {name: 'n22Field'}},
         {name: '日历控件', url: {name: 'n22Field'}},
         {name: '滚动日历', url: {name: 'n22Scroll'}},

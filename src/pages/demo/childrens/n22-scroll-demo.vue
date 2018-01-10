@@ -1,18 +1,13 @@
 <template>
-  <div class="demo_page">
-    <mt-header title="Cell组件">
+  <div >
+    <mt-header title="地址控件">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-
-		<n22-field :label="'地址'" need='*'>
-			<n22-address slot="right"></n22-address>
-		</n22-field>
-
-		<n22Field :label="'性别'">
-			<n22Switch   :value.sync="sex" slot="choose" />
-		</n22Field>
+    <div class="demo_page">
+      <mt-button type="primary" size="large" @click="sunbmit()">提交</mt-button>
+    </div>
   </div>
 </template>
 
@@ -23,13 +18,10 @@ export default {
   },
   data () {
     return {
-      name: '',
-      sex: '1'
     }
   },
   methods: {
   },
-  computed: {},
   mounted () {
   }
 }
@@ -37,6 +29,7 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
 .demo_page{
-	text-align: center
+  padding: 10px;
+  font-size: 1.4rem;
 }
 </style>

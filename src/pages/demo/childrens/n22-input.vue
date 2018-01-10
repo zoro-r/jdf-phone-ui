@@ -1,14 +1,20 @@
 <template>
-  <div class="demo_page">
-    必填项验证
-		<n22-input  v-model="modal.text" type="text" :form.sync="validate.text"  :validator="rule.text" hintText="请输入" slot="input" />
-    数字
-    <n22-input  v-model="modal.idcard" type="text" :form.sync="validate.idcard"  :validator="rule.idcard" hintText="请输入" slot="input" />
-
-    {{validate}}
-    <br/>
-    <br/>
-    <mt-button type="primary" size="large" @click="sunbmit()">提交</mt-button>
+  <div >
+    <mt-header title="输入验证组件">
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <div class="demo_page">
+      必填项验证
+      <n22-input  v-model="modal.text" type="text" :form.sync="validate.text"  :validator="rule.text" hintText="请输入" slot="input" />
+      数字
+      <n22-input  v-model="modal.idcard" type="text" :form.sync="validate.idcard"  :validator="rule.idcard" hintText="请输入" slot="input" />
+      {{validate}}
+      <br/>
+      <br/>
+      <mt-button type="primary" size="large" @click="sunbmit()">提交</mt-button>
+    </div>
   </div>
 </template>
 
