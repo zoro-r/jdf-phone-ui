@@ -22,7 +22,7 @@ export default {
         {name: 'cell控件', url: {name: 'n22Field'}},
         {name: '地址控件', url: {name: 'n22Address'}},
         {name: '男女控件', url: {name: 'n22Field'}},
-        {name: '日历控件', url: {name: 'n22Field'}},
+        {name: '日历控件', url: {name: 'n22Calendar'}},
         {name: '滚动日历', url: {name: 'n22Scroll'}},
         {name: '输入控件', url: {name: 'n22Input'}},
         {name: '滚动日历', url: {name: 'n22Scroll'}},

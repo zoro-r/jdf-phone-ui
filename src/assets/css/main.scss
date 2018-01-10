@@ -215,8 +215,8 @@ button {
   top: 0px;
 }
 .mint-header {
-  color: $title-color;
-  background: #F9F9F9;
+  color: white;
+  background: -webkit-linear-gradient(top, $primary-button-color-start, $primary-button-color-end);
   border-bottom: 1px solid $divider-color;
   height: 50px;
 }

@@ -1,15 +1,13 @@
 <template>
   <div >
-    <mt-header title="地址控件">
+    <mt-header title="日历控件">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <n22-field :label="'地址'" need='*'>
-			<n22-address slot="right"></n22-address>
-		</n22-field>
-
-    <div class="demo_page">
+    <div class="">
+      <n22-calendar></n22-calendar>
+      <br/><br/><br/>
       <mt-button type="primary" size="large" @click="sunbmit()">提交</mt-button>
     </div>
   </div>
@@ -25,6 +23,12 @@ export default {
     }
   },
   methods: {
+    /**
+     * @name sunbmit
+     */
+    sunbmit () {
+
+    }
   },
   mounted () {
   }
