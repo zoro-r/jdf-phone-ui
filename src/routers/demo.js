@@ -2,12 +2,14 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-08 15:26:58
+ * @Last Modified time: 2018-01-10 17:11:16
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
 const n22Field = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-field.vue')), 'n22Field') }
 const n22Scroll = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-scroll.vue')), 'n22Scroll') }
+const n22Input = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-input.vue')), 'n22Input') }
+
 export default [{
   name: 'demo',
   path: '/demo',
@@ -23,4 +25,8 @@ export default [{
   name: 'n22Scroll',
   path: '/n22Scroll',
   component: n22Scroll
+}, {
+  name: 'n22Input',
+  path: '/n22Input',
+  component: n22Input
 }]

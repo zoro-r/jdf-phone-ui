@@ -1,7 +1,7 @@
 <template>
   <div class="demo_page">
 		<h2>组件列表</h2>
-		<mt-cell v-for="(item,index) in components" 
+		<mt-cell v-for="(item,index) in components"
 			:key="index"
 			:title="item.name"
 		  :to="item.url"
@@ -23,7 +23,9 @@ export default {
         {name: '地址控件', url: {name: 'n22Field'}},
         {name: '男女控件', url: {name: 'n22Field'}},
         {name: '日历控件', url: {name: 'n22Field'}},
-        {name: '滚动控件', url: {name: 'n22Scroll'}},
+        {name: '滚动日历', url: {name: 'n22Scroll'}},
+        {name: '输入控件', url: {name: 'n22Input'}},
+        {name: '滚动日历', url: {name: 'n22Scroll'}},
         {name: '缩放控件', url: {name: 'n22Field'}}
       ]
     }

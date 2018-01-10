@@ -5,9 +5,6 @@
 			<n22-address slot="right"></n22-address>
 		</n22-field>
 
-		<n22-field :label="'姓名'" need='*'>
-			<n22-input  v-model="name" type="text" hintText="请输入投保人姓名" slot="input" />
-		</n22-field>
 
 		<n22Field :label="'性别'">
 			<n22Switch   :value.sync="sex" slot="choose" />
