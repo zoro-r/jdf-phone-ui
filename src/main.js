@@ -2,13 +2,14 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-08 16:59:19
+ * @Last Modified time: 2018-01-10 16:59:08
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
   wxUrl: '', // 微信安全域名
   sourceUrl: '', // 展业静态资源
   isDebug: true, // 是否开启接口debug模式
+  isWx: '',
   plat: 'web', // WEB、NATIVE
   os: 'android', // 操作系统 ios:苹果操作系统 android:安卓系统
   timeout: 1000 * 180, // 默认是3000毫秒
@@ -20,9 +21,30 @@ window.globalConfig = {
 }
 // 定义初始化方法 @待修改
 function init () {
-  let isiOS = !!navigator.userAgent.match(/\(i[^]+( U)? CPU.+Mac OS X/) // ios终端
-  window.globalConfig.os = isiOS ? 'ios' : 'android'
+  // 判断是否为微信
+  let ua = window.navigator.userAgent.toLowerCase()
+  let isWx = ua.match(/MicroMessenger/i) == 'micromessenger'
+  window.globalConfig.isWx = isWx
+  // 判断是IOS还是安卓
+  let isIos = !!navigator.userAgent.match(/\(i[^]+( U)? CPU.+Mac OS X/) // ios终端
+  // 判断是否为pc或者移动端
+  window.globalConfig.plat = isPC() ? 'web' : 'native'
+  if (window.globalConfig.plat == 'native ') window.globalConfig.os = isIos ? 'ios' : 'android'
 }
+
+function isPC () {
+  var userAgentInfo = navigator.userAgent
+  var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
+  var flag = true
+  for (var v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false
+      break
+    }
+  }
+  return flag
+}
+
 init()
 // 初始化系统框架信息 *****************************************************************************
 import Vue from 'vue'
@@ -107,7 +129,7 @@ let vm = {
 }
 
 // 移动端组件****************-start****************-
-if (window.navigator.platform === 'i212Phone') {
+if (window.globalConfig.plat === 'native' && !window.globalConfig.isDebug) {
   document.body.classList.add('plat-ios')
   document.addEventListener('deviceready', function () {
     console.log('deviceready')
