@@ -7,11 +7,11 @@ html {
   background-color: $bg-color;
   overflow: scroll;
   // -webkit-overflow-scrolling: touch;
-   //去除移动端点击阴影效果
-  -webkit-user-select:none;
-  -moz-user-select:none;
-  -ms-user-select:none;
-	user-select:none;
+  // // 是否可以复制
+  // -webkit-user-select:none;
+  // -moz-user-select:none;
+  // -ms-user-select:none;
+	// user-select:none;
 	min-height: 100vh;
 	-webkit-touch-callout:none;
 }
@@ -216,7 +216,7 @@ button {
 }
 .mint-header {
   color: white;
-  background: -webkit-linear-gradient(top, $primary-button-color-start, $primary-button-color-end);
+  // background: -webkit-linear-gradient(top, $primary-button-color-start, $primary-button-color-end);
   border-bottom: 1px solid $divider-color;
   height: 50px;
 }
@@ -371,21 +371,6 @@ input {
 
 .mint-msgbox-message {
   font-size: 13px;
-}
-
-//baseField 控件
-.input_field {
-  .mint-cell-wrapper {
-    background-image: none;
-    padding: 0 10px 0 0;
-  }
-  .mint-field-core {
-    text-align: left;
-    font-size: 12px;
-  }
-  .icon_img {
-    width: 15px;
-  }
 }
 
 .base-tabs {

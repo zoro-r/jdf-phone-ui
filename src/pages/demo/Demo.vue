@@ -1,6 +1,9 @@
 <template>
   <div class="demo_page">
-		<h2>组件列表</h2>
+		<div class="demo_main_header">
+      <h2>组件列表</h2>
+      <a href="https://github.com/jdfdcc/n22-phone-ui" class="gitDiv"></a>
+    </div>
 		<mt-cell v-for="(item,index) in components"
 			:key="index"
 			:title="item.name"
@@ -21,7 +24,7 @@ export default {
       components: [
         {name: 'cell控件', url: {name: 'n22Field'}},
         {name: '地址控件', url: {name: 'n22Address'}},
-        {name: '男女控件', url: {name: 'n22Field'}},
+        {name: '性别控件', url: {name: 'n22Switch'}},
         {name: '日历控件', url: {name: 'n22Calendar'}},
         {name: '滚动日历', url: {name: 'n22Scroll'}},
         {name: '输入控件', url: {name: 'n22Input'}},
@@ -39,6 +42,7 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
+@import "src/assets/css/demo";
 .demo_page{
 	text-align: center
 }

@@ -13,6 +13,11 @@
 		<n22Field :label="'性别'">
 			<n22Switch   :value.sync="sex" slot="choose" />
 		</n22Field>
+
+    <div class="content_intro">
+      此插件为信息录入等页面提供统一的左右结构样式<br/>
+      eg：姓名：【】
+    </div>
   </div>
 </template>
 
@@ -25,6 +30,7 @@ export default {
     return {
       name: '',
       sex: '1'
+      /* eslint-disable quotes */
     }
   },
   methods: {
@@ -35,7 +41,7 @@ export default {
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-@import "src/assets/css/vars";
+@import "src/assets/css/demo";
 .demo_page{
 	text-align: center
 }

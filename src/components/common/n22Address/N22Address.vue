@@ -1,8 +1,8 @@
 <template>
   <div class="address_district">
-    
+
 		<mt-field style="color:red" @click.native="showPopup" v-model="showDesc.area" :placeholder="label" :disableClear="true" disabled />
-    
+
 		<mt-popup v-bind:style="{height:(screenHeight *.55 + 45)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
       <div class="address_header">
         <span>{{label}}</span>
@@ -68,10 +68,11 @@ export default {
     * @param data 选择的数据
     */
     onSelected (data) {
-      console.log(data)
       this.$emit('update:province', data.province.code)
       this.$emit('update:city', data.city.code)
       this.$emit('update:area', data.area.code)
+      // 选中值后回调
+      this.$emit('choose', data)
       this.popupVisible = false
     },
     /**

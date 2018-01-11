@@ -1,17 +1,17 @@
 <template>
   <div >
-    <mt-header title="地址控件">
+    <mt-header title="性别">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <n22-field :label="'地址'" need='*'>
-			<n22-address  :disabled = "disabled"  @choose="choose" :province.sync="address.province" :city.sync="address.city" :area.sync="address.area" slot="right"></n22-address>
+    <n22-field :label="'性别'" need='*'>
+			<n22-switch :disabled = 'disabled' slot="choose" :value.sync="value"></n22-switch>
 		</n22-field>
 
     <br/>
     <div>
-      {{address}}<br/>
+      {{value}}<br/>
       是否禁用：{{disabled}}
     </div>
     <div class="demo_page">
@@ -32,19 +32,13 @@ export default {
   data () {
     return {
       disabled: false,
-      address: {
-        province: '',
-        city: '',
-        area: ''
-      }
+      value: 'm'
     }
   },
   methods: {
     // 塞入默认值
     setValue () {
-      this.address.province = '610000'
-      this.address.city = '610100'
-      this.address.area = '610104'
+      this.value = this.value == 'f' ? 'm' : 'f'
     },
     // 选中
     choose (data) {

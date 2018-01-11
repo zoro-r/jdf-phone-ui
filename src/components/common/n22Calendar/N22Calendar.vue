@@ -4,23 +4,27 @@
       {{currentDate | _dateFormat('yyyy年MM月')}}
       <span @click="_currentDay">今天</span>
     </section>
-    <div class="content">
-      <div class="content-item week" v-for="(item,index) in dayNames" :key="index" v-once>
-        {{item}}
+    <div>
+      <div class="content ca_header">
+        <div class="content-item week" v-for="(item,index) in dayNames" :key="index" v-once>
+          {{item}}
+        </div>
       </div>
-      <swiper :options="swiperOption" class="swiper-box" style="height: auto" ref="mySwiper">
-        <swiper-slide  v-for="(day,index) in days" :key="index">
-          <div class="content">
-						<!-- item.isFutureDay|| -->
-            <div @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',chooseDay === item.format ?'choosed':'']">
-              <span> {{item.date | _dateFormat('dd')}}</span>
-              <div class="ok-icon">
-                <i v-if="_hasPunch(item)" class="fa fa-check" aria-hidden="true"></i>
+      <div  class="content ca_content">
+        <swiper :options="swiperOption" class="swiper-box" style="height: auto" ref="mySwiper">
+          <swiper-slide  v-for="(day,index) in days" :key="index">
+              <div class="content">
+                <!-- item.isFutureDay|| -->
+                <div style="min-height:54px;" @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',chooseDay === item.format ?'choosed':'']">
+                  <span> {{item.date | _dateFormat('dd')}}</span>
+                  <div class="ok-icon">
+                    <i v-if="_hasPunch(item)" class="fa fa-check" aria-hidden="true"></i>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </swiper-slide>
-      </swiper>
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
   </div>
 </template>
@@ -89,14 +93,18 @@ export default {
     swiperSlide
   },
   props: {
-    // 已经打卡的日期
+    /**
+     * @name 已经打卡的日期
+     */
     punchs: {
       type: Array,
       default: () => {
         return []
       }
     },
-    // 传入日期
+    /**
+     * @name 传入日期
+     */
     date: {
       type: Date,
       default: () => {
@@ -105,6 +113,7 @@ export default {
     }
   },
   filters: {
+    /** 日期过滤器 */
     _dateFormat (val, format) {
       return window.utils.format.toDate(val, format)
     }
@@ -195,6 +204,7 @@ export default {
     }
   },
   mounted () {
+    // 初始化数据
     this._initDates()
   }
 }
@@ -211,7 +221,7 @@ $width: 100%/7;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid rgba(1, 1, 1, 0.21);
+    border-bottom: 1px solid rgba(0, 0, 255, 0.21);
     h2 {
       text-align: center;
       width: 100%;
@@ -220,7 +230,10 @@ $width: 100%/7;
       flex: 0 0 50px
     }
   }
-  .content {
+  .ca_header{
+    background: rgba(1, 1, 1, 0.1)
+  }
+  .content, .ca_header {
     display: flex;
     flex-wrap: wrap;
     font-size: 12px;

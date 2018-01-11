@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-10 16:59:08
+ * @Last Modified time: 2018-01-11 09:37:35
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
@@ -19,6 +19,7 @@ window.globalConfig = {
   transfer: 'GTO2OINTERFACE2017#@!%88', // 接口数据交互加密key
   comId: 'GTO2O20170118' // 保险公司编码--保险公司Id(固定为：GTO2O20170118）
 }
+
 // 定义初始化方法 @待修改
 function init () {
   // 判断是否为微信
@@ -31,7 +32,7 @@ function init () {
   window.globalConfig.plat = isPC() ? 'web' : 'native'
   if (window.globalConfig.plat == 'native ') window.globalConfig.os = isIos ? 'ios' : 'android'
 }
-
+// 判断是否为电脑
 function isPC () {
   var userAgentInfo = navigator.userAgent
   var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
