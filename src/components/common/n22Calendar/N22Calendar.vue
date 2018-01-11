@@ -5,17 +5,19 @@
       <span @click="_currentDay">今天</span>
     </section>
     <div>
+
       <div class="content ca_header">
-        <div class="content-item week" v-for="(item,index) in dayNames" :key="index" v-once>
+        <div class="content-item week" v-bind:class = "[item == '日' || item == '六'? 'weekDay':'']" v-for="(item,index) in dayNames" :key="index" v-once>
           {{item}}
         </div>
       </div>
+
       <div  class="content ca_content">
         <swiper :options="swiperOption" class="swiper-box" style="height: auto" ref="mySwiper">
           <swiper-slide  v-for="(day,index) in days" :key="index">
               <div class="content">
                 <!-- item.isFutureDay|| -->
-                <div style="min-height:54px;" @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',chooseDay === item.format ?'choosed':'']">
+                <div style="min-height:54px;" @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',_isWeekDay(item)?'weekDay':'',chooseDay === item.format ?'choosed':'']">
                   <span> {{item.date | _dateFormat('dd')}}</span>
                   <div class="ok-icon">
                     <i v-if="_hasPunch(item)" class="fa fa-check" aria-hidden="true"></i>
@@ -25,12 +27,13 @@
           </swiper-slide>
         </swiper>
       </div>
+
     </div>
   </div>
 </template>
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
-
+// @待修改
 export default {
   name: 'n22Calendar',
   data () {
@@ -135,6 +138,13 @@ export default {
       return (
         window.utils.format.toDate(item.date, 'yyyy-MM') === window.utils.format.toDate(this.currentDate, 'yyyy-MM')
       )
+    },
+    /**
+     * @name 是否为双休
+     */
+    _isWeekDay (item) {
+      // console.log(item.date.getDay() == 0 || item.date.getDay() == 6)
+      return item.date.getDay() == 0 || item.date.getDay() == 6
     },
     /**
      * @name 初始化页面数据
@@ -252,11 +262,15 @@ $width: 100%/7;
         color: #3399ff;
         font-size: 15px;
       }
+      &.weekDay{
+        color:red;
+      }
       &.day {
         padding: 10px 0px;
+        font-weight: 500
       }
       &.notInMonth {
-        color: rgba(1, 1, 1, 0.1);
+        color: rgba(1, 1, 1, 0.5);
       }
       &.week {
         min-height: 30px;
