@@ -1,28 +1,30 @@
 <template>
-  <div >
-    <mt-header title="性别">
+  <n22-page>
+    <mt-header title="性别" slot="header" :fixed="true">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
 
-    <n22-zoom title="放大缩小" :dialog="true" :show.sync="showZoom">
-      <mt-button @click="showZoom = !showZoom" type="primary" size="large">关闭</mt-button>
-      <img style="width:100%;" src="http://uat-1253280931.cossh.myqcloud.com/rhwebchat/AJB00A/partic3.png">
-    </n22-zoom>
+    <div slot="content">
+      <n22-zoom title="放大缩小" :dialog="true" :show.sync="showZoom">
+        <mt-button @click="showZoom = !showZoom" type="primary" size="large">关闭</mt-button>
+        <img style="width:100%;" src="http://uat-1253280931.cossh.myqcloud.com/rhwebchat/AJB00A/partic3.png">
+      </n22-zoom>
 
-    <br/>
-    <!-- <div>
-      {{value}}<br/>
-      是否禁用：{{disabled}}
-    </div> -->
-    <div class="demo_page">
       <br/>
-      <br/>
-      <br/>
-      <mt-button type="primary" size="large" @click="showZoom = !showZoom">点击展示</mt-button>
+      <!-- <div>
+        {{value}}<br/>
+        是否禁用：{{disabled}}
+      </div> -->
+      <div class="demo_page">
+        <br/>
+        <br/>
+        <br/>
+        <mt-button type="primary" size="large" @click="showZoom = !showZoom">点击展示</mt-button>
+      </div>
     </div>
-  </div>
+  </n22-page>
 </template>
 
 <script>

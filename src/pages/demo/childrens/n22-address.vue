@@ -1,27 +1,30 @@
 <template>
-  <div >
-    <mt-header title="地址控件">
+  <n22-page class="demo_page">
+    <mt-header slot="header" :fixed="true" title="地址控件">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <n22-field :label="'地址'" need='*'>
-			<n22-address  :disabled = "disabled"  @choose="choose" :province.sync="address.province" :city.sync="address.city" :area.sync="address.area" slot="right"></n22-address>
-		</n22-field>
 
-    <br/>
-    <div>
-      {{address}}<br/>
-      是否禁用：{{disabled}}
+    <div slot="content" >
+      <n22-field :label="'地址'" need='*'>
+        <n22-address  :disabled = "disabled"  @choose="choose" :province.sync="address.province" :city.sync="address.city" :area.sync="address.area" slot="right"></n22-address>
+      </n22-field>
+
+      <br/>
+      <div>
+        {{address}}<br/>
+        是否禁用：{{disabled}}
+      </div>
+      <div class="demo_page">
+        <br/>
+        <br/>
+        <mt-button type="primary" size="large" @click="setValue()">塞入默认值</mt-button>
+        <br/>
+        <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
+      </div>
     </div>
-    <div class="demo_page">
-      <br/>
-      <br/>
-      <mt-button type="primary" size="large" @click="setValue()">塞入默认值</mt-button>
-      <br/>
-      <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
-    </div>
-  </div>
+  </n22-page>
 </template>
 
 <script>
@@ -58,7 +61,6 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
 .demo_page{
-  padding: 10px;
   font-size: 1.4rem;
 }
 </style>

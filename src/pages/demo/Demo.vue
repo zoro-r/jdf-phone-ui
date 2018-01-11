@@ -11,6 +11,9 @@
 			is-link
 			value="带链接">
 		</mt-cell>
+    <div style="font-size:1.5rem;margin-top:20px;color:gray">
+       @请用chome的手机调试模式查看
+    </div>
   </div>
 </template>
 

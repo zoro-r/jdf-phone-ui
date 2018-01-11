@@ -1,27 +1,30 @@
 <template>
-  <div >
-    <mt-header title="性别">
+  <n22-page>
+    <mt-header title="性别" slot="header" :fixed = "true">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <n22-field :label="'性别'" need='*'>
-			<n22-switch :disabled = 'disabled' slot="choose" :value.sync="value"></n22-switch>
-		</n22-field>
 
-    <br/>
-    <div>
-      {{value}}<br/>
-      是否禁用：{{disabled}}
+    <div slot="content">
+      <n22-field :label="'性别'" need='*'>
+        <n22-switch :disabled = 'disabled' slot="choose" :value.sync="value"></n22-switch>
+      </n22-field>
+
+      <br/>
+      <div>
+        {{value}}<br/>
+        是否禁用：{{disabled}}
+      </div>
+      <div class="demo_page">
+        <br/>
+        <br/>
+        <mt-button type="primary" size="large" @click="setValue()">塞入默认值</mt-button>
+        <br/>
+        <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
+      </div>
     </div>
-    <div class="demo_page">
-      <br/>
-      <br/>
-      <mt-button type="primary" size="large" @click="setValue()">塞入默认值</mt-button>
-      <br/>
-      <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
-    </div>
-  </div>
+  </n22-page>
 </template>
 
 <script>

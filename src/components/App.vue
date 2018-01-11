@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="max-width:375px;height:667px;">
 		<!-- 在获取用户信息的过程中显示（页面内容待定） -->
     <div v-show="!isLogin">
     </div>
@@ -8,32 +8,6 @@
       <navigation>
         <router-view></router-view>
       </navigation>
-
-      <transition name="slideInUp">
-        <mt-tabbar v-show="$store.state.common.hasFooter" v-model="selected" :fixed="true">
-          <mt-tab-item id="1">
-            <div slot="icon" v-bind:style="{'background-image':$store.state.common.tabSelected == '1'?'url(static/images/footer/home_active.png)':'url(static/images/footer/home.png)'}" v-bind:class="[$store.state.common.tabSelected == '1' ?'bounceIn':'']" class="animated icon_tabs"></div>
-            首页
-          </mt-tab-item>
-          <mt-tab-item id="2">
-            <div slot="icon" v-bind:style="{'background-image':$store.state.common.tabSelected == '2'?'url(static/images/footer/pro_active.png)':'url(static/images/footer/pro.png)'}" v-bind:class="[$store.state.common.tabSelected == '2' ?'bounceIn':'']" class="animated icon_tabs"></div>
-            产品中心
-          </mt-tab-item>
-          <mt-tab-item id="3">
-            <div slot="icon" v-bind:style="{'background-image':$store.state.common.tabSelected == '3'?'url(static/images/footer/proposal_active.png)':'url(static/images/footer/proposal.png)'}" v-bind:class="[$store.state.common.tabSelected == '3' ?'bounceIn':'']" class="animated icon_tabs"></div>
-            签到考勤
-          </mt-tab-item>
-          <mt-tab-item id="4">
-             <div slot="icon" v-bind:style="{'background-image':$store.state.common.tabSelected == '4'?'url(static/images/footer/jour_active.png)':'url(static/images/footer/jour.png)'}" v-bind:class="[$store.state.common .tabSelected == '4' ?'bounceIn':'']" class="animated icon_tabs"></div>
-            日志管理
-          </mt-tab-item>
-        </mt-tabbar>
-      </transition>
-
-      <!-- <toast :show="$store.state.common.toast" @update="((val) => $store.state.common.toast = val)">
-        <img v-if="$store.state.common.toastImg != ''" :src="$store.state.common.toastImg">
-        <div>{{$store.state.common.toastMsg}}</div>
-      </toast> -->
     </div>
   </div>
 </template>

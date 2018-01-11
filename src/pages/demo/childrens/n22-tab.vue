@@ -1,15 +1,17 @@
 <template>
-  <div >
-    <mt-header title="Tab控件">
+  <n22-page>
+
+    <mt-header title="Tab控件" slot="header" :fixed="true">
       <router-link to="/" slot="left">
         <mt-button icon="back"></mt-button>
       </router-link>
     </mt-header>
-    <n22-tab :tabs = "tabs" :tabIndex.sync = "tabIndex">
-		</n22-tab>
-    tabIndex:  {{tabIndex}}
 
-  </div>
+    <div slot="content">
+      <n22-tab :tabs = "tabs" :tabIndex.sync = "tabIndex">
+      </n22-tab>
+    </div>
+  </n22-page>
 </template>
 
 <script>
