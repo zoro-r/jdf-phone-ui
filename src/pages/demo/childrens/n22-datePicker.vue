@@ -1,0 +1,58 @@
+<template>
+  <div >
+    <mt-header title="日期控件">
+      <router-link to="/" slot="left">
+        <mt-button icon="back"></mt-button>
+      </router-link>
+    </mt-header>
+    <n22-field :label="'日期'" need='*'>
+			<n22-datepicker label="请选择" :disabled="disabled" :endDate="new Date()" slot="date" v-model="birthdate" />
+		</n22-field>
+
+    <br/>
+    <div>
+      {{birthdate}},<br/>
+      是否禁用：{{disabled}}
+    </div>
+    <div class="demo_page">
+      <br/>
+      <br/>
+      <mt-button type="primary" size="large" @click="setValue()">塞入默认值</mt-button>
+      <br/>
+      <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'demo',
+  components: {
+  },
+  data () {
+    return {
+      birthdate: '',
+      disabled: false
+    }
+  },
+  methods: {
+    // 塞入默认值
+    setValue () {
+      this.birthdate = '2018-01-02'
+    },
+    // 选中
+    choose (data) {
+      console.log('返回数据---->', JSON.stringify(data))
+    }
+  },
+  mounted () {
+  }
+}
+</script>
+<style rel="stylesheet/scss" lang="scss" scoped>
+@import "src/assets/css/vars";
+.demo_page{
+  padding: 10px;
+  font-size: 1.4rem;
+}
+</style>

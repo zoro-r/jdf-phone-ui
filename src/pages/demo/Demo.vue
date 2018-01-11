@@ -26,10 +26,11 @@ export default {
         {name: '地址控件', url: {name: 'n22Address'}},
         {name: '性别控件', url: {name: 'n22Switch'}},
         {name: '日历控件', url: {name: 'n22Calendar'}},
-        {name: '滚动日历', url: {name: 'n22Scroll'}},
         {name: '输入控件', url: {name: 'n22Input'}},
-        {name: '滚动日历', url: {name: 'n22Scroll'}},
-        {name: '缩放控件', url: {name: 'n22Field'}}
+        // {name: '滚动日历', url: {name: 'n22Scroll'}},
+        {name: '缩放控件', url: {name: 'n22Zoom'}},
+        {name: 'Tab控件', url: {name: 'n22Tab'}},
+        {name: '日期组件', url: {name: 'n22DatePicker'}}
       ]
     }
   },

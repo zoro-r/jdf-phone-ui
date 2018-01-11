@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-11 10:44:49
+ * @Last Modified time: 2018-01-11 11:28:15
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -12,6 +12,9 @@ const n22Input = r => { require.ensure([], () => r(require('../pages/demo/childr
 const n22Address = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-address.vue')), 'n22Address') }
 const n22Calendar = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-calendar.vue')), 'n22Calendar') }
 const n22Switch = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-switch.vue')), 'n22Switch') }
+const n22Zoom = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-zoom.vue')), 'n22Zoom') }
+const n22Tab = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-tab.vue')), 'n22Tab') }
+const n22DatePicker = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-datePicker.vue')), 'n22DatePicker') }
 
 export default [{
   name: 'demo',
@@ -44,4 +47,16 @@ export default [{
   name: 'n22Switch',
   path: '/n22Switch',
   component: n22Switch
+}, {
+  name: 'n22Zoom',
+  path: '/n22Zoom',
+  component: n22Zoom
+}, {
+  name: 'n22Tab',
+  path: '/n22Tab',
+  component: n22Tab
+}, {
+  name: 'n22DatePicker',
+  path: '/n22DatePicker',
+  component: n22DatePicker
 }]

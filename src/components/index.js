@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 16:18:23
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-08 14:49:27
+ * @Last Modified time: 2018-01-11 11:24:49
  * @desc 自定义组件集合
  */
 // 引入组件
@@ -14,6 +14,7 @@ import N22Tab from './common/n22Tab'
 import N22Zoom from './common/n22Zoom'
 import n22Switch from './common/n22Switch'
 import n22Input from './common/n22Input'
+import N22DatePicker from './common/N22DatePicker'
 
 // 定义组件集合
 const components = {
@@ -24,7 +25,8 @@ const components = {
   N22Tab,
   N22Zoom,
   n22Switch,
-  n22Input
+  n22Input,
+  N22DatePicker
 }
 
 // 初始化组件
@@ -46,5 +48,6 @@ export default {
   N22Tab,
   N22Zoom,
   n22Switch,
-  n22Input
+  n22Input,
+  N22DatePicker
 }
