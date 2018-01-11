@@ -1,18 +1,32 @@
 <template>
   <div class="demo_page">
+
 		<div class="demo_main_header">
       <h2>组件列表</h2>
       <a href="https://github.com/jdfdcc/n22-phone-ui" class="gitDiv"></a>
     </div>
 		<mt-cell v-for="(item,index) in components"
 			:key="index"
-			:title="item.name"
+			:title="index + 1 +'、'+item.name"
 		  :to="item.url"
 			is-link
-			value="带链接">
+			value="点击查看">
 		</mt-cell>
+
+    <div class="demo_main_header">
+      <h2>公共方法utils</h2>
+    </div>
+
+    <mt-cell
+			title="公共方法"
+		  to="n22Utils"
+			is-link
+			value="点击查看">
+		</mt-cell>
+
     <div style="font-size:1.5rem;margin-top:20px;color:gray">
-       @请用chome的手机调试模式查看
+      @请用chome的手机调试模式查看
+      <a href="https://cn.vuejs.org/v2/style-guide/">开发指南</a>
     </div>
   </div>
 </template>

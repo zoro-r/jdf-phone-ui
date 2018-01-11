@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-11 11:28:15
+ * @Last Modified time: 2018-01-11 14:13:05
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -15,6 +15,7 @@ const n22Switch = r => { require.ensure([], () => r(require('../pages/demo/child
 const n22Zoom = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-zoom.vue')), 'n22Zoom') }
 const n22Tab = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-tab.vue')), 'n22Tab') }
 const n22DatePicker = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-datePicker.vue')), 'n22DatePicker') }
+const n22Utils = r => { require.ensure([], () => r(require('../pages/demo/childrens/n22-utils.vue')), 'n22Utils') }
 
 export default [{
   name: 'demo',
@@ -59,4 +60,8 @@ export default [{
   name: 'n22DatePicker',
   path: '/n22DatePicker',
   component: n22DatePicker
+}, {
+  name: 'n22Utils',
+  path: '/n22Utils',
+  component: n22Utils
 }]

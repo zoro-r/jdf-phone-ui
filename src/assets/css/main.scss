@@ -448,7 +448,10 @@ input[type="text"]:disabled{
 .page-infinite-list {
 	margin-top: $pd-sm;
 }
-
+// 扩展方法
+.mint-indicator-wrapper{
+  z-index: 999999;
+}
 //分享
 .share {
   display: flex;

@@ -1,4 +1,5 @@
 import validatorFuc from './validatorFuc'
+
 // 检验方法
 const validator = {
   reg: {
@@ -34,13 +35,14 @@ const validator = {
     numberStr: /^[0-9]+$/
     // 护照 ^1[45][0-9]{7}|([P|p|S|s]\d{7})|([S|s|G|g]\d{8})|([Gg|Tt|Ss|Ll|Qq|Dd|Aa|Ff]\d{8})|([H|h|M|m]\d{8，10})$
   },
+
   /**
-   * 判断是否通过校验
+   * @name 判断是否通过校验
    * @param {*} validateObj 传入参数
    * @param {*} ignoreStr 忽略校验的参数名 以‘-’ 隔开 eg：name-pwd-
-   * 返回对象 {status:是否通过校验，rules:未通过的校验内容}
+   * @return 返回对象 {status:是否通过校验，rules:未通过的校验内容}
    */
-  judge (validateObj = {}, ignoreStr = 'ndsanbgskdlasjdasdsakdsakldjksajdl') {
+  judge (validateObj = {}, ignoreStr = '-') {
     let valiStr = ignoreStr,
       flag = true,
       rules = []
@@ -55,6 +57,7 @@ const validator = {
       rules: rules
     }
   },
+
   // 判断
   validate (label, val, ...rules) {
     // if(val&&typeof val =="string") val = val.trim()  //去掉输入值的首尾空格
@@ -120,6 +123,7 @@ const validator = {
   }
 }
 
+// 默认的规则
 validator.rules = {
   require: {
     reg: validator.reg.require,

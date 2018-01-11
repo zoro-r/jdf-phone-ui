@@ -8,7 +8,8 @@
     "lint": "eslint src scripts test",
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "dep": "node build/dep.js"
   },
   "dependencies": {
     "awesome-qr": "1.0.10",

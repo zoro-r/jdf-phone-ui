@@ -1,52 +1,34 @@
 <template>
-  <div :class="wrapper">
-    <template v-if="type != 'mobile'">
-      <select @change="getCities" v-model="currentProvince">
-        <option :value="placeholders.province">{{ placeholders.province }}</option>
-        <option v-for="(item, index) in provinces" :key="index" :value="item">{{ item }}</option>
-      </select>
-      <template v-if="!onlyProvince">
-        <select @change="getAreas" v-model="currentCity">
-          <option :value="placeholders.city">{{ placeholders.city }}</option>
-          <option v-for="(item, index) in cities" :key="index" :value="item">{{ item }}</option>
-        </select>
-        <select v-if="!hideArea" v-model="currentArea">
-          <option :value="placeholders.area">{{ placeholders.area }}</option>
-          <option v-for="(item, index) in areas " :key="index" :value="item">{{ item }}</option>
-        </select>
-      </template>
-    </template>
-    <template v-else>
-      <div :class="addressHeader">
-        <ul>
-          <li :class="{'active': tab == 1}" @click="resetProvince">{{ currentProvince && !staticPlaceholder ? currentProvince : placeholders.province }}</li>
-          <template v-if="!onlyProvince">
-            <li v-if="showCityTab" :class="{'active': tab == 2}" @click="resetCity">{{ currentCity && !staticPlaceholder ? currentCity : placeholders.city }}</li>
-            <li v-if="showAreaTab && !hideArea" :class="{'active': tab == 3}">{{ currentArea && !staticPlaceholder ? currentArea : placeholders.area }}</li>
-          </template>
+  <div class="distpicker">
+    <div :class="addressHeader">
+      <ul>
+        <li :class="{'active': tab == 1}" @click="resetProvince">{{ currentProvince && !staticPlaceholder ? currentProvince : placeholders.province }}</li>
+        <template v-if="!onlyProvince">
+          <li v-if="showCityTab" :class="{'active': tab == 2}" @click="resetCity">{{ currentCity && !staticPlaceholder ? currentCity : placeholders.city }}</li>
+          <li v-if="showAreaTab && !hideArea" :class="{'active': tab == 3}">{{ currentArea && !staticPlaceholder ? currentArea : placeholders.area }}</li>
+        </template>
+      </ul>
+    </div>
+    <div style="height:47px"></div>
+    <div :class="addressContainer">
+      <transition name="slide-left">
+        <ul v-if="tab == 1" v-bind:style="{height:screenHeight+'px'}">
+          <li v-for="(item, index) in provinces" :key="index" :class="{'active': item == currentProvince}" @click="chooseProvince(item)">{{ item }}</li>
         </ul>
-      </div>
-      <div style="height:47px"></div>
-      <div :class="addressContainer">
+      </transition>
+      <template v-if="!onlyProvince">
         <transition name="slide-left">
-          <ul v-if="tab == 1" v-bind:style="{height:screenHeight+'px'}">
-            <li v-for="(item, index) in provinces" :key="index" :class="{'active': item == currentProvince}" @click="chooseProvince(item)">{{ item }}</li>
+          <ul v-if="tab == 2" v-bind:style="{height:screenHeight+'px'}">
+            <li v-for="(item, index) in cities" :key="index" :class="{'active': item == currentCity}" @click="chooseCity(item)">{{ item }}</li>
           </ul>
         </transition>
-        <template v-if="!onlyProvince">
-          <transition name="slide-left">
-            <ul v-if="tab == 2" v-bind:style="{height:screenHeight+'px'}">
-              <li v-for="(item, index) in cities" :key="index" :class="{'active': item == currentCity}" @click="chooseCity(item)">{{ item }}</li>
-            </ul>
-          </transition>
-          <transition name="slide-left">
-            <ul v-if="tab == 3 && !hideArea" v-bind:style="{height:screenHeight+'px'}">
-              <li v-for="(item, index) in areas" :key="index" :class="{'active': item == currentArea}" @click="chooseArea(item)">{{ item }}</li>
-            </ul>
-          </transition>
-        </template>
-      </div>
-    </template>
+        <transition name="slide-left">
+          <ul v-if="tab == 3 && !hideArea" v-bind:style="{height:screenHeight+'px'}">
+            <li v-for="(item, index) in areas" :key="index" :class="{'active': item == currentArea}" @click="chooseArea(item)">{{ item }}</li>
+          </ul>
+        </transition>
+      </template>
+    </div>
   </div>
 </template>
 

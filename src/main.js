@@ -2,14 +2,14 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-11 09:37:35
+ * @Last Modified time: 2018-01-11 14:21:29
  */
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
   wxUrl: '', // 微信安全域名
   sourceUrl: '', // 展业静态资源
   isDebug: true, // 是否开启接口debug模式
-  isWx: '',
+  isWx: false, // 是否为微信
   plat: 'web', // WEB、NATIVE
   os: 'android', // 操作系统 ios:苹果操作系统 android:安卓系统
   timeout: 1000 * 180, // 默认是3000毫秒
@@ -119,6 +119,7 @@ Vue.mixin({
 })
 
 // ****************框架启动Start****************
+
 let vm = {
   el: '#app',
   router,
@@ -128,7 +129,6 @@ let vm = {
     App
   }
 }
-
 // 移动端组件****************-start****************-
 if (window.globalConfig.plat === 'native' && !window.globalConfig.isDebug) {
   document.body.classList.add('plat-ios')

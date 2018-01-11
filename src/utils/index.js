@@ -5,7 +5,6 @@ import validator from './validator'
 import nativeHandler from './nativeHandler'
 import ui from './ui'
 import help from './help'
-import proposalHandler from './proposalHandler'
 import popup from './popup'
 
 const utils = {
@@ -16,7 +15,6 @@ const utils = {
   nativeHandler: nativeHandler,
   ui: ui,
   help: help,
-  proposalHandler: proposalHandler,
   popup: popup
 }
 

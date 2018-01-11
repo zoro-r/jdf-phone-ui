@@ -15,7 +15,8 @@ function showError () {
     toast: true,
     toastMsg: '网络异常,请检查网络'
   })
-};
+}
+
 // 请求拦截器
 instance.interceptors.request.use(config => {
   store.commit('LOADING', {
@@ -33,6 +34,7 @@ instance.interceptors.request.use(config => {
     errorMessage: '网络异常,请检查网络'
   })
 })
+
 // 返回拦截器
 instance.interceptors.response.use(response => {
   console.log('%c 返回数据>>>>>>>', 'color:green', JSON.parse(JSON.stringify(response)))
@@ -68,9 +70,10 @@ instance.interceptors.response.use(response => {
     errorMessage: '网络异常,请检查网络'
   })
 })
+
 export default {
-  // 获取微信用户信息
-  wxUserInfo1 (callback) {
+  /** 获取微信用户信息 */
+  wxUserInfo1 () {
     console.log('微信用户信息', store.state.common.wxUserInfo)
     if (!store.state.common.wxUserInfo) {
       return instance.get(window.globalConfig.rootUrl + 'weixin/getInfo&openId=' + window.utils.cache.get('wxConfig').openId)
@@ -80,7 +83,8 @@ export default {
       })
     }
   },
-  // 获取微信用户信息 第二次
+
+  /** 获取微信用户信息 第二次 */
   wxUserInfo (callback) {
     console.log('微信用户信息', store.state.common.wxUserInfo)
     if (!store.state.common.wxUserInfo) {
@@ -91,7 +95,8 @@ export default {
       })
     }
   },
-  // 微信配置信息
+
+  /**  微信配置信息 */
   wxConfig () {
     let url = window.globalConfig.rootUrl + 'weixin/getConfig?param=' + encodeURIComponent(window.location.href)
     instance.get(url).then((res) => {
@@ -106,7 +111,8 @@ export default {
       })
     })
   },
-  // 微信支付接口
+
+  /** 微信支付接口 */
   wxPay () {
     function onBridgeReady () {
       window.WeixinJSBridge.invoke(
@@ -123,6 +129,7 @@ export default {
         }
       )
     }
+
     if (typeof window.WeixinJSBridge === 'undefined') {
       if (document.addEventListener) {
         document.addEventListener('window.WeixinJSBridgeReady', onBridgeReady, false)
@@ -135,7 +142,7 @@ export default {
     }
   },
 
-  // 微信分享朋友
+  /** 微信分享朋友 */
   wxShareFriend (value) {
     let promise = new Promise(function (resolve, reject) {
       window.wx.onMenuShareAppMessage({
@@ -156,15 +163,16 @@ export default {
     return promise
   },
 
-  // 批量隐藏功能菜单
+  /** 批量隐藏功能菜单 */
   wxHideMenuList () {
     window.wx.hideMenuItems({
         // 隐藏：发送给朋友；分享到朋友圈；分享到QQ；分享到Weibo；分享到FaceBook（让他分享脸书，能分享到脸书算我输）；分享到QQ空间
       menuList: ['menuItem:share:appMessage', 'menuItem:share:timeline', 'menuItem:share:qq', 'menuItem:share:weiboApp', 'menuItem:share:facebook', 'menuItem:share:QZone'] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
     })
   },
-  // 关闭微信窗口返回聊天界面
+
+  /** 关闭微信窗口返回聊天界面 */
   wxClose () {
-    window.WeixinJSBridge && window.WeixinJSBridge.call('closeWindow')
+    window.globalConfig.isWx && window.WeixinJSBridge.call('closeWindow')
   }
 }
