@@ -1,9 +1,6 @@
 import store from '../vuex/store'
-import {Toast} from 'mint-ui'
+let scrollTop, bodyCls = 'modal-open'
 const ui = {
-  toast (msg, img) {
-    console.log(msg)
-  },
   snackbar (msg, img, callback) {
     store.commit('TOGGLE_SNACKBAR', {
       snackbar: true,
@@ -11,6 +8,11 @@ const ui = {
       snackbarImg: img
     })
   },
+  // 弹出框提示
+  alert (msg, callback = e => {}) {
+    alert(10)
+  },
+  // 对话框提示
   dialog (msg, img, buttons, callback) {
     store.commit('TOGGLE_DIALOG', {
       dialog: true,
@@ -28,16 +30,18 @@ const ui = {
       popupCallback: callback
     })
   },
-  // 新增普通提示
-  alert (msg, callback = e => {}) {
-    Toast({
-      message: (msg instanceof Array) ? msg[0] : msg,
-      position: 'top',
-      duration: 3000
-    })
-    setTimeout(function () {
-      callback()
-    }, 3000)
+  // 禁止body滚动
+  disabledBodyScroll (disabled) {
+    if (disabled) {
+      scrollTop = document.scrollingElement.scrollTop
+      document.body.classList.add(bodyCls)
+      document.body.style.top = -scrollTop + 'px'
+    } else {
+      document.body.classList.remove(bodyCls)
+      // scrollTop lost after set position:fixed, restore it back.
+      document.scrollingElement.scrollTop = scrollTop
+    }
   }
+
 }
 export default ui

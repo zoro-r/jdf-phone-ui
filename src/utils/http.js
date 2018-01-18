@@ -1,10 +1,14 @@
+import './ext'
 import axios from 'axios'
 // import format from './format'
 import store from '../vuex/store'
 import { Indicator } from 'mint-ui'
+import DES3 from './../../static/lib/security/DES3.js'
+import hexHmacMd5 from './../../static/lib/security/md5-min.js'
+import Base64 from './../../static/lib/security/base64.js'
 
 let instance = axios.create({
-  timeout: 50000,
+  timeout: window.globalConcifg ? window.globalConcifg.timeout : 60000,
   method: 'post',
   headers: {
     post: {
@@ -49,14 +53,14 @@ instance.interceptors.request.use(config => {
           'comSerial': 'comSerial',
           'productCode': window.utils.cache.get('token')
         },
-        request: window.DES3.encrypt('', JSON.stringify({
-          requestPayload: window.Base64.encode(JSON.stringify(config.data))
+        request: DES3.encrypt('', JSON.stringify({
+          requestPayload: Base64.encode(JSON.stringify(config.data))
         }).replace(/\s/g, ''))
       }
     }
   }
   let paramStr = JSON.stringify(params)
-  let sign = window.hex_hmac_md5(window.globalConfig.transfer, paramStr)
+  let sign = hexHmacMd5.hex_hmac_md5(window.globalConfig.transfer, paramStr)
   config.url = window.globalConfig.rootUrl + 'interfaceChannel?sign=' + sign + '&com_id=' + window.globalConfig.comId
   config.data = paramStr
   return config
@@ -87,7 +91,7 @@ instance.interceptors.response.use(response => {
   }
 
   try {
-    response.data.packageList.packages.response = JSON.parse(window.DES3.decrypt('', response.data.packageList.packages.response))
+    response.data.packageList.packages.response = JSON.parse(DES3.decrypt('', response.data.packageList.packages.response))
     responsePayload = response.data.packageList.packages.response.responsePayload
     console.log('%c 返回数据>>>>>>>', 'color:green', response)
     if (typeof responsePayload.data === 'string') {

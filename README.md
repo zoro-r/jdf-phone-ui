@@ -1,9 +1,13 @@
-# n22-phone-ui 移动端框架组件
-#  前期准备
+# n22-mobile 移动端框架组件
+##  前期准备
 
 项目依赖node如果没有安装node的同事，请自行去官网下载安装 : [nodejs ]( https://nodejs.org/en/)
 
-技术栈 :
+仔细阅读开发规范：[开发指南 ]( https://cn.vuejs.org/v2/style-guide/)
+
+开发注意点：[传送门 ]( https://github.com/zltech/n22-mobile/blob/master/src)
+
+## 技术栈
 
   vue：[官网 ]( https://cn.vuejs.org/)、[GitHub]( https://github.com/vuejs/vue)
 
@@ -15,15 +19,15 @@
   
   axios：[GitHub]( https://github.com/axios/axios)
   
-#  目录结构
+##  目录结构
   
-  <img src="https://jdfdcc.github.io/n22-phone-ui/static/images/process/m_process.jpg" width="365"/>
+  <img src="https://zltech.github.io/n22-mobile/static/images/process/m_process.jpg" width="365"/>
 
 ## 构建项目
 
 ``` bash
 # 将项目克隆到本地
-复制 git clone https://github.com/jdfdcc/n22-phone-ui.git
+复制 git clone https://github.com/zltech/n22-mobile.git
 
 # 安装项目依赖性
 npm install

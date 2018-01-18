@@ -2,19 +2,20 @@
  * @Author: jdf
  * @Date: 2018-01-04 16:18:23
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-11 17:02:33
+ * @Last Modified time: 2018-01-18 17:52:16
  * @desc 自定义组件集合
  */
 // 引入组件
-import N22Field from './components/n22Field'
-import N22Address from './components/n22Address'
-import N22Calendar from './components/n22Calendar'
-import N22Page from './components/n22Page'
-import N22Tab from './components/n22Tab'
-import N22Zoom from './components/n22Zoom'
-import n22Switch from './components/n22Switch'
-import n22Input from './components/n22Input'
-import N22DatePicker from './components/N22DatePicker'
+import N22Field from './components/n22-field'
+import N22Address from './components/n22-address'
+import N22Calendar from './components/n22-calendar'
+import N22Page from './components/n22-page'
+import N22Tab from './components/n22-tab'
+import N22Zoom from './components/n22-zoom'
+import n22Switch from './components/n22-switch'
+import n22Input from './components/n22-input'
+import N22DatePicker from './components/n22-date-picker'
+import N22Highlight from './components/n22-highlight'
 
 // 定义组件集合
 const components = {
@@ -26,7 +27,8 @@ const components = {
   N22Zoom,
   n22Switch,
   n22Input,
-  N22DatePicker
+  N22DatePicker,
+  N22Highlight
 }
 
 // 初始化组件
@@ -49,5 +51,6 @@ export default {
   N22Zoom,
   n22Switch,
   n22Input,
-  N22DatePicker
+  N22DatePicker,
+  N22Highlight
 }

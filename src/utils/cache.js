@@ -2,7 +2,7 @@
  * @Author: chenjia
  * @Date: 2018-01-05 13:56:27
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 14:07:24
+ * @Last Modified time: 2018-01-15 17:55:53
  * @Desc 缓存(localStorage)
  */
 
@@ -66,7 +66,7 @@ const cache = {
   },
 
   /**
-   * @name 清楚所有的缓存项目 (慎用)
+   * @name 清除所有的缓存项目 (慎用)
    */
   clear: () => {
     localStorage.clear()

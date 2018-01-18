@@ -1,6 +1,23 @@
 @import "src/assets/css/vars";
+.show_code_main{
+ display: flex;
+ flex-wrap: wrap;
+//  flex-direction: column-reverse;
+  .first{
+    flex:1;
+    min-width:375px;
+    max-width:500px
+  }
+  .secend{
+    flex:1.6;
+    z-index:10;
+  }
+  .mint-header{
+    max-width: 500px
+  }
+}
 .demo_page{
-  text-align: center
+  max-width:500px
 }
 .content_intro{
   margin-top: 20px;

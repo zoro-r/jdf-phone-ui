@@ -1,6 +1,8 @@
 @import 'vars.scss';
 * {
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin:0;
+  padding:0
 }
 html {
   font-size: 10px;
@@ -19,7 +21,9 @@ body.modal-open {
   position: fixed;
   width: 100%;
 }
-
+// html, body, {
+  // background-color: transparent;
+// }
 //-----------修改平台样式 增加在body上面
 .plat-ios {
 	min-height: calc(100vh - 110px);

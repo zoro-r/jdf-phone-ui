@@ -2,64 +2,35 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-11 14:21:29
+ * @Last Modified time: 2018-01-17 17:23:35
  */
+
 window.globalConfig = {
   rootUrl: 'http://XXXXX/com.ifp.ipartner/', // 微信dat
-  wxUrl: '', // 微信安全域名
-  sourceUrl: '', // 展业静态资源
-  isDebug: true, // 是否开启接口debug模式
-  isWx: false, // 是否为微信
-  plat: 'web', // WEB、NATIVE
-  os: 'android', // 操作系统 ios:苹果操作系统 android:安卓系统
-  timeout: 1000 * 180, // 默认是3000毫秒
+  wechatUrl: '', // 微信安全域名
+  isDebug: false, // 是否开启接口debug模式
+  platform: 'web', // web、native、wechat、phoneWeb
+  os: 'android', // 操作系统 ios:苹果操作系统 android:安卓系统 window:电脑
+  timeout: 1000 * 60, // 默认http请求超时时间60秒
   version: 'v1.0',
-  loginType: 'extraExtCheck', // 登录方式--国泰项目传extraExtCheck
+  loginType: 'extraExtCheck', // 登录方式--extraExtCheck
   from: 'iwechat', // header--from
-  transfer: 'GTO2OINTERFACE2017#@!%88', // 接口数据交互加密key
-  comId: 'GTO2O20170118' // 保险公司编码--保险公司Id(固定为：GTO2O20170118）
+  transfer: 'XXXXXXXXXXXX', // 接口数据交互加密key
+  comId: 'XXXXXX' // 保险公司编码--保险公司Id
 }
-
-// 定义初始化方法 @待修改
-function init () {
-  // 判断是否为微信
-  let ua = window.navigator.userAgent.toLowerCase()
-  let isWx = ua.match(/MicroMessenger/i) == 'micromessenger'
-  window.globalConfig.isWx = isWx
-  // 判断是IOS还是安卓
-  let isIos = !!navigator.userAgent.match(/\(i[^]+( U)? CPU.+Mac OS X/) // ios终端
-  // 判断是否为pc或者移动端
-  window.globalConfig.plat = isPC() ? 'web' : 'native'
-  if (window.globalConfig.plat == 'native ') window.globalConfig.os = isIos ? 'ios' : 'android'
-}
-// 判断是否为电脑
-function isPC () {
-  var userAgentInfo = navigator.userAgent
-  var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
-  var flag = true
-  for (var v = 0; v < Agents.length; v++) {
-    if (userAgentInfo.indexOf(Agents[v]) > 0) {
-      flag = false
-      break
-    }
-  }
-  return flag
-}
-
-init()
+import envir from './utils/environment'
+// 自动识别环境
+window.globalConfig = Object.assign(window.globalConfig, envir.init())
 // 初始化系统框架信息 *****************************************************************************
 import Vue from 'vue'
-import App from './components/App'
+import App from './common/App'
 import store from './vuex/store'
 import router from './routers'
 import MintUI from 'mint-ui'
-import N22UI from './components'
+import N22UI from './common'
 import 'mint-ui/lib/style.css'
 import '@/assets/css/main.scss'
 import '@/filters/globalFilter.js'
-import '@/assets/lib/security/DES3.js'
-import '@/assets/lib/security/md5-min.js'
-import '@/assets/lib/security/base64.js'
 require('swiper/dist/css/swiper.css')
 
 // 导航插件(保存游览历史的页面数据)
@@ -129,8 +100,8 @@ let vm = {
     App
   }
 }
-// 移动端组件****************-start****************-
-if (window.globalConfig.plat === 'native' && !window.globalConfig.isDebug) {
+// 移动端组件****************start****************-
+if (window.globalConfig.platform === 'native') {
   document.body.classList.add('plat-ios')
   document.addEventListener('deviceready', function () {
     console.log('deviceready')

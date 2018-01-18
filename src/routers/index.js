@@ -2,7 +2,7 @@
  * @Author: chenjia
  * @Date: 2018-01-04 15:06:26
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-05 14:29:23
+ * @Last Modified time: 2018-01-16 14:37:22
  */
 
 import Vue from 'vue'
@@ -16,7 +16,7 @@ Vue.use(Router)
 const router = new Router({
   routes: [{
     path: '/',
-    redirect: '/demo'
+    redirect: '/demoMain'
   },
     ...demo
   ]
@@ -32,7 +32,7 @@ router.beforeEach((to, from, next) => {
 
   // 是否可以缩放
   if (from.meta.zoom) {
-    document.querySelector('meta[name=viewport]').setAttribute('content', 'width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no')
+    document.querySelector('meta[name=viewport]').setAttribute('content', 'viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, user-scalable=no')
   }
 
   // 是否登录

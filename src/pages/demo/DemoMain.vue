@@ -1,0 +1,79 @@
+<template>
+  <div class="demo_page" style="padding-top:20px">
+
+		<div class="demo_main_header">
+      <h2>组件列表</h2>
+      <a href="https://github.com/jdfdcc/n22-phone-ui" class="gitDiv"></a>
+    </div>
+		<mt-cell v-for="(item,index) in components"
+			:key="index"
+			:title="index + 1 +'、'+item.name"
+		  :to="item.url"
+			is-link
+			value="点击查看">
+		</mt-cell>
+
+    <div class="demo_main_header">
+      <h2>公共方法utils</h2>
+    </div>
+
+    <mt-cell v-for="(item,index) in componentTwo"
+      :key="index + 10"
+      :title="index + 1 +'、'+item.name"
+      :to="item.url"
+      is-link
+      value="点击查看">
+		</mt-cell>
+
+    <div style="font-size:1.5rem;margin-top:20px;color:gray">
+      @请用chome的手机调试模式查看
+      <a href="https://cn.vuejs.org/v2/style-guide/">开发指南</a>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'demo',
+  components: {
+  },
+  data () {
+    return {
+      components: [
+        {name: '开发模板', url: {name: 'n22Template'}},
+        {name: 'Field组件', url: {name: 'n22Field'}},
+        {name: '地址组件', url: {name: 'n22Address'}},
+        {name: '性别组件', url: {name: 'n22Switch'}},
+        {name: '日历组件', url: {name: 'n22Calendar'}},
+        {name: '输入组件', url: {name: 'n22Input'}},
+        // {name: '滚动日历', url: {name: 'n22Scroll'}},
+        {name: '缩放组件', url: {name: 'n22Zoom'}},
+        {name: 'Tab组件', url: {name: 'n22Tab'}},
+        {name: '日期组件', url: {name: 'n22DatePicker'}},
+        // {name: '自定义轮播图', url: {name: 'n22Touch'}},
+        {name: '语法高亮', url: {name: 'n22Highlight'}}
+        // {name: '垂直无限滚动', url: {name: 'n22ScrollTemp'}}
+      ],
+      componentTwo: [
+        {name: '公共方法', url: {name: 'n22Utils'}},
+        {name: '原生交互方法', url: {name: 'n22Native'}},
+        {name: '微信调用方法', url: {name: 'n22WeChat'}}
+
+      ]
+    }
+  },
+  methods: {
+  },
+  computed: {},
+  mounted () {
+  }
+}
+</script>
+<style rel="stylesheet/scss" lang="scss" scoped>
+.demo_page{
+	text-align: center;
+  .demo_main_header{
+    height: 45px;
+  }
+}
+</style>
