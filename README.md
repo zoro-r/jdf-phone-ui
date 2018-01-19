@@ -5,7 +5,7 @@
 
 仔细阅读开发规范：[开发指南 ]( https://cn.vuejs.org/v2/style-guide/)
 
-开发注意点：[传送门 ]( https://github.com/zltech/n22-mobile/blob/master/src)
+开发注意点：[传送门 ]( https://github.com/jdfdcc/n22-phone-ui/blob/master/src)
 
 ## 技术栈
 
@@ -27,7 +27,7 @@
 
 ``` bash
 # 将项目克隆到本地
-复制 git clone https://github.com/zltech/n22-mobile.git
+复制 git clone https://github.com/jdfdcc/n22-phone-ui.git
 
 # 安装项目依赖性
 npm install
