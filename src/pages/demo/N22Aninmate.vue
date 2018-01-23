@@ -1,6 +1,6 @@
 <template>
     <div class="page_animation">
-      <mt-header title="动画" slot="header"  >
+      <mt-header title="动画" slot="header" :fixed="true" >
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
       <div slot="content">

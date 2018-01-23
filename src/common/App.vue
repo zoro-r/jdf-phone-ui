@@ -1,10 +1,11 @@
 <template>
   <div >
     <!-- <div class="header"></div> -->
-		<!-- 在获取用户信息的过程中显示（页面内容待定） -->
-    <transition
-      :enter-active-class="'transition_ani ' + enterClass"
-      :leave-active-class="'transition_ani ' + leaveClass">
+		<!-- 在获取用户信息的过程中显示（页面内容待定）
+     :enter-active-class="'transition_ani ' + enterClass"
+      :leave-active-class="'transition_ani ' + leaveClass"
+    -->
+    <transition :name="transitionName">
       <navigation>
         <router-view class="child-view" :style="{'min-height':screenHeight + 'px'}"></router-view>
       </navigation>
@@ -22,7 +23,7 @@ export default {
   },
   data () {
     return {
-      transitionName: 'slide-fade',
+      transitionName: '',
       enterClass: '',
       leaveClass: ''
     }
@@ -39,12 +40,14 @@ export default {
   },
   mounted () {
     this.$navigation.on('forward', (to, from) => {
-      this.enterClass = 'slideInRight'
-      this.leaveClass = 'fadeOut'
+      // this.enterClass = 'slideInRight'
+      // this.leaveClass = 'fadeOut'
+      this.transitionName = 'slide-in-right'
     })
     this.$navigation.on('back', (to, from) => {
-      this.enterClass = 'fadeIn'
-      this.leaveClass = 'slideOutRight'
+      this.transitionName = 'slide-out-right'
+      // this.enterClass = 'fadeIn'
+      // this.leaveClass = 'slideOutRight'
     })
     // this.$navigation.on('replace', (to, from) => {})
     // this.$navigation.off('refresh', (to, from) => {})
@@ -69,9 +72,52 @@ export default {
   width: 100%;
   min-height: 500px;
 }
-.transition_ani{
+// .fade-enter-active, .fade-leave-active {
+//   transition: opacity .5s;
+// }
+.slide-in-right-enter-active{
+  animation-name: 'slideInRightN';
   animation-duration: .5s;
-  -webkit-animation-fill-mode: both;
-  animation-fill-mode: both;
 }
+.slide-in-right-leave-active{
+  animation-name: 'fadeOut';
+  animation-duration: .5s;
+}
+
+.slide-out-right-enter-active{
+  animation-name: 'fadeIn';
+  animation-duration: .5s;
+}
+.slide-out-right-leave-active{
+  animation-name: "slideOutRightN";
+  animation-duration: .5s;
+}
+
+
+.slideInRightN {
+  animation-name: slideInRightN;
+}
+
+@keyframes slideInRightN {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.slideOutRightN {
+  animation-name: slideOutRightN;
+}
+@keyframes slideOutRightN {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    visibility: hidden;
+    transform: translateX(100%);
+  }
+}
+
 </style>
