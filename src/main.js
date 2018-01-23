@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-23 10:27:31
+ * @Last Modified time: 2018-01-23 14:23:03
  */
 
 window.globalConfig = {
@@ -32,6 +32,8 @@ import 'mint-ui/lib/style.css'
 import '@/assets/css/main.scss'
 import '@/filters/globalFilter.js'
 require('swiper/dist/css/swiper.css')
+// 引入动画
+import 'animate.css'
 
 // 导航插件(保存游览历史的页面数据)
 import Navigation from 'vue-navigation'
@@ -76,7 +78,8 @@ Vue.mixin({
       screenWidth: document.documentElement.clientWidth,
       screenHeight: document.documentElement.clientHeight,
       // 定义常量 用于页面判断 @待修改
-      os: window.navigator.platform === 'iPhone' ? 'ios' : 'android'
+      os: window.navigator.platform === 'iPhone' ? 'ios' : 'android',
+      isBack: false
     }
   },
   methods: {

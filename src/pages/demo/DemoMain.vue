@@ -1,35 +1,37 @@
 <template>
-  <div class="demo_page" style="padding-top:20px">
+  <n22-page>
+    <div slot="content" class="demo_page" style="padding-top:20px">
 
-		<div class="demo_main_header">
-      <h2>组件列表</h2>
-      <a href="https://github.com/jdfdcc/n22-phone-ui" class="gitDiv"></a>
+      <div class="demo_main_header">
+        <h2>组件列表</h2>
+        <a href="https://github.com/jdfdcc/n22-phone-ui" class="gitDiv"></a>
+      </div>
+      <mt-cell v-for="(item,index) in components"
+        :key="index"
+        :title="index + 1 +'、'+item.name"
+        :to="item.url"
+        is-link
+        value="点击查看">
+      </mt-cell>
+
+      <div class="demo_main_header">
+        <h2>公共方法utils</h2>
+      </div>
+
+      <mt-cell v-for="(item,index) in componentTwo"
+        :key="index + 10"
+        :title="index + 1 +'、'+item.name"
+        :to="item.url"
+        is-link
+        value="点击查看">
+      </mt-cell>
+
+      <div style="font-size:1.5rem;margin-top:20px;color:gray">
+        @请用chome的手机调试模式查看
+        <a href="https://cn.vuejs.org/v2/style-guide/">开发指南</a>
+      </div>
     </div>
-		<mt-cell v-for="(item,index) in components"
-			:key="index"
-			:title="index + 1 +'、'+item.name"
-		  :to="item.url"
-			is-link
-			value="点击查看">
-		</mt-cell>
-
-    <div class="demo_main_header">
-      <h2>公共方法utils</h2>
-    </div>
-
-    <mt-cell v-for="(item,index) in componentTwo"
-      :key="index + 10"
-      :title="index + 1 +'、'+item.name"
-      :to="item.url"
-      is-link
-      value="点击查看">
-		</mt-cell>
-
-    <div style="font-size:1.5rem;margin-top:20px;color:gray">
-      @请用chome的手机调试模式查看
-      <a href="https://cn.vuejs.org/v2/style-guide/">开发指南</a>
-    </div>
-  </div>
+</n22-page>
 </template>
 
 <script>
@@ -57,7 +59,8 @@ export default {
       componentTwo: [
         {name: '公共方法', url: {name: 'n22Utils'}},
         {name: '原生交互方法', url: {name: 'n22Native'}},
-        {name: '微信调用方法', url: {name: 'n22WeChat'}}
+        {name: '微信调用方法', url: {name: 'n22WeChat'}},
+        {name: '动画', url: {name: 'n22Animate'}}
 
       ]
     }
@@ -71,7 +74,8 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 .demo_page{
-	text-align: center;
+  text-align: center;
+  width: 100vw;
   .demo_main_header{
     height: 45px;
   }

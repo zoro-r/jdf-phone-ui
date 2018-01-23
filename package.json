@@ -12,6 +12,7 @@
     "dep": "node build/dep.js"
   },
   "dependencies": {
+    "animate.css": "^3.5.2",
     "awesome-qr": "1.0.10",
     "axios": "^0.16.2",
     "better-scroll": "^1.7.2",

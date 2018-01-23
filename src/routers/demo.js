@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-18 17:29:06
+ * @Last Modified time: 2018-01-23 14:30:24
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -23,6 +23,7 @@ const n22Native = r => { require.ensure([], () => r(require('../pages/demo/N22Na
 const n22Highlight = r => { require.ensure([], () => r(require('../pages/demo/N22Highlight.vue')), 'n22Highlight') }
 const n22Template = r => { require.ensure([], () => r(require('../pages/demo/N22Template.vue')), 'n22Template') }
 const n22WeChat = r => { require.ensure([], () => r(require('../pages/demo/N22WeChat.vue')), 'n22WeChat') }
+const n22Animate = r => { require.ensure([], () => r(require('../pages/demo/N22Aninmate.vue')), 'n22Animate') }
 
 // 每个模块定义父路由 引入公共样式方法...
 export default [{
@@ -150,6 +151,13 @@ export default [{
       name: 'n22WeChat',
       path: '/n22WeChat',
       component: n22WeChat,
+      meta: {
+        login: false
+      }
+    }, {
+      name: 'n22Animate',
+      path: '/n22Animate',
+      component: n22Animate,
       meta: {
         login: false
       }

@@ -44,6 +44,9 @@ export default {
 }
 </script>
 <style lang='scss'>
+.page{
+  background: rgb(240, 239, 245);
+}
 .page_content{
   overflow-x: hidden;
 }
