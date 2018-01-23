@@ -4,12 +4,6 @@
     <div class="text">
 			<slot class="right" name="right">
       </slot>
-      <slot class="input" name="input">
-      </slot>
-      <slot class="select" name="select">
-      </slot>
-      <slot class="date" name="date">
-      </slot>
       <div class="choose">
         <slot name="choose">
         </slot>

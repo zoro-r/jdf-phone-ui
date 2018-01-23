@@ -6,11 +6,28 @@
       </mt-header>
 
       <div slot="content">
+        <br/>
         <div class="demo_page">
-          必填项验证
-          <n22-input  v-model="modal.text" type="text" :form.sync="validate.text"  :validator="rule.text" hintText="请输入" slot="input" />
-          身份证
-          <n22-input  v-model="modal.idcard" type="text" :form.sync="validate.idcard"  :validator="rule.idcard" hintText="请输入" slot="input" />
+          <n22-field :label="'必填项验证'" need='*'>
+            <n22-input inputClass="name zs" type="text"  v-model="modal.text" :form.sync="validate.text"  :validator="rule.text" hintText="请输入" slot="right" />
+          </n22-field>
+
+          <n22-field :label="'身份证验证'" need='*'>
+            <n22-input  v-model="modal.idcard" type="text" :form.sync="validate.idcard"  :validator="rule.idcard" hintText="请输入" slot="right" />
+          </n22-field>
+
+          <n22-field :label="'密码验证'" need='*'>
+            <n22-input  v-model="modal.password" type="password" :form.sync="validate.password"  :validator="rule.password" hintText="请输入" slot="right" />
+          </n22-field>
+
+          <n22-field :label="'文本框'" need='*'>
+            <n22-input  v-model="modal.textarea" type="textarea" :form.sync="validate.textarea"  :validator="rule.textarea" hintText="请输入" slot="right" />
+          </n22-field>
+
+          <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+
           {{validate}}
           <br/>
           <br/>
@@ -20,35 +37,61 @@
     </n22-page>
 
     <div class="secend">
-      <n22-highlight lang="html">
-        &lt;n22-input
-        v-model="modal.text"
-        type="text"
-        :form.sync="validate.text"
-        :validator="rule.text"
-        hintText="请输入"
-       /&gt;
-        </n22-highlight>
-        <br>
-        <n22-highlight lang="javascript">
-  rule: {
-    // 规则
-    text: {rules: ['require:必填项']}
-  },
+      <n22-highlight lang="html" :height="400">
+&lt;n22-field :label="'必填项验证'" need='*'&gt;
+  &lt;n22-input type="text"
+  v-model="modal.text"
+  :form.sync="validate.text"
+  :validator="rule.text"
+  hintText="请输入" slot="right"
+  /&gt;
+&lt;/n22-field&gt;
 
-  validate: {
-    // 验证结果
-    text: {status: false}
-  }
+&lt;n22-field :label="'身份证验证'" need='*'&gt;
+  &lt;n22-input  v-model="modal.idcard"
+  type="text" :form.sync="validate.idcard"
+  :validator="rule.idcard"
+  hintText="请输入" slot="right"
+  /&gt;
+&lt;/n22-field&gt;
 
-  /**
-    * @name 提交方法验证
-    */
-  sunbmit () {
-    // 获得页面的验证结果
-    let result = window.utils.validator.judge(this.validate)
-    console.log(result)
-  }
+&lt;n22-field :label="'密码验证'" need='*'&gt;
+  &lt;n22-input  v-model="modal.password"
+  type="password"
+  :form.sync="validate.password"
+  :validator="rule.password"
+  hintText="请输入" slot="right"
+  /&gt;
+&lt;/n22-field&gt;
+
+  &lt;n22-field :label="'文本框'" need='*'&gt;
+  &lt;n22-input  v-model="modal.textarea"
+  type="textarea"
+  :form.sync="validate.textarea"
+  :validator="rule.textarea"
+  hintText="请输入" slot="right"
+  /&gt;
+&lt;/n22-field&gt;
+      </n22-highlight>
+      <br>
+
+
+      <n22-highlight lang="javascript">
+         rule: {
+        text: {rules: ['require:必填项']},
+        idcard: {rules: ['idcard:身份证错误']},
+        password: {rules: ['pwd:密码验证错误']},
+        textarea: {rules: []}
+      },
+      validate: {
+        text: {status: false},
+        idcard: {status: false},
+        password: {status: false},
+        textarea: {status: false}
+      }
+
+      // 获得页面的验证结果
+      let result = window.utils.validator.judge(this.validate)
       </n22-highlight>
     </div>
   </div>
@@ -63,15 +106,24 @@ export default {
     return {
       modal: {
         text: '',
-        idcard: ''
+        idcard: '34',
+        password: '',
+        textarea: '',
+        myself: ''
       },
       rule: {
         text: {rules: ['require:必填项']},
-        idcard: {rules: ['idcard:身份证']}
+        idcard: {rules: ['idcard:身份证错误']},
+        password: {rules: ['pwd:密码验证错误']},
+        textarea: {rules: []},
+        myself: {rules: [{reg: /^\S{2,11}$/, msg: '当前长度为2-11位'}]}
       },
       validate: {
         text: {status: false},
-        idcard: {status: false}
+        idcard: {status: false},
+        password: {status: false},
+        textarea: {status: false},
+        myself: {status: false}
       }
     }
   },
@@ -82,7 +134,8 @@ export default {
     sunbmit () {
       // 获得页面的验证结果
       let result = window.utils.validator.judge(this.validate)
-      console.log(result)
+      console.log('校验数据', this.validate)
+      console.log('校验结果', result)
     }
   },
   mounted () {
@@ -92,7 +145,5 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
 .demo_page{
-  padding: 10px;
-  font-size: 1.4rem;
 }
 </style>

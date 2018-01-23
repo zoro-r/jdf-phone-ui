@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-16 10:29:00
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-17 15:04:31
+ * @Last Modified time: 2018-01-22 14:22:07
  */
 
 const native = {
@@ -19,16 +19,16 @@ const native = {
       sourceType: window.Camera && window.Camera.PictureSourceType.CAMERA // 默认打开拍照功能
     }, opt)
     // 设置返回函数
-    let promise = new Promise(function (reject, resolve) {
+    let promise = new Promise(function (resolve, reject) {
       if (window.cordova) {
         // 调用cordova 相机插件
         navigator.camera.getPicture(function success (imgUrl) {
-          reject(imgUrl)
+          resolve(imgUrl)
         }, function error (error) {
-          resolve(error)
+          reject(error)
         }, options)
       } else {
-        resolve({error: '相机-请在App内调用'})
+        reject({error: '相机-请在App内调用'})
       }
     })
     return promise
@@ -39,16 +39,16 @@ const native = {
    */
   scan () {
     // 设置返回函数
-    let promise = new Promise(function (reject, resolve) {
+    let promise = new Promise(function (resolve, reject) {
       if (window.cordova) {
         // 调用cordova 相机插件
         window.cordova.plugins.barcodeScanner.scan(function success (result) {
-          reject(result)
+          resolve(result)
         }, function error (error) {
-          resolve(error)
+          reject(error)
         })
       } else {
-        resolve({error: '扫一扫,请在App内调用'})
+        reject({error: '扫一扫,请在App内调用'})
       }
     })
     return promise
@@ -59,16 +59,16 @@ const native = {
    */
   pickContact () {
      // 设置返回函数
-    let promise = new Promise(function (reject, resolve) {
+    let promise = new Promise(function (resolve, reject) {
       if (window.cordova) {
         // 调用cordova 相机插件
         navigator.contacts.pickContact(function (contact) {
-          reject(contact)
+          resolve(contact)
         }, function (err) {
-          resolve(err)
+          reject(err)
         })
       } else {
-        resolve('选择联系人,请在App内调用')
+        reject('选择联系人,请在App内调用')
       }
     })
     return promise
@@ -105,20 +105,34 @@ const native = {
    */
   wechatShare (opt = {}) {
     let option = Object.assign({text: 'This is just a plain string', scene: window.Wechat.Scene.TIMELINE}, opt)
-    let promise = new Promise(function (reject, resolve) {
+    let promise = new Promise(function (resolve, reject) {
       if (window.cordova) {
         // 调用cordova 相机插件
 
         window.Wechat.share(option, function (result) {
-          reject(result)
+          resolve(result)
         }, function (reason) {
-          resolve(reason)
+          reject(reason)
         })
       } else {
-        resolve('选择联系人,请在App内调用')
+        reject('选择联系人,请在App内调用')
       }
     })
     return promise
+  },
+  /**
+   * @name 微信登陆
+   * @link https://github.com/xu-li/cordova-plugin-wechat
+   */
+  wechatAuth (opt = {}) {
+    var scope = 'snsapi_userinfo',
+      state = '_' + (+new Date())
+    window.Wechat.auth(scope, state, function (response) {
+        // you may use response.code to get the access token.
+      alert(JSON.stringify(response))
+    }, function (reason) {
+      alert('Failed: ' + reason)
+    })
   }
   // startCamera () {
   //   let options = {

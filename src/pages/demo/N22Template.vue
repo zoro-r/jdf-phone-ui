@@ -45,14 +45,14 @@ export default {
 
 <script>
 export default {
-  name: 'n22Example',
+  name: 'n22Template',
   components: {},
   directives: {},
   data () {
     return {
     }
   },
-  created: {},
+  created () {},
   computed: {},
   methods: {
     /** @name 初始化数据 */

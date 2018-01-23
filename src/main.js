@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-17 17:23:35
+ * @Last Modified time: 2018-01-23 10:27:31
  */
 
 window.globalConfig = {
@@ -102,7 +102,6 @@ let vm = {
 }
 // 移动端组件****************start****************-
 if (window.globalConfig.platform === 'native') {
-  document.body.classList.add('plat-ios')
   document.addEventListener('deviceready', function () {
     console.log('deviceready')
     // 隐藏导航

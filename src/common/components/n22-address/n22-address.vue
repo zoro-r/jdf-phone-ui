@@ -37,10 +37,10 @@ export default {
     }
   },
   props: {
-    title: {
-      type: String,
-      default: '请选择'
-    },
+    // title: {
+    //   type: String,
+    //   default: '请选择'
+    // },
     province: {
       type: String,
       default: ''

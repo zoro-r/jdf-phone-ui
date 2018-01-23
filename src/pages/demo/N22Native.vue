@@ -78,7 +78,7 @@
                 // })
                 break
               case 7:
-                // QQ分享 好友
+                // 微信分享 好友
                 window.utils.native.wechatShare({scene: 0})
                 // .then(result => {
                 //   alert(JSON.stringify(result))
@@ -87,7 +87,7 @@
                 // })
                 break
               case 8:
-                // QQ分享 朋友圈
+                // 微信分享 朋友圈
                 window.utils.native.wechatShare({scene: 1})
                 // .then(result => {
                 //   alert(JSON.stringify(result))
@@ -121,7 +121,8 @@ export default {
         {name: '选择联系人', id: 5},
         {name: '带参查找联系人', id: 6},
         {name: '分享给好友', id: 7},
-        {name: '分享给朋友圈', id: 8}
+        {name: '分享给朋友圈', id: 8},
+        {name: '微信授权登陆', id: 9}
       ]
     }
   },
@@ -158,8 +159,10 @@ export default {
         case 4:
           // 扫一扫
           window.utils.native.scan().then(result => {
+            alert(typeof result.text)
+            alert(result.text['classId'])
             alert('We got a barcode\n' +
-          'Result: ' + result.text + '\n' +
+          'Result: ' + result.text['classId'] + '\n' +
           'Format: ' + result.format + '\n' +
           'Cancelled: ' + result.cancelled)
           }, error => {
@@ -183,7 +186,7 @@ export default {
           // })
           break
         case 7:
-          // QQ分享 好友
+          // 微信分享 好友
           window.utils.native.wechatShare({scene: 0})
           // .then(result => {
           //   alert(JSON.stringify(result))
@@ -192,8 +195,17 @@ export default {
           // })
           break
         case 8:
-          // QQ分享 朋友圈
+          // 微信分享 朋友圈
           window.utils.native.wechatShare({scene: 1})
+          // .then(result => {
+          //   alert(JSON.stringify(result))
+          // }, error => {
+          //   alert(JSON.stringify(error))
+          // })
+          break
+        case 9:
+          // 微信授权登陆
+          window.utils.native.wechatAuth()
           // .then(result => {
           //   alert(JSON.stringify(result))
           // }, error => {

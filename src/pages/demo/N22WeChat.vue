@@ -20,79 +20,47 @@
     <!-- 代码展示区 -->
     <div style="flex:1.6;z-index:10" >
       <n22-highlight lang="javascript">
-        takeWechat (item) {
+       takeWechat (item) {
           switch (item.id) {
             case 1:
-              // 获取照片 --摄像头
-              window.utils.native.getPicture().then(res => {
-                console.log(res)
-                this.imgUrl = res
-              }, error => {
-                console.log('----', error)
-              })
+              // 配置菜单
+              window.utils.wechat.wxConfig()
               break
             case 2:
-              // 获取照片 --相册
-              window.utils.native.getPicture({sourceType: 0}).then(res => {
-                console.log(res)
-                this.imgUrl = res
-              }, error => {
-                console.log('----', error)
-              })
+              // 分享给好友
+              window.utils.native.onMenuShareAppMessage()
               break
             case 3:
-              // 获取照片 --时刻
-              window.utils.native.getPicture({sourceType: 2}).then(res => {
-                console.log(res)
-                this.imgUrl = res
-              }, error => {
-                console.log('----', error)
-              })
+              // 分享给好友
+              window.utils.native.onMenuShareTimeline()
               break
             case 4:
-              // 扫一扫
-              window.utils.native.scan().then(result => {
-                alert('We got a barcode\n' +
-              'Result: ' + result.text + '\n' +
-              'Format: ' + result.format + '\n' +
-              'Cancelled: ' + result.cancelled)
-              }, error => {
-                alert(error)
-              })
+              // 分享到QQ
+              window.utils.native.onMenuShareQQ()
               break
             case 5:
-              // 联系人
-              window.utils.native.pickContact().then(result => {
-                alert(JSON.stringify(result))
-              }, error => {
-                alert(JSON.stringify(error))
-              })
+              // 分享到QQ空间
+              window.utils.native.onMenuShareQZone()
               break
             case 6:
-              window.utils.native.findContact()
-              // .then(result => {
-              //   alert(JSON.stringify(result))
-              // }, error => {
-              //   alert(JSON.stringify(error))
-              // })
+              // 分享到腾讯微博
+              window.utils.native.onMenuShareWeibo()
               break
             case 7:
-              // QQ分享 好友
-              window.utils.native.wechatShare({scene: 0})
-              // .then(result => {
-              //   alert(JSON.stringify(result))
-              // }, error => {
-              //   alert(JSON.stringify(error))
-              // })
+              // 获取图片
+              window.utils.native.previewImage()
               break
             case 8:
-              // QQ分享 朋友圈
-              window.utils.native.wechatShare({scene: 1})
-              // .then(result => {
-              //   alert(JSON.stringify(result))
-              // }, error => {
-              //   alert(JSON.stringify(error))
-              // })
+              // 调用扫一扫
+              window.utils.native.wxHideMenuList()
+              break
+            case 9:
+              // 获取用户信息
+              window.utils.native.wxUserInfo()
+              break
+            case 10:
+              // 关闭窗口
+              window.utils.native.closeWindow()
               break
             default:
               break
@@ -116,9 +84,13 @@ export default {
         {name: '菜单配置', id: 1},
         {name: '配置分享好友', id: 2},
         {name: '配置分享朋友圈', id: 3},
-        {name: '获取图片', id: 4},
-        {name: '调用扫一扫', id: 5},
-        {name: '获取用户信息', id: 6}
+        {name: '分享到QQ', id: 4},
+        {name: '分享到QQ空间', id: 5},
+        {name: '分享到腾讯微博', id: 6},
+        {name: '获取图片', id: 7},
+        {name: '调用扫一扫', id: 8},
+        {name: '获取用户信息', id: 9},
+        {name: '关闭窗口', id: 10}
       ]
     }
   },
@@ -126,76 +98,44 @@ export default {
     takeWechat (item) {
       switch (item.id) {
         case 1:
-          // 获取照片 --摄像头
-          window.utils.native.getPicture().then(res => {
-            console.log(res)
-            this.imgUrl = res
-          }, error => {
-            console.log('----', error)
-          })
+          // 配置菜单
+          window.utils.wechat.wxConfig()
           break
         case 2:
-          // 获取照片 --相册
-          window.utils.native.getPicture({sourceType: 0}).then(res => {
-            console.log(res)
-            this.imgUrl = res
-          }, error => {
-            console.log('----', error)
-          })
+          // 分享给好友
+          window.utils.native.onMenuShareAppMessage()
           break
         case 3:
-          // 获取照片 --时刻
-          window.utils.native.getPicture({sourceType: 2}).then(res => {
-            console.log(res)
-            this.imgUrl = res
-          }, error => {
-            console.log('----', error)
-          })
+          // 分享给好友
+          window.utils.native.onMenuShareTimeline()
           break
         case 4:
-          // 扫一扫
-          window.utils.native.scan().then(result => {
-            alert('We got a barcode\n' +
-          'Result: ' + result.text + '\n' +
-          'Format: ' + result.format + '\n' +
-          'Cancelled: ' + result.cancelled)
-          }, error => {
-            alert(error)
-          })
+          // 分享到QQ
+          window.utils.native.onMenuShareQQ()
           break
         case 5:
-          // 联系人
-          window.utils.native.pickContact().then(result => {
-            alert(JSON.stringify(result))
-          }, error => {
-            alert(JSON.stringify(error))
-          })
+          // 分享到QQ空间
+          window.utils.native.onMenuShareQZone()
           break
         case 6:
-          window.utils.native.findContact()
-          // .then(result => {
-          //   alert(JSON.stringify(result))
-          // }, error => {
-          //   alert(JSON.stringify(error))
-          // })
+          // 分享到腾讯微博
+          window.utils.native.onMenuShareWeibo()
           break
         case 7:
-          // QQ分享 好友
-          window.utils.native.wechatShare({scene: 0})
-          // .then(result => {
-          //   alert(JSON.stringify(result))
-          // }, error => {
-          //   alert(JSON.stringify(error))
-          // })
+          // 获取图片
+          window.utils.native.previewImage()
           break
         case 8:
-          // QQ分享 朋友圈
-          window.utils.native.wechatShare({scene: 1})
-          // .then(result => {
-          //   alert(JSON.stringify(result))
-          // }, error => {
-          //   alert(JSON.stringify(error))
-          // })
+          // 调用扫一扫
+          window.utils.native.wxHideMenuList()
+          break
+        case 9:
+          // 获取用户信息
+          window.utils.native.wxUserInfo()
+          break
+        case 10:
+          // 关闭窗口
+          window.utils.native.closeWindow()
           break
         default:
           break

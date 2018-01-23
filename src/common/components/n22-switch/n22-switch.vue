@@ -48,6 +48,7 @@ export default {
   methods: {
     change (val) {
       this.$emit('update:value', val ? this.selectValue : this.unSelectValue)
+      this.$emit('change', val)
     }
   },
   mounted () {

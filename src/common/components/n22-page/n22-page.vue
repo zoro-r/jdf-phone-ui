@@ -23,23 +23,23 @@ export default {
       let ele = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0]
       this.contentHeight = ele ? ele.clientHeight + 1 : 0
     })
-    let ele = this.$el, startX, endX
-    ele.addEventListener('touchstart', (e) => {
-      startX = e['targetTouches'][0].pageX
-    })
-    ele.addEventListener('touchmove', (e) => {
-      this.$emit('touchMove', e)
-      endX = e['targetTouches'][0].pageX
-    })
-    ele.addEventListener('touchend', (e) => {
-      if (endX - startX < 0) {
-        // 向右滑动
-        this.$emit('touchRight')
-      } else {
-        // 向左滑动
-        this.$emit('touchLeft')
-      }
-    })
+    // let ele = this.$el, startX, endX
+    // ele.addEventListener('touchstart', (e) => {
+    //   startX = e['targetTouches'][0].pageX
+    // })
+    // ele.addEventListener('touchmove', (e) => {
+    //   this.$emit('touchMove', e)
+    //   endX = e['targetTouches'][0].pageX
+    // })
+    // ele.addEventListener('touchend', (e) => {
+    //   if (endX - startX < 0) {
+    //     // 向右滑动
+    //     this.$emit('touchRight')
+    //   } else {
+    //     // 向左滑动
+    //     this.$emit('touchLeft')
+    //   }
+    // })
   }
 }
 </script>

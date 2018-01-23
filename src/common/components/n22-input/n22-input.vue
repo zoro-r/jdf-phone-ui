@@ -1,16 +1,17 @@
 <template>
-  <div class="va_ipt" ref="dsadasdas">
+  <div class="va_ipt">
     <section class="left">
       <slot name="left">
       </slot>
     </section>
     <!-- <p class="error_text">{{errorText}}</p> -->
-    <input :disabled="disabled"  :maxlength="max" v-if="Itype!='textarea'" @focus="changeKeyBoard(true)" @blur="changeKeyBoard(false)" :value="inputValue" @change="change" @input="handleInput" :type="Itype" v-bind:class="[inputType==1 ? 'user':inputType==2?'pwd':'',hasIcon?'hasIcon':'',inputClass,errorText?'redColor':'']" :placeholder="hintText" />
-    <textarea :disabled="disabled"  :maxlength="max" v-else @focus="changeKeyBoard(true)" @blur="changeKeyBoard(false)" :value="inputValue" @change="change" @input="handleInput" :type="Itype" :rows="rows" :placeholder="hintText" />
-    <section class="right" v-if="hasIcon">
-      <span @click="show" v-if="inputType == 2 && hasIcon && inputValue" class="icon_right" v-bind:style="{'background-image': !showPwd?'url(static/images/icon/eye.png)':'url(static/images/icon/eye_active.png)'}"></span>
-      <span @click="clean" v-if="inputType == 1 && hasIcon && inputValue" class="icon_right"></span>
+    <input :disabled="disabled" :maxlength="max" v-if="itype!='textarea'" @focus="changeKeyBoard(true)" @blur="changeKeyBoard(false)" :value="inputValue" @change="change" @input="handleInput" :type="itype" v-bind:class="[hasIcon?'hasIcon':'',inputClass,errorText?'redColor':'']" :placeholder="hintText" />
+    <textarea class="textarea" :disabled="disabled"  :maxlength="max" v-else @focus="changeKeyBoard(true)" @blur="changeKeyBoard(false)" :value="inputValue" @change="change" @input="handleInput" :type="itype" :rows="rows" :placeholder="hintText" />
+    <section class="right" v-if="hasIcon && type!='textarea'">
+      <button @click="show" v-if="inputValue && type == 'password'" class="icon_right" v-bind:style="{'background-image': !showPwd?'url(static/images/icon/eye.png)':'url(static/images/icon/eye_active.png)'}"></button>
+      <span @click="clean" v-if="inputValue" class="icon_right"></span>
     </section>
+    <span class="line" v-if="errorText && validateTime > 1" v-html="errorText"></span>
     <!--2017-12-27 跟测试确认，所有页面input onblur后不在弹出提示-->
     <!-- <mt-popup :modal="false" v-model="showError" position="top" class="mint-popup-2">
       <div>{{errorText}}</div>
@@ -25,31 +26,32 @@ export default {
     return {
       inputValue: this.value,
       showPwd: false,
-      Itype: this.inputType == 2 ? 'password' : this.type || 'text',
+      itype: this.type,
       errorText: null,
       showError: false,
       rules: [],
       isBlur: true,
-      isFocus: false
+      isFocus: false,
+      validateTime: 0
     }
   },
-  // hasIcon  value type inputType
+  // hasIcon  value type
   props: {
+    // 是否显示icon
     hasIcon: {
-      type: Boolean
+      type: Boolean,
+      default: false
     },
     value: {},
-    inputType: {
-      type: Number
-    },
+    // inputType: {
+    //   type: Number
+    // },
     type: {
-      type: String
+      type: String,
+      default: 'text'
     },
     hintText: {
       type: String
-    },
-    hasbg: {
-      type: Boolean
     },
     inputClass: {
       type: String
@@ -64,8 +66,10 @@ export default {
       type: Number,
       default: 50000
     },
-    needRule: {
-      type: Boolean
+    // 是否需要实时监听规则的改变
+    listionRule: {
+      type: Boolean,
+      default: false
     },
     // 是否监听规则变化  ** 有点多余 后续更新中....
     listenRuleChange: {
@@ -104,13 +108,15 @@ export default {
       }
     },
     /**
-     * 验证规则
+     * @name 验证规则
      * isShow 是否显示提示框
      */
     validate (isShow = true) {
+      // 每一次校验则增加校验次数
+      this.validateTime ++
       // this.changeKeyBoard(showError)
       // 判断该组件是否需要重新初始化规则
-      if (this.needRule) {
+      if (this.listionRule) {
         this.rules = []
         this.initRules(this.rules)
       }
@@ -175,13 +181,14 @@ export default {
      */
     clean () {
       this.inputValue = ''
+      if (this.type == 'password') { this.showPwd = false }
     },
     /**
      * @name 当输入框类型为密码的时候输入密码
      */
     show () {
       this.showPwd = !this.showPwd
-      this.Itype = this.showPwd ? 'text' : 'password'
+      this.itype = this.showPwd ? 'text' : 'password'
     },
 
     /**
@@ -189,7 +196,7 @@ export default {
      */
     change (e) {},
     /**
-     * 输入事件
+     * @name 输入事件
      */
     handleInput (val) {
       this.validate()
@@ -202,7 +209,7 @@ export default {
       this.validate()
     },
     inputValue (val, oldVal) {
-      this.$emit('input', val)
+      this.$emit('change', val)
     },
     showError (val) {
       if (val) {
@@ -235,10 +242,13 @@ export default {
     //     this.validate(true)
     //   }
     // }
-
     this.$nextTick(e => {
       this.initRules()
       this.validate(false)
+      // 如果有值则校验次数+1
+      if (this.value) {
+        this.validateTime ++
+      }
     })
   }
 }
@@ -246,6 +256,19 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 $height: 43px;
 .va_ipt {
+  position: relative;
+  .line{
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    color: red;
+    font-size: 1rem;
+  }
+  .textarea{
+    width: 100%;
+    border: none;
+    outline: none;
+  }
   .redColor {
     // color: rgb(255, 0, 0);
     // border-bottom:1px solid rgb(255, 0, 0);
@@ -276,9 +299,12 @@ $height: 43px;
     }
   }
   .right {
-    width: 30px;
-    flex: 0 0 30px;
+    // width: 60px;
+    // flex: 0 0 60px;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
   input {
     flex: 1;
@@ -291,13 +317,19 @@ $height: 43px;
     font-size: 14px;
   }
   .icon_right {
+    height: 15px;
+    height: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    min-width: 18px;
     margin-right: 10px;
-    height: 100%;
     background-image: url("./assets/images/close.png");
+    /* height: 100%; */
     display: block;
     background-position: center;
-    background-size: $height*0.55;
+    background-size: 23.65px;
     background-repeat: no-repeat;
+    border: none;
+
   }
   .mint-popup-2 {
     width: 100%;

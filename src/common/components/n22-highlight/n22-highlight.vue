@@ -1,6 +1,6 @@
 <template>
-  <div class="highlight free-code" :lang="lang" >
-     <pre id='text' ref="copy_content"  :style="{'max-height':screenHeight - 40 + 'px','min-height':'200px'}">
+  <div class="highlight free-code" :lang="lang" :style="{'max-width':screenWidth + 'px'}">
+     <pre id='text' ref="copy_content"  :style="{'max-height':height ? height +'px': screenHeight - 40 + 'px','min-height':'200px'}">
         <code  :class="lang" class="hljs" style="width:100%">
           <div >
             <slot></slot>
@@ -36,6 +36,9 @@ export default {
     }
   },
   props: {
+    height: {
+      default: ''
+    },
     lang: {
       type: String,
       default: ''
@@ -125,11 +128,15 @@ export default {
     flex: 1 0 auto;
     width: 100%;
     overflow: hidden;
+    *{
+      box-sizing: content-box;
+    }
     // padding: 5px;
     pre{
       // background: black;
       margin: 0px;
       padding: 20px;
+      padding-top: 50px;
       .hljs{
         padding: 0px;
       }

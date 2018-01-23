@@ -17,6 +17,7 @@ const environment = {
   /**
    * @name 启动函数
    * @return {platform 平台,os 操作系统}
+   * @desc 初始化平台信息并设置最外层css
    */
   init: function () {
     if (window.globalConfig.isDebug === true) return {}
@@ -41,6 +42,8 @@ const environment = {
     } else {
       obj.platform = window.cordova ? 'native' : 'phoneWeb'
     }
+    // 增加平台样式
+    document.body.classList.add('platform-' + obj.os)
     console.log('项目平台----------->', JSON.stringify(obj))
     return obj
   }

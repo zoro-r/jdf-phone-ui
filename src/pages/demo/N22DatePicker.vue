@@ -7,7 +7,7 @@
 
       <div slot="content">
         <n22-field :label="'日期'" need='*'>
-          <n22-datepicker label="请选择" :disabled="disabled" :endDate="new Date()" slot="date" v-model="birthdate" />
+          <n22-datepicker label="请选择" :disabled="disabled" :endDate="new Date()" slot="right" v-model="birthdate" />
         </n22-field>
 
         <br/>

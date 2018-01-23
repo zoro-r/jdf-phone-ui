@@ -1,17 +1,113 @@
+// 定义方法
+const validatorFun = {
+  /**
+   * @name 身份证校验方法
+   * @param 需要验证的字符串
+   */
+  isID: function (idStr = '') {
+    if (idStr == null) {
+      idStr = ''
+    }
+    let oldCode = idStr
+    idStr = idStr.toUpperCase()
+    let city = {
+        11: '北京',
+        12: '天津',
+        13: '河北',
+        14: '山西',
+        15: '内蒙古',
+        21: '辽宁',
+        22: '吉林',
+        23: '黑龙江 ',
+        31: '上海',
+        32: '江苏',
+        33: '浙江',
+        34: '安徽',
+        35: '福建',
+        36: '江西',
+        37: '山东',
+        41: '河南',
+        42: '湖北 ',
+        43: '湖南',
+        44: '广东',
+        45: '广西',
+        46: '海南',
+        50: '重庆',
+        51: '四川',
+        52: '贵州',
+        53: '云南',
+        54: '西藏 ',
+        61: '陕西',
+        62: '甘肃',
+        63: '青海',
+        64: '宁夏',
+        65: '新疆',
+        71: '台湾',
+        81: '香港',
+        82: '澳门',
+        91: '国外 '
+      },
+      // tip,
+      pass = true
+    // tip = ''
+    if (!idStr || (!/^\d{6}(18|19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(idStr) && !/^[1-9]\d{7}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}$/i.test(idStr))) {
+      // tip = '身份证号格式错误'
+      pass = false
+    } else if (!city[idStr.substr(0, 2)]) {
+      // tip = '地址编码错误'
+      pass = false
+    } else {
+      // 18位身份证需要验证最后一位校验位
+      if (idStr.length == 18) {
+        idStr = idStr.split('')
+        // ∑(ai×Wi)(mod 11)
+        // 加权因子
+        let factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
+        // 校验位
+        let parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2]
+        let sum = 0
+        let ai = 0
+        let wi = 0
+        for (let i = 0; i < 17; i++) {
+          ai = idStr[i]
+          wi = factor[i]
+          sum += ai * wi
+        }
+        // let last = parity[sum % 11]
+        if (parity[sum % 11] != idStr[17]) {
+          // tip = '校验位错误'
+          pass = false
+        }
+      }
+    }
+    if (!pass) {
+      return false
+    } else {
+      let sex = oldCode.length == 15 ? oldCode.substr(14, 1) % 2 : oldCode.substr(16, 1) % 2
+      sex == 0 ? sex = 2 : sex = 1
+      let birthDay = oldCode.length == 15 ? '19' + oldCode.substr(6, 2) + '-' + oldCode.substr(8, 2) + '-' + oldCode.substr(10, 2) : oldCode.substr(6, 4) + '-' + oldCode.substr(10, 2) + '-' + oldCode.substr(12, 2)
+      return {
+        cityCode: oldCode.substr(0, 4),
+        cityDesc: city[oldCode.substr(0, 2)],
+        birthDay: birthDay,
+        sex: sex
+      }
+    }
+  }
+}
 
-var validatorFun = {isID: function () {}}
 // 检验方法
 const validator = {
   reg: {
     // require: /^[\s\S]+$/,
     require: /\S/,
-    Positive: /^([1-9]\d*|[0]{1,1})$/, // 匹配非负整数（正整数 + 0）
+    // Positive: /^([1-9]\d*|[0]{1,1})$/, // 匹配非负整数（正整数 + 0）
     positive: /^[0-9]*[1-9][0-9]*$/, // 匹配正整数
-    Negative: /^((-d+)|(0+))$/, // 匹配非正整数（负整数 + 0）
+    // Negative: /^((-d+)|(0+))$/, // 匹配非正整数（负整数 + 0）
     negative: /^-[0-9]*[1-9][0-9]*$/, // 匹配负整数
     realNumber: /^-?\d+\.?\d*$/, // 实数
     integer: /^-?d+$/, // 匹配整数
-    PositiveFloat: /^d+(.d+)?$/, // 匹配非负浮点数（正浮点数 + 0）
+    // PositiveFloat: /^d+(.d+)?$/, // 匹配非负浮点数（正浮点数 + 0）
     positiveFloat: /^(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*))$/, // 匹配正浮点数
     NegativeFloat: /^((-d+(.d+)?)|(0+(.0+)?))$/, // 匹配非正浮点数（负浮点数 + 0）
     negativeFloat: /^(-(([0-9]+.[0-9]*[1-9][0-9]*)|([0-9]*[1-9][0-9]*.[0-9]+)|([0-9]*[1-9][0-9]*)))$/, // 匹配负浮点数
@@ -122,186 +218,113 @@ const validator = {
     return result
   }
 }
-
-// 默认的规则
-validator.rules = {
-  require: {
-    reg: validator.reg.require,
-    msg (label) {
-      return (label || '') + '必填项'
-    }
-  },
-  chinese: {
-    reg: validator.reg.chinese,
-    msg (label) {
-      return (label || '') + '中文格式不匹配'
-    }
-  },
-  number: {
-    reg: validator.reg.Positive,
-    msg (label) {
-      return (label || '') + '数字格式不匹配'
-    }
-  },
-  mobile: {
-    reg: validator.reg.mobile,
-    msg (label) {
-      return (label || '') + '手机号格式不匹配'
-    }
-  },
-  mobileOrEmpty: {
-    reg: validator.reg.mobileOrEmpty,
-    msg (label) {
-      return (label || '') + '手机号格式不匹配'
-    }
-  },
-  email: {
-    reg: validator.reg.email,
-    msg (label) {
-      return (label || '') + '电子邮箱格式不匹配'
-    }
-  },
-  pwd: {
-    reg: validator.reg.pwd,
-    msg (label) {
-      return (label || '') + '密码不正确'
-    }
-  },
-  name: {
-    reg: validator.reg.name,
-    msg (label) {
-      return (label || '') + '姓名格式不匹配'
-    }
-  },
-  idcard: {
-    isMethods: true,
-    methods: validatorFun.isID,
-    msg (label) {
-      return (label || '') + '身份证格式不匹配'
-    }
-  },
-  passport: {
-    reg: validator.reg.passport,
-    msg (label) {
-      return (label || '') + '护照格式不匹配'
-    }
-  },
-  bank: {
-    reg: validator.reg.bankCode,
-    msg (label) {
-      return (label || '') + '格式不为整数'
-    }
-  },
-  telephone: {
-    reg: validator.reg.telephone,
-    msg (label) {
-      return (label || '') + '格式不为整数'
-    }
-  },
-  realNumber: {
-    reg: validator.reg.realNumber,
-    msg (label) {
-      return (label || '') + '正浮点数'
+// 自执行函数 初始化规则
+validator.rules = (function () {
+  let tempObj = {}
+  // 配置特殊的方法
+  let methodsValidator = {
+    // 身份证校验
+    idcard: {
+      isMethods: true,
+      methods: validatorFun.isID,
+      msg (label) {
+        return (label || '') + '身份证格式不匹配'
+      }
     }
   }
-}
+  // 循环初始化规则
+  for (let i in validator.reg) {
+    let temp = {
+      reg: validator.reg[i],
+      msg (label) {
+        return '校验失败'
+      }
+    }
+    tempObj[i] = temp
+  }
+  return Object.assign(tempObj, methodsValidator)
+})()
+// 默认的规则
+// validator.rules = {
+//   require: {
+//     reg: validator.reg.require,
+//     msg (label) {
+//       return (label || '') + '必填项'
+//     }
+//   },
+//   chinese: {
+//     reg: validator.reg.chinese,
+//     msg (label) {
+//       return (label || '') + '中文格式不匹配'
+//     }
+//   },
+//   number: {
+//     reg: validator.reg.Positive,
+//     msg (label) {
+//       return (label || '') + '数字格式不匹配'
+//     }
+//   },
+//   mobile: {
+//     reg: validator.reg.mobile,
+//     msg (label) {
+//       return (label || '') + '手机号格式不匹配'
+//     }
+//   },
+//   mobileOrEmpty: {
+//     reg: validator.reg.mobileOrEmpty,
+//     msg (label) {
+//       return (label || '') + '手机号格式不匹配'
+//     }
+//   },
+//   email: {
+//     reg: validator.reg.email,
+//     msg (label) {
+//       return (label || '') + '电子邮箱格式不匹配'
+//     }
+//   },
+//   pwd: {
+//     reg: validator.reg.pwd,
+//     msg (label) {
+//       return (label || '') + '密码不正确'
+//     }
+//   },
+//   name: {
+//     reg: validator.reg.name,
+//     msg (label) {
+//       return (label || '') + '姓名格式不匹配'
+//     }
+//   },
+//   idcard: {
+//     isMethods: true,
+//     methods: validatorFun.isID,
+//     msg (label) {
+//       return (label || '') + '身份证格式不匹配'
+//     }
+//   },
+//   passport: {
+//     reg: validator.reg.passport,
+//     msg (label) {
+//       return (label || '') + '护照格式不匹配'
+//     }
+//   },
+//   bank: {
+//     reg: validator.reg.bankCode,
+//     msg (label) {
+//       return (label || '') + '格式不为整数'
+//     }
+//   },
+//   telephone: {
+//     reg: validator.reg.telephone,
+//     msg (label) {
+//       return (label || '') + '格式不为整数'
+//     }
+//   },
+//   realNumber: {
+//     reg: validator.reg.realNumber,
+//     msg (label) {
+//       return (label || '') + '正浮点数'
+//     }
+//   }
+// }
 
 export default validator
-
-validatorFun = {
-  /**
-   * @name 身份证校验方法
-   * @param 需要验证的字符串
-   */
-  isID: function (idStr = '') {
-    if (idStr == null) {
-      idStr = ''
-    }
-    let oldCode = idStr
-    idStr = idStr.toUpperCase()
-    let city = {
-        11: '北京',
-        12: '天津',
-        13: '河北',
-        14: '山西',
-        15: '内蒙古',
-        21: '辽宁',
-        22: '吉林',
-        23: '黑龙江 ',
-        31: '上海',
-        32: '江苏',
-        33: '浙江',
-        34: '安徽',
-        35: '福建',
-        36: '江西',
-        37: '山东',
-        41: '河南',
-        42: '湖北 ',
-        43: '湖南',
-        44: '广东',
-        45: '广西',
-        46: '海南',
-        50: '重庆',
-        51: '四川',
-        52: '贵州',
-        53: '云南',
-        54: '西藏 ',
-        61: '陕西',
-        62: '甘肃',
-        63: '青海',
-        64: '宁夏',
-        65: '新疆',
-        71: '台湾',
-        81: '香港',
-        82: '澳门',
-        91: '国外 '
-      },
-      // tip,
-      pass = true
-    // tip = ''
-    if (!idStr || (!/^\d{6}(18|19|20)\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(idStr) && !/^[1-9]\d{7}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}$/i.test(idStr))) {
-      // tip = '身份证号格式错误'
-      pass = false
-    } else if (!city[idStr.substr(0, 2)]) {
-      // tip = '地址编码错误'
-      pass = false
-    } else {
-      // 18位身份证需要验证最后一位校验位
-      if (idStr.length == 18) {
-        idStr = idStr.split('')
-        // ∑(ai×Wi)(mod 11)
-        // 加权因子
-        let factor = [7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2]
-        // 校验位
-        let parity = [1, 0, 'X', 9, 8, 7, 6, 5, 4, 3, 2]
-        let sum = 0
-        let ai = 0
-        let wi = 0
-        for (let i = 0; i < 17; i++) {
-          ai = idStr[i]
-          wi = factor[i]
-          sum += ai * wi
-        }
-        // let last = parity[sum % 11]
-        if (parity[sum % 11] != idStr[17]) {
-          // tip = '校验位错误'
-          pass = false
-        }
-      }
-    }
-    if (!pass) {
-      return false
-    } else {
-      let sex = oldCode.length == 15 ? oldCode.substr(14, 1) % 2 : oldCode.substr(16, 1) % 2
-      sex == 0 ? sex = 2 : sex = 1
-      let birthDay = oldCode.length == 15 ? '19' + oldCode.substr(6, 2) + '-' + oldCode.substr(8, 2) + '-' + oldCode.substr(10, 2) : oldCode.substr(6, 4) + '-' + oldCode.substr(10, 2) + '-' + oldCode.substr(12, 2)
-      return {
-        cityCode: oldCode.substr(0, 4),
-        cityDesc: city[oldCode.substr(0, 2)],
-        birthDay: birthDay,
-        sex: sex
-      }
-    }
-  }
-}
-

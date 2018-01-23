@@ -24,8 +24,8 @@ body.modal-open {
 // html, body, {
   // background-color: transparent;
 // }
-//-----------修改平台样式 增加在body上面
-.plat-ios {
+//-----------修改平台样式 增加在body上面 ios平台
+.platform-ios {
 	min-height: calc(100vh - 110px);
 	box-sizing: content-box;
   .mint-header {
@@ -472,7 +472,9 @@ input[type="text"]:disabled{
 .share-item p {
   color: #999;
 }
-
+.mint-msgbox{
+  max-width: 300px;
+}
 // //input在Android5.0有背景色，去掉
 // input[type="text"]:disabled{
 //   background-color: transparent !important;
