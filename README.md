@@ -1,4 +1,4 @@
-# n22-mobile 移动端框架组件
+# jdf-mobile 移动端框架组件
 ##  前期准备
 
 项目依赖node如果没有安装node的同事，请自行去官网下载安装 : [nodejs ]( https://nodejs.org/en/)
@@ -21,13 +21,13 @@
   
 ##  目录结构
   
-  <img src="https://zltech.github.io/n22-mobile/static/images/process/m_process.jpg" width="365"/>
+  <img src="https://zltech.github.io/jdf-phone-ui/static/images/process/m_process.jpg" width="365"/>
 
 ## 构建项目
 
 ``` bash
 # 将项目克隆到本地
-复制 git clone https://github.com/jdfdcc/n22-phone-ui.git
+复制 git clone https://github.com/jdfdcc/jdf-phone-ui.git
 
 # 安装项目依赖性
 npm install
