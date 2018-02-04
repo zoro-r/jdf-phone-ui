@@ -2,7 +2,7 @@
  * @Author: chenjia
  * @Date: 2018-01-04 15:06:26
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-16 14:37:22
+ * @Last Modified time: 2018-01-25 16:16:21
  */
 
 import Vue from 'vue'
@@ -16,7 +16,7 @@ Vue.use(Router)
 const router = new Router({
   routes: [{
     path: '/',
-    redirect: '/demoMain'
+    redirect: '/n22SplashScreen'
   },
     ...demo
   ]

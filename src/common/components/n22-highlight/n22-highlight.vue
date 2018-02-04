@@ -1,6 +1,6 @@
 <template>
   <div class="highlight free-code" :lang="lang" :style="{'max-width':screenWidth + 'px'}">
-     <pre id='text' ref="copy_content"  :style="{'max-height':height ? height +'px': screenHeight - 40 + 'px','min-height':'200px'}">
+     <pre v-if="!isMibile" id='text' ref="copy_content" style="max-width: 100vw;"  :style="{'max-height':height ? height +'px': screenHeight - 40 + 'px','min-height':'200px'}">
         <code  :class="lang" class="hljs" style="width:100%">
           <div >
             <slot></slot>
@@ -32,7 +32,8 @@ export default {
   },
   data () {
     return {
-      code: {}
+      code: {},
+      isMibile: window.globalConfig.platform === 'native'
     }
   },
   props: {
@@ -114,7 +115,7 @@ export default {
   watch: {
   },
   mounted () {
-    this.init()
+    !this.isMibile && this.init()
   }
 }
 </script>

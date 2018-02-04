@@ -1,11 +1,11 @@
 <template>
-  <div class="show_code_main">
-    <n22-page class="first">
-      <mt-header title="性别" slot="header" :fixed = "true">
-        <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
-      </mt-header>
+  <n22-page>
+    <mt-header title="性别" slot="header" :fixed = "true">
+      <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
+    </mt-header>
 
-      <div slot="content">
+    <div slot="content" class="show_code_main">
+      <div class="first">
         <n22-field :label="'性别'" need='*'>
           <n22-switch :disabled = 'disabled' slot="choose" :value.sync="value"></n22-switch>
         </n22-field>
@@ -22,11 +22,8 @@
           <br/>
           <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
         </div>
-
       </div>
-    </n22-page>
-
-    <div class="secend">
+      <div class="secend">
        <n22-highlight lang="html">
         &lt;n22-switch :disabled = 'disabled'
                        :value.sync="value"&gt;
@@ -39,8 +36,9 @@
     this.value = this.value == 'f' ? 'm' : 'f'
   },
         </n22-highlight>
+      </div>
     </div>
-  </div>
+  </n22-page>
 </template>
 
 <script>

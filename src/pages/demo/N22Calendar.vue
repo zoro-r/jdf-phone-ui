@@ -1,11 +1,11 @@
 <template>
-  <div  class="show_code_main">
-    <n22-page class="first">
+  <n22-page >
       <mt-header slot="header" :fixed="true" title="日历控件">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content"  class="show_code_main">
+        <div class="first">
         <div class="">
           <n22-calendar @choose="chooseDate" :date="new Date('2018-02-02')" :punchs="['2018-01-18']"></n22-calendar>
           <br/><br/><br/>
@@ -14,9 +14,7 @@
 
         <br/>
       </div>
-    </n22-page>
-
-    <div class="secend">
+      <div class="secend">
        <n22-highlight lang="html">
 &lt;n22-calendar @choose="chooseDate"
               :date="new Date('2018-02-02')"
@@ -30,7 +28,8 @@ chooseDate (date) {
 }
       </n22-highlight>
     </div>
-  </div>
+    </div>
+  </n22-page>
 </template>
 
 <script>

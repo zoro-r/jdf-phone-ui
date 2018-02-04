@@ -4,14 +4,12 @@ $primary-color:#3399FF; //基础颜色
 $primary-color-light:#8EDB8C; //基础颜色高亮
 $error-color:#E34545;
 $error-color-light:#FF9E9E;
-$normal-color:#394043; //正常字体颜色
 $normal-color-light:#556074; //正常字体颜色高亮
 $normal-color-dark:#818181; //正常字体颜色禁用
 $normal-color-disabled:#BDBDBD; //正常字体颜色禁用
 $memo-color:#BB844F;
 $memo-color-light:#BABEC6;
 $price-color:#FF7431; //价格字体颜色
-$bgcolor: #F0EFF5; //背景颜色
 // $pageBgColor: #EFF1F3; //页面背景颜色
 $input-border-color:#E5E5E5; //input边框颜色
 $shadow-color: #F5F5F5; //阴影颜色
@@ -19,6 +17,8 @@ $close-color: #727D92; //关闭按钮颜色
 $second-button-color-start:#FF8D2B;
 $second-button-color-end:#FF4944;
 */
+$bgcolor: #F0EFF5; //背景颜色
+$normal-color:#394043; //正常字体颜色
 $primary-button-color-start:rgb(11,100,269);
 $primary-button-color-end:rgb(61,151,255);
 //基础变量

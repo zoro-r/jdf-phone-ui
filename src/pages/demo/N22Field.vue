@@ -1,35 +1,37 @@
 <template>
-  <div class="show_code_main">
-    <n22-page class="first">
+  <n22-page>
+    <!-- <div class="first"> -->
       <mt-header :fixed="true" slot="header" title="Field组件">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content" class="show_code_main">
 
-        <n22-field :label="'地址'" need='*'>
-          <n22-address slot="right"></n22-address>
-        </n22-field>
+        <div class="first">
+          <n22-field :label="'地址'" need='*'>
+            <n22-address slot="right"></n22-address>
+          </n22-field>
 
-        <n22Field :label="'性别'">
-          <n22Switch   :value.sync="sex" slot="choose" />
-        </n22Field>
+          <n22Field :label="'性别'">
+            <n22Switch   :value.sync="sex" slot="choose" />
+          </n22Field>
 
-        <div class="content_intro">
-          此插件为信息录入等页面提供统一的左右结构样式<br/>
-          eg：姓名：【】
+          <div class="content_intro">
+            此插件为信息录入等页面提供统一的左右结构样式<br/>
+            eg：姓名：【】
+          </div>
         </div>
-      </div>
-    </n22-page>
 
-    <div class="secend">
-       <n22-highlight lang='html' >
-        &lt;n22-field :label="'地址'" need='*'&gt;
-    &lt;n22-address slot="right"&gt;&lt;/n22-address&gt;
-  &lt;/n22-field&gt;
-      </n22-highlight>
-    </div>
-  </div>
+        <div class="secend">
+        <n22-highlight lang='html' >
+          &lt;n22-field :label="'地址'" need='*'&gt;
+      &lt;n22-address slot="right"&gt;&lt;/n22-address&gt;
+    &lt;/n22-field&gt;
+        </n22-highlight>
+      </div>
+      </div>
+    <!-- </div> -->
+  </n22-page>
 </template>
 
 <script>

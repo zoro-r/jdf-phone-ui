@@ -20,7 +20,7 @@ const environment = {
    * @desc 初始化平台信息并设置最外层css
    */
   init: function () {
-    if (window.globalConfig.isDebug === true) return {}
+    // if (window.globalConfig.isDebug === true) return {}
     console.log('项目平台----------->start')
     let obj = {platform: '', os: 'ios'}
 // 判断是安卓还是ios平台
@@ -41,9 +41,18 @@ const environment = {
       obj.os = 'window'
     } else {
       obj.platform = window.cordova ? 'native' : 'phoneWeb'
+      // obj.platform = 'native'
+      // obj.os = 'ios'
+      if (obj.os === 'ios' && obj.platform === 'native') {
+        // 增加键盘事件
+        let str = '<script src="./keyboard.min.js"></script>'
+        document.write(str)
+        // require('../../static/lib/keyboard/keyboard.js')
+      }
     }
     // 增加平台样式
     document.body.classList.add('platform-' + obj.os)
+    document.body.classList.add(obj.platform)
     console.log('项目平台----------->', JSON.stringify(obj))
     return obj
   }

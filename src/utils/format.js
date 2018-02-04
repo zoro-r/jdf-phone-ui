@@ -5,6 +5,7 @@ const format = {
    * @param pattern 格式化模式
    */
   toDate: (date, pattern) => {
+    if (!date) return '22'
     if (!pattern) {
       pattern = 'yyyy-MM-dd HH:mm:ss'
     }

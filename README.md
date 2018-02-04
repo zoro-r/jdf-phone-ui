@@ -5,7 +5,11 @@
 
 仔细阅读开发规范：[开发指南 ]( https://cn.vuejs.org/v2/style-guide/)
 
-开发注意点：[传送门 ]( https://github.com/jdfdcc/n22-phone-ui/blob/master/src)
+开发注意点：[传送门 ]( https://github.com/zltech/n22-mobile/blob/master/src/README.md)
+
+组件配置参数说明：[传送门 ]( https://github.com/zltech/n22-mobile/blob/master/src/common/README.md)
+
+iosApp下载地址：[振利软件]( https://www.pgyer.com/foCF)
 
 ## 技术栈
 
@@ -18,7 +22,7 @@
   vuex：[官网 ]( https://cn.vuejs.org/v2/guide/migration-vuex.html#ad)、[GitHub]( https://github.com/vuejs/vuex)
   
   axios：[GitHub]( https://github.com/axios/axios)
-  
+  
 ##  目录结构
   
   <img src="https://zltech.github.io/n22-mobile/static/images/process/m_process.jpg" width="365"/>
@@ -27,7 +31,7 @@
 
 ``` bash
 # 将项目克隆到本地
-复制 git clone https://github.com/jdfdcc/n22-phone-ui.git
+复制 git clone https://github.com/zltech/n22-mobile.git
 
 # 安装项目依赖性
 npm install

@@ -1,11 +1,11 @@
 <template>
-  <div class="show_code_main">
-    <n22-page class="first">
+  <n22-page>
       <mt-header  slot="header" :fixed="true"  title="日期控件">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content"  class="show_code_main">
+        <div class="first">
         <n22-field :label="'日期'" need='*'>
           <n22-datepicker label="请选择" :disabled="disabled" :endDate="new Date()" slot="right" v-model="birthdate" />
         </n22-field>
@@ -23,8 +23,7 @@
           <mt-button type="primary" size="large" @click="disabled = !disabled">禁用/解禁</mt-button>
         </div>
       </div>
-    </n22-page>
-    <div class="secend">
+      <div class="secend">
        <n22-highlight lang="html">
     &lt;n22-datepicker
     label="请选择"
@@ -35,7 +34,8 @@
     /&gt;
         </n22-highlight>
     </div>
-  </div>
+    </div>
+  </n22-page>
 </template>
 
 <script>

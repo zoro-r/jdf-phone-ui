@@ -1,13 +1,14 @@
 <template>
   <div >
-    <!-- <div class="header"></div> -->
+    <!-- <div class="n22-header"></div> -->
 		<!-- 在获取用户信息的过程中显示（页面内容待定）
      :enter-active-class="'transition_ani ' + enterClass"
       :leave-active-class="'transition_ani ' + leaveClass"
     -->
+
     <transition :name="transitionName">
       <navigation>
-        <router-view class="child-view" :style="{'min-height':screenHeight + 'px'}"></router-view>
+        <router-view @scroll="scroll" class="child-view"></router-view>
       </navigation>
     </transition>
   </div>
@@ -29,6 +30,9 @@ export default {
     }
   },
   methods: {
+    scroll (e) {
+      console.log(e)
+    }
   },
   watch: {
     // '$route' (to, from) {
@@ -42,10 +46,10 @@ export default {
     this.$navigation.on('forward', (to, from) => {
       // this.enterClass = 'slideInRight'
       // this.leaveClass = 'fadeOut'
-      this.transitionName = 'slide-in-right'
+      window.globalConfig.animation && (this.transitionName = 'slide-in-right')
     })
     this.$navigation.on('back', (to, from) => {
-      this.transitionName = 'slide-out-right'
+      window.globalConfig.animation && (this.transitionName = 'slide-out-right')
       // this.enterClass = 'fadeIn'
       // this.leaveClass = 'slideOutRight'
     })
@@ -67,10 +71,19 @@ export default {
     color: #3399ff;
   }
 }
-.child-view{
+.child-view {
   position: absolute;
+  top:0px;
   width: 100%;
-  min-height: 500px;
+  height:100vh;
+}
+.n22-header{
+  position: fixed;
+  z-index: 10000;
+  top: 0;
+  width: 100vw;
+  height: 44px;
+  background: red;
 }
 // .fade-enter-active, .fade-leave-active {
 //   transition: opacity .5s;
@@ -78,19 +91,23 @@ export default {
 .slide-in-right-enter-active{
   animation-name: 'slideInRightN';
   animation-duration: .5s;
+  pointer-events: none;
 }
 .slide-in-right-leave-active{
   animation-name: 'fadeOut';
   animation-duration: .5s;
+  pointer-events: none;
 }
 
 .slide-out-right-enter-active{
   animation-name: 'fadeIn';
   animation-duration: .5s;
+  pointer-events: none;
 }
 .slide-out-right-leave-active{
   animation-name: "slideOutRightN";
   animation-duration: .5s;
+  pointer-events: none;
 }
 
 

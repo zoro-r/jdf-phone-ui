@@ -1,11 +1,11 @@
 <template>
-  <div class="show_code_main">
-     <n22-page style="flex:1;min-width:375px;max-width:500px">
+  <n22-page >
       <mt-header title="微信交互" slot="header" :fixed="true" >
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content" class="show_code_main">
+        <div style="flex:1;min-width:300px;max-width:500px">
         <div>
           <img :src="'data:image/jpeg;base64,' + imgUrl" style="width:50px;height:50px" />
         </div>
@@ -16,59 +16,59 @@
           </div>
         </div>
       </div>
-    </n22-page>
     <!-- 代码展示区 -->
     <div style="flex:1.6;z-index:10" >
       <n22-highlight lang="javascript">
-       takeWechat (item) {
-          switch (item.id) {
-            case 1:
-              // 配置菜单
-              window.utils.wechat.wxConfig()
-              break
-            case 2:
-              // 分享给好友
-              window.utils.native.onMenuShareAppMessage()
-              break
-            case 3:
-              // 分享给好友
-              window.utils.native.onMenuShareTimeline()
-              break
-            case 4:
-              // 分享到QQ
-              window.utils.native.onMenuShareQQ()
-              break
-            case 5:
-              // 分享到QQ空间
-              window.utils.native.onMenuShareQZone()
-              break
-            case 6:
-              // 分享到腾讯微博
-              window.utils.native.onMenuShareWeibo()
-              break
-            case 7:
-              // 获取图片
-              window.utils.native.previewImage()
-              break
-            case 8:
-              // 调用扫一扫
-              window.utils.native.wxHideMenuList()
-              break
-            case 9:
-              // 获取用户信息
-              window.utils.native.wxUserInfo()
-              break
-            case 10:
-              // 关闭窗口
-              window.utils.native.closeWindow()
-              break
-            default:
-              break
+        takeWechat (item) {
+            switch (item.id) {
+              case 1:
+                // 配置菜单
+                window.utils.wechat.wxConfig()
+                break
+              case 2:
+                // 分享给好友
+                window.utils.native.onMenuShareAppMessage()
+                break
+              case 3:
+                // 分享给好友
+                window.utils.native.onMenuShareTimeline()
+                break
+              case 4:
+                // 分享到QQ
+                window.utils.native.onMenuShareQQ()
+                break
+              case 5:
+                // 分享到QQ空间
+                window.utils.native.onMenuShareQZone()
+                break
+              case 6:
+                // 分享到腾讯微博
+                window.utils.native.onMenuShareWeibo()
+                break
+              case 7:
+                // 获取图片
+                window.utils.native.previewImage()
+                break
+              case 8:
+                // 调用扫一扫
+                window.utils.native.wxHideMenuList()
+                break
+              case 9:
+                // 获取用户信息
+                window.utils.native.wxUserInfo()
+                break
+              case 10:
+                // 关闭窗口
+                window.utils.native.closeWindow()
+                break
+              default:
+                break
+            }
           }
-        }
-      </n22-highlight>
+        </n22-highlight>
     </div>
-  </div>
+   </div>
+  </n22-page>
 </template>
 
 <script>

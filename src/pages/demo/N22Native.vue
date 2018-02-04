@@ -1,11 +1,11 @@
 <template>
-  <div class="show_code_main">
-     <n22-page style="flex:1;min-width:375px;max-width:500px">
+  <n22-page>
       <mt-header title="原生交互类" slot="header" :fixed="true" >
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content"  class="show_code_main">
+        <div style="flex:1;min-width:300px;max-width:500px">
         效果展示区
         <div>
           <img :src="'data:image/jpeg;base64,' + imgUrl" style="width:50px;height:50px" />
@@ -17,7 +17,6 @@
           </div>
         </div>
       </div>
-    </n22-page>
     <!-- 代码展示区 -->
     <div style="flex:1.6;z-index:10" >
       <n22-highlight lang="javascript">
@@ -101,7 +100,8 @@
           }
       </n22-highlight>
     </div>
-  </div>
+   </div>
+  </n22-page>
 </template>
 
 <script>
@@ -122,7 +122,8 @@ export default {
         {name: '带参查找联系人', id: 6},
         {name: '分享给好友', id: 7},
         {name: '分享给朋友圈', id: 8},
-        {name: '微信授权登陆', id: 9}
+        {name: '微信授权登陆', id: 9},
+        {name: '重新加载页面', id: 10}
       ]
     }
   },
@@ -211,6 +212,11 @@ export default {
           // }, error => {
           //   alert(JSON.stringify(error))
           // })
+          break
+        case 10:
+          // 重新启动
+          // window.navigator.splashscreen.show()
+          window.location.reload()
           break
         default:
           break

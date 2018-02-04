@@ -13,26 +13,18 @@
       </div>
 
       <div  class="content ca_content">
-        <swiper :options="swiperOption" class="swiper-box" style="height: auto" ref="mySwiper">
-          <swiper-slide  v-for="(day,index) in days" :key="index">
-              <div class="content">
-                <!-- item.isFutureDay|| -->
-                <div style="min-height:54px;" @click="_chooseItem(item)" class="content-item day" v-for="(item,index) in day" :key="index" v-bind:class="[item.isToday?'isToday':'',!_inMonth(item)?'notInMonth':'',_isWeekDay(item)?'weekDay':'',chooseDay === item.format ?'choosed':'']">
-                  <span> {{item.date | _dateFormat('dd')}}</span>
-                  <div class="ok-icon">
-                    <i v-if="_hasPunch(item)" class="fa fa-check" aria-hidden="true"></i>
-                  </div>
-                </div>
-              </div>
-          </swiper-slide>
-        </swiper>
+        <n22-touch @touchRight = '_touchRight' @touchLeft = '_touchLeft'>
+          <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="left" :monthDate = 'days[0]'></n22-calendar-item>
+          <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="middle" :monthDate = 'days[1]'></n22-calendar-item>
+          <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="right" :monthDate = 'days[2]'></n22-calendar-item>
+        </n22-touch>
       </div>
-
     </div>
   </div>
 </template>
 <script>
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import n22Touch from './../n22-touch'
+import n22CalendarItem from './n22-calendar-item'
 // @待修改
 export default {
   name: 'n22Calendar',
@@ -42,58 +34,12 @@ export default {
       chooseDay: window.utils.format.toDate(new Date(), 'yyyy-MM-dd'),
       dayNames: '日-一-二-三-四-五-六'.split('-'),
       days: [],
-      activeIndex: 1,
-      swiperOption: {
-        // loop: true,
-        // loopAdditionalSlides: 1,
-        preventClicks: false,
-        // 3D效果
-        // effect: 'coverflow',
-        // grabCursor: false,
-        // cube: {
-        //   shadow: true,
-        //   slideShadows: true,
-        //   shadowOffset: 20,
-        //   shadowScale: 0.94
-        // },
-        // initialSlide: 1,
-        paginationClickable: true,
-        spaceBetween: 0,
-        // mousewheelControl: true,
-        onTransitionStart: swiper => {
-          this.activeIndex = swiper.activeIndex
-        },
-
-        onSlideNextStart: swiper => {
-          this.$nextTick(() => {
-            this.$refs.mySwiper.swiper.slideTo(1, 0)
-          }, 0)
-        },
-        onSlideNextEnd: swiper => {
-          let tempDate = this.currentDate.setMonth(
-            this.currentDate.getMonth() - 1
-          )
-          this.currentDate = new Date(tempDate)
-          this._initDates()
-        },
-        onSlidePrevStart: swiper => {
-          this.$nextTick(() => {
-            this.$refs.mySwiper.swiper.slideTo(1, 0)
-          }, 0)
-        },
-        onSlidePrevEnd: swiper => {
-          let tempDate = this.currentDate.setMonth(
-            this.currentDate.getMonth() + 1
-          )
-          this.currentDate = new Date(tempDate)
-          this._initDates()
-        }
-      }
+      activeIndex: 1
     }
   },
   components: {
-    swiper,
-    swiperSlide
+    n22Touch,
+    n22CalendarItem
   },
   props: {
     /**
@@ -143,7 +89,6 @@ export default {
      * @name 是否为双休
      */
     _isWeekDay (item) {
-      // console.log(item.date.getDay() == 0 || item.date.getDay() == 6)
       return item.date.getDay() == 0 || item.date.getDay() == 6
     },
     /**
@@ -157,8 +102,10 @@ export default {
       list.push(this._getMonthFromDate(this.currentDate))
       // 塞入下个月
       list.push(this._nextMonth(this.currentDate))
-      this.$refs.mySwiper.swiper.slideTo(1)
       this.days = list
+      this.$nextTick(e => {
+        // this.$refs.mySwiper.swiper.slideTo(1)
+      })
     },
     /**
      * @name 判断是否打卡
@@ -211,9 +158,29 @@ export default {
         this.chooseDay = window.utils.format.toDate(item.date, 'yyyy-MM-dd')
         this.$emit('choose', item)
       }
+    },
+    /**
+     * 减少月份
+     */
+    _touchRight () {
+      let tempDate = this.currentDate.setMonth(
+        this.currentDate.getMonth() - 1
+      )
+      this.currentDate = new Date(tempDate)
+      this._initDates()
+    },
+     /**
+     * 增加月份
+     */
+    _touchLeft () {
+      let tempDate = this.currentDate.setMonth(
+        this.currentDate.getMonth() + 1
+      )
+      this.currentDate = new Date(tempDate)
+      this._initDates()
     }
   },
-  mounted () {
+  created () {
     // 初始化数据
     this._initDates()
   }
@@ -255,29 +222,9 @@ $width: 100%/7;
       flex: 0 0 $width;
       border-bottom: 1px solid rgba(1, 1, 1, 0.21);
       box-sizing: border-box;
-      .ok-icon {
-        height: 16px;
-      }
-      .ok-icon i {
-        color: #3399ff;
-        font-size: 15px;
-      }
-      &.weekDay{
-        color:red;
-      }
-      &.day {
-        padding: 10px 0px;
-        font-weight: 500
-      }
-      &.notInMonth {
-        color: rgba(1, 1, 1, 0.5);
-      }
-      &.week {
+       &.week {
         min-height: 30px;
         line-height: 30px;
-      }
-      &.choosed {
-        color: #3399ff;
       }
     }
   }

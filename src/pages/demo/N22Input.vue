@@ -1,11 +1,11 @@
 <template>
-  <div class="show_code_main">
-    <n22-page class="first">
+  <n22-page>
       <mt-header  slot="header" :fixed="true" title="输入验证组件">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content"  class="show_code_main">
+         <div class="first">
         <br/>
         <div class="demo_page">
           <n22-field :label="'必填项验证'" need='*'>
@@ -27,6 +27,27 @@
           <n22-field :label="'自定义校验'" need='*'>
             <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
           </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
+           <n22-field :label="'自定义校验'" need='*'>
+            <n22-input  v-model="modal.myself" :form.sync="validate.myself"  :validator="rule.myself" hintText="请输入" slot="right" />
+          </n22-field>
 
           {{validate}}
           <br/>
@@ -34,9 +55,7 @@
           <mt-button type="primary" size="large" @click="sunbmit()">提交</mt-button>
         </div>
       </div>
-    </n22-page>
-
-    <div class="secend">
+      <div class="secend">
       <n22-highlight lang="html" :height="400">
 &lt;n22-field :label="'必填项验证'" need='*'&gt;
   &lt;n22-input type="text"
@@ -94,7 +113,8 @@
       let result = window.utils.validator.judge(this.validate)
       </n22-highlight>
     </div>
-  </div>
+    </div>
+  </n22-page>
 </template>
 
 <script>

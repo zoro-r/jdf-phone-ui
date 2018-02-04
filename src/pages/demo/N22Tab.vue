@@ -1,17 +1,15 @@
 <template>
-  <div class="show_code_main">
-    <n22-page class="first">
-
+  <n22-page>
       <mt-header title="Tab控件" slot="header" :fixed="true">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
 
-      <div slot="content">
+      <div slot="content"  class="show_code_main">
+        <div class="first">
         <n22-tab :tabs = "tabs" :tabIndex.sync = "tabIndex">
         </n22-tab>
       </div>
-    </n22-page>
-    <div class="secend">
+       <div class="secend">
 
         <n22-highlight lang="html">
           &lt;n22-tab :tabs = "tabs" :tabIndex.sync = "tabIndex"&gt;&lt;/n22-tab&gt;
@@ -22,7 +20,8 @@ tabs: ['第一列', '第二列', '第三列'],
 tabIndex: 0
         </n22-highlight>
     </div>
-  </div>
+    </div>
+  </n22-page>
 </template>
 
 <script>

@@ -34,21 +34,21 @@ var webpackConfig = merge(baseWebpackConfig, {
         warnings: false
       },
       sourceMap: true
-		}),
-		//打包出去console 打印
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	drop_debugger: false,
-		// 	drop_console: false,
-    //   minimize : true,
-    //   sourceMap : true,
-    //   mangle: true,
-    //   compress: {
-		// 		warnings: false,
-		// 		drop_debugger: true,
-		// 		drop_console: true,
-    //     warnings: false
-    //   }
-    // }),
+    }),
+    // 打包出去console 打印
+    new webpack.optimize.UglifyJsPlugin({
+      drop_debugger: false,
+      drop_console: false,
+      minimize: true,
+      sourceMap: true,
+      mangle: true,
+      compress: {
+        warnings: false,
+        drop_debugger: true,
+        drop_console: true,
+        warnings: false
+      }
+    }),
     // extract css into its own file
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].css')
@@ -98,7 +98,7 @@ var webpackConfig = merge(baseWebpackConfig, {
     new webpack.optimize.CommonsChunkPlugin({
       name: 'manifest',
       chunks: ['vendor']
-		}),
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {
