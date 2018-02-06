@@ -9,7 +9,7 @@
 
 组件配置参数说明：[传送门 ]( https://github.com/zltech/jdf-phone-ui/blob/master/src/common/README.md)
 
-iosApp下载地址：[振利软件]( https://www.pgyer.com/foCF)
+iosApp下载地址：[App示例]( https://www.pgyer.com/foCF)
 
 ## 技术栈
 
