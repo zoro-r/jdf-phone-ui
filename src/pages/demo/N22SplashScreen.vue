@@ -1,10 +1,10 @@
 <template>
 	<div>
-			<div v-if="!imgLoaded">
-				加载中...
+			<div v-if="!imgLoaded || progress != 100" style="text-align: center;padding: 50px;font-size: 20px;">
+        {{progress}}%
 			</div>
 		  <!-- swiper -->
-      <div  v-bind:style="{'opacity':imgLoaded?1:0}">
+      <div  v-bind:style="{'opacity': imgLoaded && progress == 100 ? 1 : 0}">
 				<swiper :options="swiperOption" ref="mySwiper">
 					<swiper-slide class="swiper_base first">
 						<img class="one ani" :src="'./static/images/screen/1.png'" swiper-animate-effect="fadeInDown" swiper-animate-duration=".8s" swiper-animate-delay="0s">
@@ -33,6 +33,8 @@ export default {
   name: 'n22SqlashScreen',
   data () {
     return {
+      progress: 0,
+      imgList: [],
       imgLoaded: false,
       swiperOption: {
         // 设置加载图片完成
@@ -47,11 +49,7 @@ export default {
         },
         on: {
           init () {
-            // 隐藏动画元素
-            // 初始化完成开始动画
-            // this.$nextTick(e => {
             window.swiperAnimateCache(this)
-            // })
           },
           slideChangeTransitionEnd () {
             // 每个slide切换结束时也运行当前slide动画
@@ -60,12 +58,11 @@ export default {
             }, 150)
           },
           imagesReady: () => {
-            console.log('页面图片加载完成，动画开始.......')
             this.$nextTick(e => {
+              console.log('页面图片加载完成，动画开始.......')
               this.imgLoaded = true
               window.swiperAnimate(this.$refs.mySwiper.swiper)
             })
-            // alert("图片加载完成了");
           }
         }
       }
@@ -85,8 +82,14 @@ export default {
     }
   },
   mounted () {
-    // console.log("this is current swiper instance object", this.swiper);
-    // this.swiper.slideTo(3, 100, false);
+    let loadTime = 0
+    this.imgList = document.getElementsByTagName('img')
+    for (let i = 0; i < this.imgList.length; i++) {
+      this.imgList[i].onload = () => {
+        loadTime++
+        this.progress = parseInt(loadTime / this.imgList.length) * 100
+      }
+    }
   }
 }
 </script>
