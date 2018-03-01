@@ -10,7 +10,7 @@
          :calss="[modal ? 'model' : '']"
          :style="{
                   'top': bodyScroll ? (topHeight + 'px') : '0px',
-                  'height': bodyScroll ? 'calc(100vh - '+ topHeight +'px)':'auto',
+                  'height': bodyScroll ? 'calc(100vh - '+ (topHeight - 0 + bottomHeight)  +'px)':'auto',
                   'margin-top': bodyScroll ? '0px':(topHeight + 'px') ,
                   '-webkit-overflow-scrolling':canScroll ? 'touch' : 'auto',
                   'overflow':bodyScroll ? 'scroll' : 'none',
@@ -63,8 +63,10 @@ export default {
     // 初始化页面布局
     initPage () {
       !this.noTop && this.$nextTick(e => {
-        let ele = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0]
-        this.topHeight = ele ? ele.clientHeight + 1 : 0
+        let headerEle = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0],
+          bottomEle = this.$refs.page_footer.getElementsByClassName('footer')[0]
+        this.bottomHeight = bottomEle ? bottomEle.clientHeight + 1 : 0
+        this.topHeight = headerEle ? headerEle.clientHeight + 1 : 0
       })
       // 派发滚动事件
       if (!this.isMobile) {

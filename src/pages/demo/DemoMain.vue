@@ -1,5 +1,5 @@
 <template>
-  <n22-page @scroll="scroll" :noTop = 'true'>
+  <n22-page @scroll="scroll" :noTop = 'true' class="demo_page">
 
     <mt-header slot="header" :fixed="true" title="组件列表" :style="{'opacity': opacity}">
     </mt-header>
@@ -63,7 +63,9 @@ export default {
         {name: '日期组件', url: {name: 'n22DatePicker'}},
         {name: '自定义轮播图', url: {name: 'n22Touch'}},
         {name: '语法高亮', url: {name: 'n22Highlight'}},
-        {name: '图标', url: {name: 'n22Icon'}}
+        {name: '图标', url: {name: 'n22Icon'}},
+        {name: '列表', url: {name: 'n22List'}},
+        {name: '视频', url: {name: 'n22Video'}}
       ],
       componentTwo: [
         {name: '公共方法', url: {name: 'n22Utils'}},

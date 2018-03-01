@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-02-02 15:06:09
+ * @Last Modified time: 2018-02-26 15:05:08
  */
 
 window.globalConfig = {

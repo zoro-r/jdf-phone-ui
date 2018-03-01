@@ -1,5 +1,5 @@
 <template>
-  <n22-page :disabled="popupVisible">
+  <n22-page :disabled="popupVisible" class="demo_page">
       <mt-header title="工具类" slot="header" :fixed="true">
         <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
       </mt-header>
@@ -153,7 +153,9 @@ pop () {
       </n22-highlight>
     </div>
     </div>
-
+    <!-- <div slot="footer">
+      <div class="footer">dsada</div>
+    </div> -->
   </n22-page>
 </template>
 
@@ -239,6 +241,14 @@ export default {
       top: -15px;
       right: 50px;
     }
+  }
+   .footer{
+    position: fixed;
+    height: 50px;
+    bottom: 0px;
+    background: red;
+    width: 100%;
+    z-index: 10000;
   }
 }
 </style>

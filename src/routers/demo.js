@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-02-01 15:09:39
+ * @Last Modified time: 2018-02-25 20:58:32
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -28,6 +28,8 @@ const n22Icon = r => { require.ensure([], () => r(require('../pages/demo/N22Icon
 const n22Map = r => { require.ensure([], () => r(require('../pages/demo/N22Map.vue')), 'n22Map') }
 const n22SplashScreen = r => { require.ensure([], () => r(require('../pages/demo/N22SplashScreen.vue')), 'n22SplashScreen') }
 const n22Version = r => { require.ensure([], () => r(require('../pages/demo/N22Version.vue')), 'n22Version') }
+const n22List = r => { require.ensure([], () => r(require('../pages/demo/N22List.vue')), 'n22List') }
+const n22Video = r => { require.ensure([], () => r(require('../pages/demo/N22Video.vue')), 'n22Video') }
 
 // 每个模块定义父路由 引入公共样式方法...
 export default [{
@@ -190,6 +192,20 @@ export default [{
       name: 'n22Version',
       path: '/n22Version',
       component: n22Version,
+      meta: {
+        login: false
+      }
+    }, {
+      name: 'n22List',
+      path: '/n22List',
+      component: n22List,
+      meta: {
+        login: false
+      }
+    }, {
+      name: 'n22Video',
+      path: '/n22Video',
+      component: n22Video,
       meta: {
         login: false
       }
