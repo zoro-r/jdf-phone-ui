@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div class="n22_video">
+    <div v-show="showModal" class="video_modal" @click="playVideo">
+      <img class="play" src="./assets/play.png" alt="">
+    </div>
     <d-player :options="options" style="width:100vw"
               ref="player">
     </d-player>
@@ -18,6 +21,10 @@ export default {
     picUrl: {
       type: String,
       default: ''
+    },
+    currentTime: {
+      type: Number,
+      default: 0
     }
   },
   components: {
@@ -29,14 +36,13 @@ export default {
         screenshot: true,
         video: {
           url: this.videoUrl,
-          pic: this.picUrl
+          pic: this.picUrl,
+          currentTime: this.currentTime
         },
         autoplay: false
       },
       videoEl: {},
-      showDialog: null,
-      currentTime: 0,
-      duration: 0
+      showModal: true
     }
   },
   methods: {
@@ -44,59 +50,56 @@ export default {
      * @name 开始视频
      */
     playVideo () {
+      this.showModal = false
       this.videoEl.play()
-    },
-    /**
-     * @name 暂停/结束视频
-     */
-    pauseVide () {
-      this.videoEl.pause()
-    },
-    /**
-     * @name 快进
-     */
-    forwardVideo () {
-      this.videoEl.currentTime += 5
-    },
-    /**
-     * @name 快退
-     */
-    rewindVideo () {
-      this.videoEl.currentTime -= 5
-    },
-    /**
-     * @name 全屏
-     */
-    fullScrenn () {
-      console.log('全屏')
     },
     /**
      * @name 视频时间跟新
      */
     ontimeupdate (event) {
+      this.showModal = false
       this.currentTime = this.videoEl.currentTime
-      this.duration = this.videoEl.duration
     }
   },
   watch: {
   },
   mounted () {
     this.videoEl = this.$refs.player.dp
-    // this.playVideo()
     // this.videoEl.fullScreen.request('browser')
     // // 时间更新事件
-    // this.videoEl.ontimeupdate = this.ontimeupdate
+    this.videoEl.ontimeupdate = this.ontimeupdate
+    this.videoEl.on('pause', () => {
+      this.showModal = true
+    })
+    this.videoEl.video.setAttribute('webkit-playsinline', 'webkit-playsinline')
   }
 }
 </script>
 <style lang='scss'>
+.n22_video{
   @import '../../../../node_modules/vue-dplayer/dist/vue-dplayer.css';
-  // .dplayer-setting-icon,
+
+  position: relative;
   .dplayer-full-in-icon{
-    display: none!important;
+    pointer-events: none;
+    opacity: 0;
   }
-  .zoomDialog{
-    width:100%;
-    height:100%;
+  .dplayer-setting{
+    pointer-events: none;
+    opacity: 0;
   }
+  .video_modal{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,.2);
+    .play{
+      width: 80px;
+    }
+  }
+}
 </style>

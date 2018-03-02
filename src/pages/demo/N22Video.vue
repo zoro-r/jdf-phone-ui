@@ -1,10 +1,9 @@
 <template>
   <n22-page>
-    <mt-header title="视频播放" slot="header" :fixed="true" >
-      <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
-    </mt-header>
-
     <div slot="content"  class="show_code_main">
+      <mt-header title=""  :fixed="true" style="background: rgba(1,1,1,0);border:none">
+        <mt-button @click.native = "back"  slot="left" icon="back" style="color:black"></mt-button>
+      </mt-header>
       <n22-video picUrl='http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
                  videoUrl ='http://pic.ibaotu.com/00/55/25/72Z888piCcTP.mp4'
                  ></n22-video>
