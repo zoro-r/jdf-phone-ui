@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-02-26 15:05:08
+ * @Last Modified time: 2018-03-02 10:34:45
  */
 
 window.globalConfig = {
@@ -35,10 +35,10 @@ import 'mint-ui/lib/style.css'
 import '@/assets/css/main.scss'
 import '@/filters/globalFilter.js'
 // 引入图标库
-import 'vue-awesome/icons'
-import Icon from 'vue-awesome/components/Icon'
+// import 'vue-awesome/icons'
+// import Icon from 'vue-awesome/components/Icon'
 // globally (in your main .js file)
-Vue.component('icon', Icon)
+// Vue.component('icon', Icon)
 // 引入滑动组件
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles

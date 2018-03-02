@@ -2,8 +2,8 @@
   <div class="address_district">
 
 		<mt-field style="color:red" @click.native="showPopup" v-model="showDesc.area" :placeholder="label" :disableClear="true" disabled />
-
-		<mt-popup v-bind:style="{height:(screenHeight *.55 + 45)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
+    <!-- 高度有待控制 -->
+		<mt-popup v-bind:style="{height:(screenHeight *.55 + 35)+'px'}" v-model="popupVisible" position="bottom" @close="showPopup(false)">
       <div class="address_header">
         <span>{{label}}</span>
         <img @click="showPopup" src="./assets/images/close.png" />

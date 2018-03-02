@@ -1,5 +1,5 @@
 <template>
-  <n22-page @scroll="scroll" :noTop = 'true' class="demo_page">
+  <n22-page @scroll="scroll" :has-header = 'hasHeader' class="demo_page">
 
     <mt-header slot="header" :fixed="true" title="组件列表" :style="{'opacity': opacity}">
     </mt-header>
@@ -48,6 +48,7 @@ export default {
   },
   data () {
     return {
+      hasHeader: false,
       opacity: 0,
       components: [
         {name: '开发模板', url: {name: 'n22Template'}},
@@ -63,7 +64,7 @@ export default {
         {name: '日期组件', url: {name: 'n22DatePicker'}},
         {name: '自定义轮播图', url: {name: 'n22Touch'}},
         {name: '语法高亮', url: {name: 'n22Highlight'}},
-        {name: '图标', url: {name: 'n22Icon'}},
+        // {name: '图标', url: {name: 'n22Icon'}},
         {name: '列表', url: {name: 'n22List'}},
         {name: '视频', url: {name: 'n22Video'}}
       ],

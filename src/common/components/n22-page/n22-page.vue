@@ -5,16 +5,21 @@
       <slot name="header"></slot>
     </div>
     <!-- 内容滚动区域 -->
+    <!-- bodyScroll：true 代表移动端(手机app)滚动 false代表body滚动
+        topHeight：顶部bar的高度
+        bottomHeight：底部bar的高度
+        canScroll：是否允许滚动
+          -->
     <div @scroll="scroll"
          class="page_content scroll_content scroll-content"
          :calss="[modal ? 'model' : '']"
          :style="{
                   'top': bodyScroll ? (topHeight + 'px') : '0px',
-                  'height': bodyScroll ? 'calc(100vh - '+ (topHeight - 0 + bottomHeight)  +'px)':'auto',
+                  'height': bodyScroll ? 'calc(100vh - ' + (topHeight - 0 + bottomHeight)  +'px)':'auto',
                   'margin-top': bodyScroll ? '0px':(topHeight + 'px') ,
-                  '-webkit-overflow-scrolling':canScroll ? 'touch' : 'auto',
-                  'overflow':bodyScroll ? 'scroll' : 'none',
-                  'position': bodyScroll?'absolute':''
+                  '-webkit-overflow-scrolling': canScroll ? 'touch' : 'auto',
+                  'overflow': bodyScroll ? 'scroll' : 'none',
+                  'position': bodyScroll? 'absolute' : ''
                 }"
       >
       <slot name="content"></slot>
@@ -43,15 +48,15 @@ export default {
       type: Boolean,
       default: false
     },
-    // 不需要计算margin-top
-    noTop: {
-      type: Boolean,
-      default: false
-    },
     // 判断是否为弹出框页面
     modal: {
       type: Boolean,
       default: false
+    },
+    // 不需要计算margin-top
+    hasHeader: {
+      type: Boolean,
+      default: true
     },
     // 是否有底部导航
     hasFooter: {
@@ -62,7 +67,7 @@ export default {
   methods: {
     // 初始化页面布局
     initPage () {
-      !this.noTop && this.$nextTick(e => {
+      this.hasHeader && this.$nextTick(e => {
         let headerEle = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0],
           bottomEle = this.$refs.page_footer.getElementsByClassName('footer')[0]
         this.bottomHeight = bottomEle ? bottomEle.clientHeight + 1 : 0
@@ -86,12 +91,25 @@ export default {
     this.initPage()
   },
   computed: {
-    // 判断是否可滚动
+    // 判断是否可以
     bodyScroll: function () {
       return this.isMobile || this.modal
+    },
+    // 顶部bar的高度
+    headerHeight: function () {
+      // console.log(this.$refs['page_header'])
+      if (!this.$refs.page_header) return 0
+      let tempEl = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0]
+      return tempEl ? tempEl.clientHeight + 1 : 0
     }
   },
   watch: {
+    hasHeader (newVal) {
+      if (newVal) this.initPage()
+    },
+    hasFooter (newVal) {
+      if (newVal) this.initPage()
+    },
     // 监听滚动变化
     disabled (newVal) {
       if (newVal) {
