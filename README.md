@@ -25,7 +25,7 @@ iosApp下载地址：[App示例]( https://www.pgyer.com/foCF)
   
 ##  目录结构
   
-  <img src="https://zltech.github.io/jdf-phone-ui/static/images/process/m_process.jpg" width="365"/>
+  <img src="https://jdfdcc.github.io/jdf-phone-ui/static/images/process/m_process.jpg" width="365"/>
 
 ## 构建项目
 
