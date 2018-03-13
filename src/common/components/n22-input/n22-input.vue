@@ -209,7 +209,7 @@ export default {
       this.validate()
     },
     inputValue (val, oldVal) {
-      this.$emit('change', val)
+      this.$emit('input', val)
     },
     showError (val) {
       if (val) {
