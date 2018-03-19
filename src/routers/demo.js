@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-03-19 14:37:35
+ * @Last Modified time: 2018-03-19 16:45:29
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -31,7 +31,7 @@ const n22Version = r => { require.ensure([], () => r(require('../pages/demo/N22V
 const n22List = r => { require.ensure([], () => r(require('../pages/demo/N22List.vue')), 'n22List') }
 const n22Video = r => { require.ensure([], () => r(require('../pages/demo/N22Video.vue')), 'n22Video') }
 const n22Sign = r => { require.ensure([], () => r(require('../pages/demo/N22Sign.vue')), 'n22Sign') }
-const n22CellSwipe = r => { require.ensure([], () => r(require('../pages/demo/N22SCellSwipe.vue')), 'n22CellSwipe') }
+const n22CellSwipe = r => { require.ensure([], () => r(require('../pages/demo/N22CellSwipe.vue')), 'n22CellSwipe') }
 // 每个模块定义父路由 引入公共样式方法...
 export default [{
   name: 'demo',
