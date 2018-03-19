@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 16:18:23
  * @Last Modified by: jdf
- * @Last Modified time: 2018-02-25 20:56:02
+ * @Last Modified time: 2018-03-19 14:39:14
  * @desc 自定义组件集合
  */
 // 引入组件
@@ -19,6 +19,7 @@ import N22Highlight from './components/n22-highlight'
 import N22Map from './components/n22-map'
 import N22Touch from './components/n22-touch'
 import N22Video from './components/n22-video'
+import N22CellSwipe from './components/n22-cell-swipe'
 
 // 定义组件集合
 const components = {
@@ -34,7 +35,8 @@ const components = {
   N22Highlight,
   N22Map,
   N22Touch,
-  N22Video
+  N22Video,
+  N22CellSwipe
 }
 
 // 初始化组件

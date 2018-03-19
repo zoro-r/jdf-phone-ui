@@ -7,6 +7,11 @@
       <n22-video picUrl='http://static.smartisanos.cn/pr/img/video/video_03_cc87ce5bdb.jpg'
                  videoUrl ='http://pic.ibaotu.com/00/55/25/72Z888piCcTP.mp4'
                  ></n22-video>
+
+
+      <div style="height:40px;background:red;color:white">
+        <div>dsadasdsa</div>
+      </div>
     </div>
   </n22-page>
 </template>

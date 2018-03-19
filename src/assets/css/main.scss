@@ -11,6 +11,7 @@ html {
   width: 100%;
   height: 100%;
   font-size: 10px;
+  padding-bottom: env(safe-area-inset-bottom);
   -webkit-text-size-adjust: none;
   font-family: 'Helvetica Neue', Tahoma, Arial, PingFangSC-Regular, 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
 }
@@ -19,6 +20,7 @@ body{
   margin: 0px;
   padding: 0px;
   background-color: $bgcolor;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 // html, body, {
   // background-color: transparent;
@@ -257,7 +259,9 @@ button {
 }
 
 .mint-header-button .mint-button {
-  padding: 0 8px;
+  // padding: 0 8px;
+  min-width: 80px;
+  text-align: left;
 }
 
 .mint-button {

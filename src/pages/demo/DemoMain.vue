@@ -66,7 +66,9 @@ export default {
         {name: '语法高亮', url: {name: 'n22Highlight'}},
         // {name: '图标', url: {name: 'n22Icon'}},
         {name: '列表', url: {name: 'n22List'}},
-        {name: '视频', url: {name: 'n22Video'}}
+        {name: '视频', url: {name: 'n22Video'}},
+        {name: '签字', url: {name: 'n22Sign'}},
+        {name: '滑动列表', url: {name: 'n22CellSwipe'}}
       ],
       componentTwo: [
         {name: '公共方法', url: {name: 'n22Utils'}},
