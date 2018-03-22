@@ -18,7 +18,6 @@
     "better-scroll": "^1.7.2",
     "clipboard": "^1.7.1",
     "fastclick": "^1.0.6",
-    "mescroll.js": "^1.3.2",
     "mint-ui": "^2.2.13",
     "vue": "2.4.4",
     "vue-amap": "^0.3.1",

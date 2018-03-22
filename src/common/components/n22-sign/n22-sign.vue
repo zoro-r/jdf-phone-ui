@@ -130,16 +130,6 @@ var EC_CAMERA_INIT_FAILED = 3; // 摄像头初始化失败，通常重启设备�
 var EC_NATIVE_EXCEPTION = 4; // 浏览器内部错误，可至Android/sdcard/AnySign/lastCrash.txt中查询具体错误
 var EC_DEVICE_NOT_SUPPORTED = 5; // 当前设备不被浏览器支持，只能调用浏览器功能，信手书模块功能禁用
 var EC_TEMPLATE_NOT_SET = 6; // 当没有配置模板时试图调用签名时弹出，因为不能对空数据做签名
-
-// require("./assets/src/libs/zlib/deflate.min.js");
-// require("./assets/src/libs/CryptoJS v3.1.2/components/core-min.js");
-// require("./assets/src/libs/CryptoJS v3.1.2/rollups/sha1.js");
-// require("./assets/src/libs/CryptoJS v3.1.2/rollups/tripledes.js");
-// require("./assets/src/libs/anysignCommentUI.js");
-// require("./assets/src/libs/anysign_all.js");
-// require("./assets/src/libs/jquery-1.4.2.min.js");
-// require('./assets/src/anysignWebInterface')
-// AnySignApi()
 import {
   AnySignApi,
   EncAlgType,
@@ -176,7 +166,7 @@ export default {
     //弹出签名框签名
     testPopupDialog(context_id) {
       if (!this.apiInstance) {
-        alert("信手书接口没有初始化");
+        console.log("信手书接口没有初始化");
         return;
       }
       switch (this.apiInstance.showSignatureDialog(context_id)) {
@@ -184,10 +174,10 @@ export default {
           document.getElementById("other").style.display = "none";
           break;
         case EC_API_NOT_INITED:
-          alert("信手书接口没有初始化");
+          console.log("信手书接口没有初始化");
           break;
         case EC_WRONG_CONTEXT_ID:
-          alert("没有配置相应context_id的签字对象");
+          console.log("没有配置相应context_id的签字对象");
           break;
       }
     },
@@ -222,10 +212,10 @@ export default {
       );
 
       if (res) {
-        alert("setTemplateData success");
+        console.log("setTemplateData success");
         return res;
       } else {
-        alert("setTemplateData error");
+        console.log("setTemplateData error");
         return res;
       }
     },
@@ -279,10 +269,10 @@ export default {
       commentConfig.ocrCapture = this.ocrCapture;
       var res = this.apiInstance.addCommentObj(context_id, commentConfig);
       if (res) {
-        alert("addCommentObj " + context_id + " success");
+        console.log("addCommentObj " + context_id + " success");
         return res;
       } else {
-        alert("addCommentObj " + context_id + " error");
+        console.log("addCommentObj " + context_id + " error");
         return res;
       }
     },
@@ -357,16 +347,16 @@ export default {
       signatureConfig.ocrCapture = this.ocrCapture;
       var res = this.apiInstance.addSignatureObj(context_id, signatureConfig);
       if (res) {
-        alert("addSignatureObj " + context_id + " success");
+        console.log("addSignatureObj " + context_id + " success");
         return res;
       } else {
-        alert("addSignatureObj " + context_id + " error");
+        console.log("addSignatureObj " + context_id + " error");
         return res;
       }
     },
     setIdentifyCallBack(callback) {
       if (!this.apiInstance) {
-        alert("信手书接口没有初始化");
+        console.log("信手书接口没有初始化");
         return;
       }
       this.apiInstance.setIdentifyCallBack(callback);
@@ -383,19 +373,19 @@ export default {
           return;
         }
         if (errCode == DATA_CANNOT_PARSED) {
-          alert("输入数据项无法解析！");
+          console.log("输入数据项无法解析！");
         } else if (errCode == SERVICE_SYSTEM_EXCEPTION) {
-          alert("服务系统异常错误！");
+          console.log("服务系统异常错误！");
         } else if (errCode == RECOGNITION_RESULT_EMPTY) {
-          alert("识别结果为空！");
+          console.log("识别结果为空！");
         } else if (errCode == CONNECTION_SERVICE_TIMEOUT) {
-          alert("连接识别服务超时！");
+          console.log("连接识别服务超时！");
         } else if (errCode == CONNECTION_RECOGNITION_EXCEPTION) {
-          alert("连接识别服务异常！");
+          console.log("连接识别服务异常！");
         } else if (errCode == RECOGNITION_FALSE) {
-          alert("书写错误！");
+          console.log("书写错误！");
         } else {
-          alert(errCode);
+          console.log(errCode);
         }
       };
 
@@ -442,7 +432,7 @@ export default {
         }
 
         // setAlertTitle();
-        alert(
+        console.log(
           "收到浏览器回调：" +
             "context_id：" +
             context_id +
@@ -464,7 +454,7 @@ export default {
       res = this.apiInstance.initAnySignApi(callback, channel);
 
       if (!res) {
-        alert("init error");
+        console.log("init error");
       } else {
       }
       ////////////////////////////////////////////////
@@ -490,13 +480,13 @@ export default {
       //注册单字签字对象20
       res = this.testAddSignatureObj(20);
       if (!res) {
-        alert("testAddSignatureObj error");
+        console.log("testAddSignatureObj error");
       } else {
       }
 
       res = this.testAddCommentObj(30);
       if (!res) {
-        alert("testAddCommentObj error");
+        console.log("testAddCommentObj error");
       } else {
       }
 
@@ -527,9 +517,9 @@ export default {
       res = this.apiInstance.commitConfig();
 
       if (res) {
-        alert("Init ALL 初始化成功");
+        console.log("Init ALL 初始化成功");
       } else {
-        alert("Init ALL 初始化失败");
+        console.log("Init ALL 初始化失败");
       }
       ////////////////////////////////////////////////
     },
@@ -539,27 +529,33 @@ export default {
         try
         {
             res.value = this.apiInstance.getUploadDataGram();
-            alert("value"+res.value);
+            console.log("value"+res.value);
         }
         catch(err)
         {
-            alert(err);
+            console.log(err);
         }
     },
     testIsReadyToUpload () {
-      alert("testIsReadyToUpload :" + this.apiInstance.isReadyToUpload());
+      console.log("testIsReadyToUpload :" + this.apiInstance.isReadyToUpload());
     },
     testGetVersion() {
-        alert(this.apiInstance.getVersion());
+        console.log(this.apiInstance.getVersion());
     }
+  },
+  mounted () {
+    // 初始化信手书
+    this.testAnySign()
+    // 设置表单数据
+    this.testSetTemplateData()
   }
 };
 </script>
 <style lang='scss' scoped>
-// @import url("./assets/src/libs/css/canvas_css.css");
-// @import url("./assets/src/libs/css/sp.css");
-// @import url("./assets/src/libs/css/mw480Portrait.css");
-// @import url("./assets/src/libs/css/canvas_css.css");
+@import url("./assets/src/css/canvas_css.css");
+@import url("./assets/src/css/sp.css");
+@import url("./assets/src/css/mw480Portrait.css");
+@import url("./assets/src/css/canvas_css.css");
 .n22_sigh {
 }
 </style>

@@ -1645,7 +1645,8 @@ function showBackground(t, e) {
 	}
 }
 
-function closeWindow() {
+window.closeWindow = function () {
+  console.log('closeWindow')
 	null != document.getElementById("back") && document.getElementById("back").parentNode.removeChild(document.getElementById("back")), null != document.getElementById("mesWindow") && document.getElementById("mesWindow").parentNode.removeChild(document.getElementById("mesWindow")), isIe && setSelectState("")
 }
 
@@ -1658,7 +1659,7 @@ function showProgress(t) {
 }
 
 function showMsgProgress(t, e, n, i) {
-	closeWindow();
+	window.closeWindow();
 	var r = getWindowHeight() / .99,
 		o = getWindowWidth() / .99;
 	isIe && setSelectState("hidden");

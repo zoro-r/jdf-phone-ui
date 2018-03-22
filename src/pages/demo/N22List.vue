@@ -16,11 +16,11 @@
       <!-- </div> -->
       <div id="mescroll" class="mescroll list">
         <!--展示上拉加载的数据列表-->
-        <ul id="dataList" class="data-list" v-cloak>
-          <li class="list_item" v-for="(item, index) in list" :key="index">
+        <div id="dataList" class="data-list" v-cloak>
+          <div class="list_item" v-for="(item, index) in list" :key="index">
              {{item}}
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </n22-page>
@@ -28,8 +28,7 @@
 
 <script>
 // 滚动控件
-import 'mescroll.js/mescroll.m'
-import 'mescroll.js/mescroll.min.css'
+import '../../../static/lib/mescroll/mescroll.m'
 export default {
   name: 'n22List',
   components: {
@@ -93,6 +92,7 @@ export default {
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
+@import "../../../static/lib/mescroll/mescroll.min.css";
 .page_list{
   .list{
     width: 100%;
@@ -105,16 +105,6 @@ export default {
     line-height: 50px;
     text-align: center;
   }
-}
-* {
-    margin: 0;
-    padding: 0;
-    -webkit-touch-callout:none;
-    -webkit-user-select:none;
-    -webkit-tap-highlight-color:transparent;
-  }
-  body{background-color: white}
-  ul{list-style-type: none}
   a {text-decoration: none;color: #18B4FE;}
 
   /*vue*/
@@ -158,4 +148,5 @@ export default {
     margin-top: 8px;
     color: gray;
   }
+}
 </style>

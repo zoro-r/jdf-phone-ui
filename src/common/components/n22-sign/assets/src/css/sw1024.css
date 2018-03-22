@@ -1,0 +1,45 @@
+
+#anysign_title {
+    font-size : 30pt;
+    margin: 0 0 0 0;
+    vertical-align: middle;
+    text-align: center;
+    display: table-cell;
+}
+
+#btnOK {
+    font-size : 25pt;
+}
+
+#btnClear {
+    font-size : 25pt;
+}
+
+#btnCancel {
+    font-size : 25pt;
+}
+
+#btnContainerOuter
+{
+    margin: 0 0 0 0;
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#btnContainerInner
+{
+}
+
+#container {
+    border: 2px solid gray;
+    height: 70%;
+    width: 99%;
+    position: relative;
+}
+
+#dialog {
+
+    /*border:2px solid rgba(0,0,0, 0.4);*/
+    border-radius:2px;
+}

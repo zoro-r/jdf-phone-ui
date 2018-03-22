@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-03-02 10:34:45
+ * @Last Modified time: 2018-03-22 13:31:45
  */
 
 window.globalConfig = {
@@ -146,3 +146,4 @@ if (window.globalConfig.platform === 'native') {
 } else {
   new Vue(vm)
 }
+

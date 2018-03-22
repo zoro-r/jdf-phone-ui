@@ -1,0 +1,68 @@
+.fonts {
+	font-family: 'Arial Normal', 'Arial';
+	font-weight: 400;
+	font-style: normal;
+	font-size: 20px;
+	color: #333333;
+	text-align: center;
+	line-height: normal;
+}
+
+body {
+	font-size: 12px;
+	/*background: #333;*/
+	font-family: 'Revalia', cursive, arial;
+}
+
+#main {
+	width: 800px;
+	height: 480px;
+	background: #FFF;
+	color: #333;
+	border: 2px solid #FFF;
+	box-shadow: 0px 0px 10px #CCC;
+	border-radius: 5px;
+}
+
+#main #mycamera {
+	height: 400px;
+	width: 100%;
+}
+
+#main image {
+	margin-bottom: 50px;
+	background: #F8F8F8;
+	border-radius: 10px;
+	box-shadow: 0px 0px 5px #888;
+}
+
+#main ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#main .photobooth {
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.inputstyle {
+	width: 180px;
+	/*cursor: pointer;*/
+	/*font-size: 15px;*/
+	outline: medium none;
+	position: absolute;
+	z-index: 100;
+	/*filter:alpha(opacity=0);*/
+	/*-moz-opacity:0;*/
+	/*opacity:0;*/
+	/*left:300px;
+    			top: 0px;*/
+}
+
+.btn {
+	background: transparent;
+	color: blue;
+	border-style: none;
+}
