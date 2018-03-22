@@ -7,7 +7,7 @@
           <div class="header">{{day[15].format}}</div>
           <div class="content">
               <div class="content-item day" v-for="(item,index) in day" :key="index" >
-                <button style="tra" @click="chooseItem(item)" v-bind:class="[isChoosed(item.date)?'choosed':'']" v-if="show(day[15].format, item.date)"> {{item.date | dateFilter('dd')}}</button>
+                <button  @click="chooseItem(item)" v-bind:class="[isChoosed(item.date)?'choosed':'']" v-if="show(day[15].format, item.date)"> {{item.date | dateFilter('dd')}}</button>
               </div>
             </div>
         </div>

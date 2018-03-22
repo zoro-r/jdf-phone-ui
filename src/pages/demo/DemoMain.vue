@@ -16,7 +16,7 @@
         is-link
         value="点击查看">
       </mt-cell>
-
+      <!-- 公共方法 -->
       <div class="demo_main_header">
         <h2>公共方法utils</h2>
       </div>
@@ -29,7 +29,21 @@
         value="点击查看">
       </mt-cell>
 
-      <div style="font-size:1.5rem;margin-top:20px;color:gray">
+      <!-- demo页面 -->
+       <div class="demo_main_header">
+        <h2>demo页面设计</h2>
+      </div>
+
+      <mt-cell v-for="(item,index) in componentThree"
+        :key="index + 20"
+        :title="index + 1 +'、'+item.name"
+        :to="item.url"
+        is-link
+        value="点击查看">
+      </mt-cell>
+
+
+      <div style="font-size:1.5rem;margin:20px 0px;color:gray">
         @请用chome的手机调试模式查看
         <a href="https://cn.vuejs.org/v2/style-guide/">开发指南</a>
       </div>
@@ -77,7 +91,10 @@ export default {
         {name: '动画', url: {name: 'n22Animate'}},
         {name: '欢迎页', url: {name: 'n22SplashScreen'}},
         {name: '版本管理', url: {name: 'n22Version'}}
-
+      ],
+      componentThree: [
+        {name: '渲染组件', url: {name: 'n22Render'}},
+        {name: '搜索页面', url: {name: 'n22Search'}}
       ]
     }
   },

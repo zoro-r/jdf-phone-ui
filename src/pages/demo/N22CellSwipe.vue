@@ -1,5 +1,5 @@
 <template>
-  <n22-page>
+  <n22-page class="demo_page">
     <mt-header title="滑动" slot="header" :fixed = "true">
       <mt-button @click.native = "back"  slot="left" icon="back"></mt-button>
     </mt-header>
@@ -7,8 +7,10 @@
     <div slot="content" class="show_code_main">
       <n22-cell-swipe style="height:100px;border-bottom:1px solid black" v-for="(item, index) in dateList" :key="index">
         <div slot="main">dadadsadadadadasdsadasdada{{item}}</div>
-        <div slot="right" style="background:red;height:100%">
-          <button @click="deleteItem(item, index)">删除</button>
+        <div slot="right" class="delete_btns">
+          <div @click="deleteItem(item, index)">
+             删除
+          </div>
         </div>
       </n22-cell-swipe>
     </div>
@@ -38,7 +40,13 @@ export default {
 <style rel="stylesheet/scss" lang="scss" scoped>
 @import "src/assets/css/vars";
 .demo_page{
-  padding: 10px;
   font-size: 1.4rem;
+  .delete_btns{
+    background:red;
+    height:100%;
+    display: flex;
+    justify-content: center;
+    min-width: 50px;
+  }
 }
 </style>
