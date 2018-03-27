@@ -68,10 +68,19 @@ export default {
       console.log('加载数据--')
     }
   },
+  beforeRouteLeave (to, from, next) {
+    this.mescroll.setBounce(true)
+    next()
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      // vm.mescroll && vm.mescroll.setBounce(false)
+    })
+  },
   mounted () {
-    let self = this
+    var self = this
     /* eslint-disable */
-    self.mescroll = new MeScroll('mescroll', {
+    this.mescroll = new MeScroll('mescroll', {
       down: {
         callback: self.downCallback // 下拉刷新的回调,别写成downCallback(),多了括号就自动执行方法了
       },
@@ -108,9 +117,9 @@ export default {
   a {text-decoration: none;color: #18B4FE;}
 
   /*vue*/
-  [v-cloak] {
-    display: none;
-  }
+  // [v-cloak] {
+  //   display: none;
+  // }
 
   /*模拟的标题*/
   /*mescroll滚动的区域*/

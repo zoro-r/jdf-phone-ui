@@ -30,8 +30,8 @@ body.native{
   height: 100%;
   user-select: none;
   color: $normal-color;
-  position: fixed;
-  overflow: hidden;
+  // position: fixed;
+  // overflow: hidden;
   margin: 0px;
   padding: 0px;
   -webkit-font-smoothing: antialiased;
@@ -46,8 +46,21 @@ body.native{
   user-select: none;
   .scroll_content{
     width: 100vw;
-    position: absolute;
-    transition: all .3s ease-out;
+    // position: absolute;
+    transition: transform .3s ease-out;
+    // z-index: 1;
+    // overflow-y: scroll;
+    // overflow-x: hidden;
+    // -webkit-touch-callout: behavior;
+    // width: 100vw;
+    // position: absolute;
+    // display: block;
+    // z-index: 1;
+    // -webkit-box-sizing : border-box;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    // will-change: scroll-position;
+    // contain: size style layout;
   }
 }
 

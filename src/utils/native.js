@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-16 10:29:00
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-22 14:22:07
+ * @Last Modified time: 2018-03-27 21:30:38
  */
 
 const native = {
@@ -133,23 +133,73 @@ const native = {
     }, function (reason) {
       alert('Failed: ' + reason)
     })
+  },
+  /**
+   * @name 初始化极光推送
+   * https://github.com/jpush/jpush-phonegap-plugin/blob/master/doc/iOS_API.md
+   */
+  initJPush () {
+    console.log('开启推送')
+    window.JPush.init()
+    // window.JPush.isPushStopped((data) => {
+    //   if (data > 0) {
+    //     // 已关闭
+    //     console.log('推送已关闭', data)
+    //   } else {
+    //     // 已开启
+    //     console.log('推送已开启', data)
+    //   }
+    // })
+  },
+  /**
+   * @name 停止接收推送
+   * 不推荐调用，因为这个 API 只是让你的 DeviceToken 失效，在 设置－通知 中您的应用程序没有任何变化。
+   * 推荐：设置一个 UI 界面，提醒用户在 设置－通知 中关闭推送服务。
+   * https://github.com/jpush/jpush-phonegap-plugin/blob/master/doc/iOS_API.md
+   */
+  stopPush () {
+    console.log('关闭推送')
+    window.JPush.stopPush()
+    // 判断是否结束推送
+    // window.JPush.isPushStopped((data) => {
+    //   if (data > 0) {
+    //     // 已关闭
+    //     console.log('推送已关闭', data)
+    //   } else {
+    //     // 已开启
+    //     console.log('推送已开启', data)
+    //   }
+    // })
+  },
+  /**
+   * @name 判断是否操作成功
+   */
+  isPushStopped () {
+    window.JPush.isPushStopped((data) => {
+      if (data > 0) {
+        // 已关闭
+        console.log('推送已关闭', data)
+      } else {
+        // 已开启
+        console.log('推送已开启', data)
+      }
+    })
+  },
+  /**
+   * @name 恢复推送服务。调用了此 API 后，iOS平台，重新去APNS注册。
+   */
+  resumePush () {
+    window.JPush.resumePush()
+  },
+  /**
+   * @name 获取 RegistrationID
+   */
+  getRegistrationID () {
+    window.JPush.getRegistrationID((data) => {
+      console.log('JPushPlugin:registrationID is ' + data)
+    })
   }
-  // startCamera () {
-  //   let options = {
-  //     x: 0,
-  //     y: 0,
-  //     width: 100,
-  //     height: 100,
-  //     camera: CameraPreview.CAMERA_DIRECTION.BACK,
-  //     toBack: false,
-  //     tapPhoto: true,
-  //     previewDrag: false
-  //   }
 
-  //   CameraPreview.startCamera(options, function (suess) {
-  //     console.log(suess)
-  //   })
-  // }
 }
 
 export default native

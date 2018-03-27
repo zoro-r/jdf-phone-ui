@@ -9,17 +9,20 @@
         topHeight：顶部bar的高度
         bottomHeight：底部bar的高度
         canScroll：是否允许滚动
+        'position': bodyScroll? 'absolute' : ''
+        '-webkit-overflow-scrolling': canScroll ? 'touch' : 'auto'
+         @touchstart="touchstart"
+         @touchmove="touchmove"
+         @touchend="touchend"
           -->
     <div @scroll="scroll"
+         ref="scrollWrapper"
          class="page_content scroll_content scroll-content"
          :calss="[modal ? 'model' : '']"
          :style="{
                   'top': bodyScroll ? (topHeight + 'px') : '0px',
                   'height': bodyScroll ? 'calc(100vh - ' + (topHeight - 0 + bottomHeight)  +'px)':'auto',
                   'margin-top': bodyScroll ? '0px':(topHeight + 'px') ,
-                  '-webkit-overflow-scrolling': canScroll ? 'touch' : 'auto',
-                  'overflow': bodyScroll ? 'scroll' : 'none',
-                  'position': bodyScroll? 'absolute' : ''
                 }"
       >
       <slot name="content"></slot>
@@ -32,14 +35,17 @@
 </template>
 
 <script>
+// import BScroll from 'better-scroll'
 export default {
   name: 'n22Page',
   data () {
     return {
       topHeight: 0,
       bottomHeight: 0,
-      isMobile: window.globalConfig.platform === 'native',
-      canScroll: true
+      // isMobile: window.globalConfig.platform === 'native',
+      isMobile: false,
+      canScroll: true,
+      isTouch: false
     }
   },
   props: {
@@ -85,6 +91,18 @@ export default {
       } else {
         this.$emit('scroll', {top: window.scrollY})
       }
+    },
+    // 触摸开始
+    touchstart () {
+      this.isTouch = true
+    },
+    // 触摸中
+    touchmove () {
+      this.isTouch = true
+    },
+    // 触摸结束
+    touchend () {
+      this.isTouch = false
     }
   },
   mounted () {
@@ -93,7 +111,7 @@ export default {
   computed: {
     // 判断是否可以
     bodyScroll: function () {
-      return this.isMobile || this.modal
+      this.isMobile || this.modal
     },
     // 顶部bar的高度
     headerHeight: function () {
@@ -122,12 +140,22 @@ export default {
     }
   },
   // 初始化数据
-  activated () {
+  created () {
+    // 初始化滚动事件
     this.initPage()
+    // this.$nextTick(() => {
+      // this.scroll = new BScroll(this.$refs.scrollWrapper, {
+      //   click: true,
+      //   tab: true,
+      //   probeType: 3,
+      //   bounce: false,
+      //   scrollbar: false
+      // })
+    // })
   },
   // 当组件被停用时调用
   deactivated () {
-    document.removeEventListener('scroll', this.scroll)
+    // document.removeEventListener('scroll', this.scroll)
   }
 }
 </script>

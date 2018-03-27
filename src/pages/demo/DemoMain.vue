@@ -1,5 +1,5 @@
 <template>
-  <n22-page @scroll="scroll" :has-header = 'hasHeader' class="demo_page">
+  <n22-page @scroll="scroll" :has-header = 'hasHeader' class="demo_page_main">
 
     <mt-header slot="header" :fixed="true" title="组件列表" :style="{'opacity': opacity}">
     </mt-header>
@@ -35,7 +35,7 @@
       </div>
 
       <mt-cell v-for="(item,index) in componentThree"
-        :key="index + 20"
+        :key="index + 30"
         :title="index + 1 +'、'+item.name"
         :to="item.url"
         is-link
@@ -117,7 +117,7 @@ export default {
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-.demo_page{
+.demo_page_main{
   text-align: center;
   width: 100vw;
   max-width: 500px;

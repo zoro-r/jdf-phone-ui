@@ -1,3 +1,4 @@
+import './ext'
 // 引入框架公有工具类方法
 import { Indicator, Toast, MessageBox } from 'mint-ui'
 // 引入自定义工具类

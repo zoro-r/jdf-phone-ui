@@ -2,7 +2,7 @@
  * @Author:chenjia
  * @Date: 2018-01-04 14:49:56
  * @Last Modified by: jdf
- * @Last Modified time: 2018-03-22 13:31:45
+ * @Last Modified time: 2018-03-27 21:29:57
  */
 
 window.globalConfig = {
@@ -12,7 +12,7 @@ window.globalConfig = {
   platform: 'web', // web、native、wechat、phoneWeb
   os: 'android', // 操作系统 ios:苹果操作系统 android:安卓系统 window:电脑
   timeout: 1000 * 60, // 默认http请求超时时间60秒
-  animation: true,
+  animation: false,
   version: 'v1.0',
   loginType: 'extraExtCheck', // 登录方式--extraExtCheck
   from: 'iwechat', // header--from
@@ -122,7 +122,7 @@ let vm = {
     App
   }
 }
-// 移动端组件****************start****************-
+// // 移动端组件****************start****************-
 if (window.globalConfig.platform === 'native') {
   document.addEventListener('deviceready', function () {
     console.log('deviceready')
@@ -141,6 +141,23 @@ if (window.globalConfig.platform === 'native') {
     }
     // Keyboard.disableScrollingInShrinkView(false)
     // Keyboard.automaticScrollToTopOnHiding = true
+    // 极光推送处理
+    if (window.JPush) {
+      document.addEventListener('jpush.openNotification', function (event) {
+        var alertContent = event.aps.alert
+        alert('open notification:' + alertContent)
+      }, false)
+      // 应用程序处于前台时收到推送会触发该事件
+      document.addEventListener('jpush.receiveNotification', function (event) {
+        var alertContent = event.aps.alert
+        alert('open Notification:' + alertContent)
+      }, false)
+      // 应用程序处于后台时收到推送会触发该事件
+      document.addEventListener('jpush.backgroundNotification', function (event) {
+        var alertContent = event.aps.alert
+        alert('open Notification:' + alertContent)
+      }, false)
+    }
     new Vue(vm)
   }, false)
 } else {
