@@ -90,7 +90,8 @@ export default {
         {name: '微信调用方法', url: {name: 'n22WeChat'}},
         {name: '动画', url: {name: 'n22Animate'}},
         {name: '欢迎页', url: {name: 'n22SplashScreen'}},
-        {name: '版本管理', url: {name: 'n22Version'}}
+        {name: '版本管理', url: {name: 'n22Version'}},
+        {name: '极光推送', url: {name: 'n22JPush'}}
       ],
       componentThree: [
         {name: '渲染组件', url: {name: 'n22Render'}},

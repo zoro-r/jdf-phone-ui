@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-16 10:29:00
  * @Last Modified by: jdf
- * @Last Modified time: 2018-03-27 21:30:38
+ * @Last Modified time: 2018-03-28 10:28:05
  */
 
 const native = {
@@ -136,11 +136,14 @@ const native = {
   },
   /**
    * @name 初始化极光推送
+   * @param isDebug 是否为debug模式
    * https://github.com/jpush/jpush-phonegap-plugin/blob/master/doc/iOS_API.md
    */
-  initJPush () {
+  initJPush (isDebug = false) {
     console.log('开启推送')
     window.JPush.init()
+    // 开启debug模式
+    isDebug && window.JPush.setDebugMode(true)
     // window.JPush.isPushStopped((data) => {
     //   if (data > 0) {
     //     // 已关闭
@@ -197,6 +200,28 @@ const native = {
   getRegistrationID () {
     window.JPush.getRegistrationID((data) => {
       console.log('JPushPlugin:registrationID is ' + data)
+    })
+  },
+  /**
+   * @name 清除标签
+   * cleanTags 清除所有标签
+   */
+  cleanTags () {
+    window.JPush.cleanTags({ sequence: 1 }, (result) => {
+      console.log('清除标签success', result)
+    }, (error) => {
+      console.log('清除标签error', error)
+    })
+  },
+  /**
+   * @name 角标
+   * @param number 设置角标数量
+   * 清除ios角标
+   */
+  setApplicationIconBadgeNumber (number) {
+    window.JPush.setApplicationIconBadgeNumber(number)
+    window.JPush.getApplicationIconBadgeNumber((badgeNum) => {
+      console.log('角标数量', badgeNum)
     })
   }
 

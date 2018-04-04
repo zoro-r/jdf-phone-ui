@@ -7,6 +7,7 @@
       max-width: 100vw;
     }
     .secend{
+      display: none;
       flex:0!important;
       z-index:10;
       display: none;
@@ -19,19 +20,20 @@
 //  flex-direction: column-reverse;
   .first{
     flex:1;
-    min-width:300px;
-    max-width: 100vw;
+    // min-width:300px;
+    // max-width: 100vw;
   }
   .secend{
+    display: none;
     flex:1.6;
     z-index:10;
   }
   .mint-header{
-    max-width: 500px
+    // max-width: 500px
   }
 }
 .demo_page{
-  max-width:500px
+  // max-width:500px
 }
 .content_intro{
   margin-top: 20px;
