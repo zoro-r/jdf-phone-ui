@@ -123,7 +123,8 @@ export default {
         {name: '分享给好友', id: 7},
         {name: '分享给朋友圈', id: 8},
         {name: '微信授权登陆', id: 9},
-        {name: '重新加载页面', id: 10}
+        {name: '重新加载页面', id: 10},
+        {name: '获取配置信息', id: 11}
       ]
     }
   },
@@ -217,6 +218,11 @@ export default {
           // 重新启动
           // window.navigator.splashscreen.show()
           window.location.reload()
+          break
+        case 11:
+          // 重新启动
+          // window.navigator.splashscreen.show()
+          window.utils.native.getConfig()
           break
         default:
           break

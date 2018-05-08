@@ -1,22 +1,29 @@
 <template>
   <div class="calendar">
     <section class="header">
-      {{currentDate | _dateFormat('yyyy年MM月')}}
-      <span @click="_currentDay">今天</span>
+      <div>
+        <img src="./left.png" @click="_touchRight">
+        <span style="min-width:100px" v-text="_dateFormat(currentDate, 'yyyy年MM月')"></span>
+        <img src="./right.png" @click="_touchLeft">
+      </div>
+      <!-- <span @click="_currentDay">今天</span> -->
     </section>
     <div>
-
       <div class="content ca_header">
-        <div class="content-item week" v-bind:class = "[item == '日' || item == '六'? 'weekDay':'']" v-for="(item,index) in dayNames" :key="index" v-once>
-          {{item}}
+        <div class="content-item week"
+             v-bind:class = "[item == '日' || item == '六'? 'weekDay':'']"
+             v-for="(item,index) in dayNames"
+             :key="index"
+             v-html="item" v-once>
+          <!-- {{item}} -->
         </div>
       </div>
 
       <div  class="content ca_content">
         <n22-touch @touchRight = '_touchRight' @touchLeft = '_touchLeft'>
-          <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="left" :monthDate = 'days[0]'></n22-calendar-item>
+          <n22-calendar-item @choose='_chooseItem' :isLastMonth='true' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="left" :monthDate = 'days[0]'></n22-calendar-item>
           <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="middle" :monthDate = 'days[1]'></n22-calendar-item>
-          <n22-calendar-item @choose='_chooseItem' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="right" :monthDate = 'days[2]'></n22-calendar-item>
+          <n22-calendar-item @choose='_chooseItem' :isNextMonth='true' :currentDate = 'currentDate' :chooseDay = 'chooseDay' slot="right" :monthDate = 'days[2]'></n22-calendar-item>
         </n22-touch>
       </div>
     </div>
@@ -59,15 +66,22 @@ export default {
       default: () => {
         return new Date()
       }
-    }
-  },
-  filters: {
-    /** 日期过滤器 */
-    _dateFormat (val, format) {
-      return window.utils.format.toDate(val, format)
+    },
+    /**
+     * @name 特殊日期的显示
+     * {date:'2018-04-19' code: 01}
+     */
+    leaveMap: {
+      type: Array,
+      default: () => {
+        return []
+      }
     }
   },
   methods: {
+    _dateFormat (val, format) {
+      return window.utils.format.toDate(val, format)
+    },
     /**
      * @name 跳转到当天
      */
@@ -102,9 +116,8 @@ export default {
       list.push(this._getMonthFromDate(this.currentDate))
       // 塞入下个月
       list.push(this._nextMonth(this.currentDate))
-      this.days = list
       this.$nextTick(e => {
-        // this.$refs.mySwiper.swiper.slideTo(1)
+        this.days = list
       })
     },
     /**
@@ -122,14 +135,19 @@ export default {
       for (let i = 1; i <= 35; i++) {
         let tempDate = new Date(date.getTime())
         // 先判断一下当前月的一号是星期几
-        let oneInWeek = new Date(tempDate.setDate('01')).getDay()
-        let dateItem = new Date(tempDate.setDate(i - oneInWeek))
+        let oneInWeek = new Date(tempDate.setDate('01')).getDay(),
+          dateItem = new Date(tempDate.setDate(i - oneInWeek)),
+          forMatStr = window.utils.format.toDate(dateItem, 'yyyy-MM-dd')
         list1.push({
           date: dateItem,
           // inMonth: date_item.getMonth() === this.date.getMonth(),
-          isToday: window.utils.format.toDate(dateItem, 'yyyy-MM-dd') === window.utils.format.toDate(date, 'yyyy-MM-dd'),
-          format: window.utils.format.toDate(dateItem, 'yyyy-MM-dd'),
-          isFutureDay: dateItem.getTime() > new Date().getTime()
+          isToday: forMatStr === window.utils.format.toDate(date, 'yyyy-MM-dd'),
+          format: forMatStr,
+          isFutureDay: dateItem.getTime() > new Date().getTime(),
+          code: () => {
+            let key = forMatStr
+            return this.leaveMap[key]
+          }
         })
       }
       return list1
@@ -168,6 +186,7 @@ export default {
       )
       this.currentDate = new Date(tempDate)
       this._initDates()
+      this.$emit('nextMonth', this.currentDate)
     },
      /**
      * 增加月份
@@ -178,6 +197,7 @@ export default {
       )
       this.currentDate = new Date(tempDate)
       this._initDates()
+      this.$emit('lastMonth', this.currentDate)
     }
   },
   created () {
@@ -194,11 +214,19 @@ $width: 100%/7;
   .header {
     min-height: 45px;
     text-align: center;
-    padding-left: 40%;
+    // padding-left: 40%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    font-size: 14px;
     align-items: center;
-    border-bottom: 1px solid rgba(0, 0, 255, 0.21);
+    border-bottom: 1px solid #E5E5E5; //用于分割线
+    div{
+      display: flex;
+      align-items: center;
+    }
+    img{
+      width: 2rem;
+    };
     h2 {
       text-align: center;
       width: 100%;
@@ -208,7 +236,7 @@ $width: 100%/7;
     }
   }
   .ca_header{
-    background: rgba(1, 1, 1, 0.1)
+    // background: rgba(1, 1, 1, 0.1)
   }
   .content, .ca_header {
     display: flex;
@@ -220,7 +248,7 @@ $width: 100%/7;
       // justify-content: center
       // min-height: 50px
       flex: 0 0 $width;
-      border-bottom: 1px solid rgba(1, 1, 1, 0.21);
+      // border-bottom: 1px solid rgba(1, 1, 1, 0.21);
       box-sizing: border-box;
        &.week {
         min-height: 30px;

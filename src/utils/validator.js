@@ -99,8 +99,8 @@ const validatorFun = {
 // 检验方法
 const validator = {
   reg: {
-    // require: /^[\s\S]+$/,
-    require: /\S/,
+    // require: /^[\s\S]+$/, //判断是否为空，可以为空格
+    require: /\S/, // 判断是否为空 不能为空格
     // Positive: /^([1-9]\d*|[0]{1,1})$/, // 匹配非负整数（正整数 + 0）
     positive: /^[0-9]*[1-9][0-9]*$/, // 匹配正整数
     // Negative: /^((-d+)|(0+))$/, // 匹配非正整数（负整数 + 0）
@@ -125,7 +125,8 @@ const validator = {
     email: /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,})$/, // email edited by liule
     carNO: /^[\u4e00-\u9fa5]{1}[A-Z]{1}[A-Z_0-9]{5}$/, // 车牌号
     // pwd: /^[A-Za-z0-9]{6,20}$/, //密码验证
-    pwd: /^(?!(?:\d+|[a-zA-Z]+)$)[\da-zA-Z]{6,}$/, // 密码验证
+    // pwd: /^(?!(?:\d+|[a-zA-Z]+)$)[\da-zA-Z]{6,}$/, // 密码验证
+    pwd: /^[0-9a-zA-z]{6,20}$/, // 密码验证
     passport: /^[G|E][0-9]{8}$|^[S|P|D][0-9]{7}$/, // 护照
     bankCode: /^[0-9]+$/, // 银行卡号
     numberStr: /^[0-9]+$/

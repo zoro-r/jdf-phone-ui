@@ -1,10 +1,18 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
 var path = require('path')
+console.log('============================请检查是否为debug模式============================')
+console.log('============================请检查版本号是否更新============================')
 
 module.exports = {
   dep: {
     index: path.resolve(__dirname, '../dep/index.html'),
     assetsRoot: path.resolve(__dirname, '../dep'),
+    assetsSubDirectory: 'static',
+    assetsPublicPath: './'
+  },
+  app: {
+    index: path.resolve(__dirname, '../appDist/index.html'),
+    assetsRoot: path.resolve(__dirname, '../appDist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: './'
   },

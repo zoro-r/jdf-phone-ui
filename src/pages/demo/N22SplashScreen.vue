@@ -29,8 +29,16 @@
 </template>
 
 <script>
+import 'swiper/dist/css/swiper.css'
+import './../../../static/lib/swiper/swiper.animate1.0.2.min.js'
+// Vue.use(VueAwesomeSwiper)
+import {swiper, swiperSlide} from 'vue-awesome-swiper'
 export default {
   name: 'n22SqlashScreen',
+  components: {
+    swiper,
+    swiperSlide
+  },
   data () {
     return {
       progress: 0,

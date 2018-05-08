@@ -11,7 +11,9 @@
                         date-format="{value}日"
                         hour-format="{value}时"
                         minute-format="{value}分"
-                        @confirm="confirm" />
+                        @confirm="confirm"
+                        @visible-change="closeOnClickModal"
+                        />
   </mt-field>
 </template>
 <script>
@@ -57,27 +59,31 @@ export default {
       showPicker: false
     }
   },
-  computed: {
-  },
   methods: {
     // 点击打开选择框按钮
     open (a) {
       if (this.disabled) return
       if (a.target.tagName == 'INPUT' || a.target.tagName == 'input') {
         this.$refs.datepicker.open()
-        // window.utils.help.ModalHelper.afterOpen()
+        window.utils.ui.disabledBodyScroll(true)
       }
     },
     // 点击关闭按钮
     close () {
       setTimeout(() => {
         this.$refs.datepicker.close()
-        // window.utils.help.ModalHelper.beforeClose()
+        window.utils.ui.disabledBodyScroll(false)
       })
+    },
+    // 控制点击图层关闭的方法
+    closeOnClickModal (val) {
+      window.utils.ui.disabledBodyScroll(val)
     },
     // 点击确认按钮
     confirm (value) {
+      console.log(value)
       let dateValue = window.utils.format.toDate(value, this.type == 'datetime' ? 'yyyy-MM-dd HH:mm' : 'yyyy-MM-dd')
+      // this.value = dateValue
       this.$emit('input', dateValue)
       this.close()
     }

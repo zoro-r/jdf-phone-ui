@@ -22,7 +22,8 @@
          :style="{
                   'top': bodyScroll ? (topHeight + 'px') : '0px',
                   'height': bodyScroll ? 'calc(100vh - ' + (topHeight - 0 + bottomHeight)  +'px)':'auto',
-                  'margin-top': bodyScroll ? '0px':(topHeight + 'px') ,
+                  'padding-bottom': bottomHeight + 'px',
+                  'margin-top': bodyScroll ? '0px':(topHeight + 'px')
                 }"
       >
       <slot name="content"></slot>
@@ -31,6 +32,8 @@
     <div class="page_footer" ref='page_footer'>
       <slot name="footer"></slot>
     </div>
+    <!-- 存放其他的other -->
+    <slot name="other"></slot>
   </div>
 </template>
 
@@ -42,10 +45,11 @@ export default {
     return {
       topHeight: 0,
       bottomHeight: 0,
-      // isMobile: window.globalConfig.platform === 'native',
-      isMobile: false,
+      isMobile: window.globalConfig.os === 'android',
+      // isMobile: false,
       canScroll: true,
-      isTouch: false
+      isTouch: false,
+      isWx: window.globalConfig.platform === 'wechat'
     }
   },
   props: {
@@ -73,11 +77,19 @@ export default {
   methods: {
     // 初始化页面布局
     initPage () {
-      this.hasHeader && this.$nextTick(e => {
-        let headerEle = this.$refs.page_header.getElementsByClassName('mint-header is-fixed')[0],
-          bottomEle = this.$refs.page_footer.getElementsByClassName('footer')[0]
+      this.$nextTick(e => {
+        let headerEle, bottomEle
+        // 判断是否为微信
+        if (!this.isWx) {
+          headerEle = this.$refs.page_header.getElementsByClassName('is-fixed')[0]
+          this.topHeight = headerEle && this.hasHeader ? headerEle.clientHeight + 1 : 0
+        }
+        bottomEle = this.$refs.page_footer.getElementsByClassName('footer bar_footer')[0]
         this.bottomHeight = bottomEle ? bottomEle.clientHeight + 1 : 0
-        this.topHeight = headerEle ? headerEle.clientHeight + 1 : 0
+        // 修改高度
+        if (this.$store.state.common.showFooter) {
+          this.bottomHeight = 55
+        }
       })
       // 派发滚动事件
       if (!this.isMobile) {
@@ -111,7 +123,7 @@ export default {
   computed: {
     // 判断是否可以
     bodyScroll: function () {
-      this.isMobile || this.modal
+      return this.isMobile || this.modal || window.globalConfig.os === 'android'
     },
     // 顶部bar的高度
     headerHeight: function () {
@@ -161,7 +173,7 @@ export default {
 </script>
 <style lang='scss'>
 .page{
-  background: rgb(240, 239, 245);
+  background: white;
 }
 .page_content{
   overflow-x: hidden;

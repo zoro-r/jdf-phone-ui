@@ -2,12 +2,21 @@
  * @Author: chenjia
  * @Date: 2018-01-05 13:56:27
  * @Last Modified by: jdf
- * @Last Modified time: 2018-01-15 17:55:53
+ * @Last Modified time: 2018-05-07 09:31:59
  * @Desc 缓存(localStorage)
  */
 
 const cache = {
-
+  /**
+   * @name 存入单个对象或者字符串 一直存在
+   */
+  setAlways (key, value) {
+    if (typeof value === 'string') {
+      localStorage.setItem(key, value)
+    } else {
+      localStorage.setItem(key, JSON.stringify(value))
+    }
+  },
   /**
    * @name 存入单个对象或者字符串
    * @param key 键
@@ -15,9 +24,9 @@ const cache = {
    */
   set: (key, value) => {
     if (typeof value === 'string') {
-      localStorage.setItem(key, value)
+      sessionStorage.setItem(key, value)
     } else {
-      localStorage.setItem(key, JSON.stringify(value))
+      sessionStorage.setItem(key, JSON.stringify(value))
     }
   },
 
@@ -26,7 +35,7 @@ const cache = {
    * @param key
    */
   get: key => {
-    let value = localStorage.getItem(key)
+    let value = sessionStorage.getItem(key) || localStorage.getItem(key)
     // 判断是否是字符串对象
     if (value && (value.substr(0, 1) === '{' || value.substr(0, 1) === '[')) {
       try {
@@ -63,6 +72,7 @@ const cache = {
    */
   removeItem: key => {
     localStorage.removeItem(key)
+    sessionStorage.removeItem(key)
   },
 
   /**
@@ -70,6 +80,7 @@ const cache = {
    */
   clear: () => {
     localStorage.clear()
+    localStorage.removeItem()
   }
 }
 

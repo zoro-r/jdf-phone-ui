@@ -45,11 +45,12 @@ const environment = {
       // obj.os = 'ios'
       if (obj.os === 'ios' && obj.platform === 'native') {
         // 增加键盘事件
-        let str = '<script src="./keyboard.min.js"></script>'
-        document.write(str)
+        // let str = '<script src="./keyboard.min.js"></script>'
+        // document.write(str)
         // require('../../static/lib/keyboard/keyboard.js')
       }
     }
+    // obj.os = 'android'
     // 增加平台样式
     document.body.classList.add('platform-' + obj.os)
     document.body.classList.add(obj.platform)

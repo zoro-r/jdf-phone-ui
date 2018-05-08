@@ -181,7 +181,11 @@ export default {
      */
     clean () {
       this.inputValue = ''
-      if (this.type == 'password') { this.showPwd = false }
+      console.log(this.type)
+      if (this.type === 'password') {
+        this.itype = this.type
+        this.showPwd = false
+      }
     },
     /**
      * @name 当输入框类型为密码的时候输入密码
@@ -329,6 +333,7 @@ $height: 43px;
     background-size: 23.65px;
     background-repeat: no-repeat;
     border: none;
+    transition: background-image .2s linear;
 
   }
   .mint-popup-2 {
