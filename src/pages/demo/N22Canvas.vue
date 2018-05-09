@@ -27,8 +27,8 @@ export default {
         fill: 'forwards',
         easing: 'ease-out'
       },
-      sunUrl: './static/images/plants/sun.gif',
-      plantUrl: './static/images/plants/idle/idle_00.png'
+      sunUrl: require('./../../../static/images/plants/sun.gif'),
+      plantUrl: require('./../../../static/images/plants/idle/idle_00.png')
     }
   },
   methods: {
@@ -61,7 +61,7 @@ export default {
       img.className += ' sun_img'
       img.style.left = this.screenWidth * x + 'px'
       img.style.top = this.screenHeight * y + 'px'
-      img.addEventListener('click', e => {
+      img.addEventListener('touchstart', e => {
         this.getImg(e.target)
       })
       this.$refs.demo_canvas.appendChild(img)
