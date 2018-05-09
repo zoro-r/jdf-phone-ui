@@ -3,9 +3,10 @@
     <div class="score">
       {{score}}分
     </div>
-    <canvas :width="screenWidth + 'px'" :height="screenHeight + 'px'" ref="game_content" id='game_content'>
+    <!-- <canvas :width="screenWidth + 'px'" :height="screenHeight + 'px'" ref="game_content" id='game_content'>
       我是测试的
-    </canvas>
+    </canvas> -->
+    <n22-sun ref="sun_ball"></n22-sun>
   </div>
 </template>
 
@@ -13,6 +14,7 @@
 export default {
   name: 'n22Canvas',
   components: {
+    n22Sun: r => { require.ensure([], () => r(require('./commponts/n22-sun.vue')), 'n22Sun') }
   },
   data () {
     return {
@@ -34,23 +36,29 @@ export default {
   methods: {
     // 获取分数
     getImg (ele) {
-      ele.style['pointer-events'] = 'none'
+      ele.target.style['opacity'] = '0'
+      ele.target.style['pointer-events'] = '0'
       // 禁止点击
-      let left = ele.x,
-        top = ele.y
-      console.log(left, top)
-      let obj = [{
-        'transform': 'translate(0,0)',
-        'opacity': 1
-      }, {
-        offset: 1,
-        transform: 'translate(' + (this.screenWidth - left - 100) + 'px,-' + top + 'px)',
-        opacity: 0
-      }]
+      // let left = ele.target.x,
+      //   top = ele.target.y
+      // console.log(left, top)
+      // let obj = [{
+      //   'transform': 'translate(0,0)',
+      //   'opacity': 1
+      // }, {
+      //   offset: 1,
+      //   transform: 'translate(' + (this.screenWidth - left - 100) + 'px,-' + top + 'px)',
+      //   opacity: 0
+      // }]
       // let sunImg = document.getElementById('sun_img')
-      ele.animate(obj, this.keyframesOptions)
+      // ele.animate(obj, this.keyframesOptions)
+      // setTimeout(() => {
+      //   this.score ++
+      // }, 1000)
+      this.$refs.sun_ball.drop(ele.target)
       setTimeout(() => {
-        this.score ++
+        this.$refs.demo_canvas.removeChild(ele.target)
+        this.score++
       }, 1000)
     },
     // 创造太阳
@@ -61,8 +69,8 @@ export default {
       img.className += ' sun_img'
       img.style.left = this.screenWidth * x + 'px'
       img.style.top = this.screenHeight * y + 'px'
-      img.addEventListener('touchstart', e => {
-        this.getImg(e.target)
+      img.addEventListener('click', e => {
+        this.getImg(e)
       })
       this.$refs.demo_canvas.appendChild(img)
     },
@@ -81,13 +89,13 @@ export default {
     let num = 0
     let interVal = setInterval(() => {
       num++
-      if (num > 200) {
+      if (num > 100) {
         clearInterval(interVal)
       }
       let x = Math.random(1),
         y = Math.random(1)
       this.createSun(x, y)
-    }, 100)
+    }, 1000)
   }
 }
 </script>
