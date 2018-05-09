@@ -27,8 +27,8 @@ export default {
         fill: 'forwards',
         easing: 'ease-out'
       },
-      sunUrl: './../../../static/images/plants/sun.gif',
-      plantUrl: './../../../static/images/plants/idle/idle_00.png'
+      sunUrl: './static/images/plants/sun.gif',
+      plantUrl: './static/images/plants/idle/idle_00.png'
     }
   },
   methods: {
@@ -78,7 +78,12 @@ export default {
   },
   mounted () {
     this.createPlant(0.1, 0.1)
-    setInterval(() => {
+    let num = 0
+    let interVal = setInterval(() => {
+      num++
+      if (num > 200) {
+        clearInterval(interVal)
+      }
       let x = Math.random(1),
         y = Math.random(1)
       this.createSun(x, y)
