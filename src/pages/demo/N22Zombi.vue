@@ -32,17 +32,27 @@ export default {
     },
     // 创造阳光
     createSun () {
-      let right = Math.random() * this.screenWidth
-      let top = Math.random() * this.screenHeight
+      let position = this.getPosition()
       let image = new Image()
       image.src = './static/images/plants/sun.gif'
       image.className += 'sun_img'
-      image.style.right = right + 'px'
-      image.style.top = top + 'px'
+      image.style.right = position.right + 'px'
+      image.style.top = position.top + 'px'
       image.onload = () => {
         this.$refs.demo_canvas.appendChild(image)
       }
       image.addEventListener('touchstart', this.getSun)
+    },
+    // 获取位置
+    getPosition () {
+      let right = Math.random() * this.screenWidth
+      let top = Math.random() * this.screenHeight
+      if (right > this.screenWidth - 50 || top < 100 || top > this.screenHeight - 50) {
+        return this.getPosition()
+      }
+      return {
+        right, top
+      }
     }
   },
   mounted () {
