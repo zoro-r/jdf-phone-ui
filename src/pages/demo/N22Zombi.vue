@@ -35,7 +35,7 @@ export default {
       let right = Math.random() * this.screenWidth
       let top = Math.random() * this.screenHeight
       let image = new Image()
-      image.src = './../../../static/images/plants/sun.gif'
+      image.src = './static/images/plants/sun.gif'
       image.className += 'sun_img'
       image.style.right = right + 'px'
       image.style.top = top + 'px'
