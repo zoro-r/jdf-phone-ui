@@ -23,6 +23,7 @@ export default {
       ele.style.right = '0px'
       ele.style.top = '0px'
       ele.style.opacity = '0.3'
+      ele.style.transition = 'all ' + 1 + 's linear'
       // 禁止点击
       ele.style['pointer-events'] = 'none'
       setTimeout(() => {
@@ -37,11 +38,15 @@ export default {
       image.src = './static/images/plants/sun.gif'
       image.className += 'sun_img'
       image.style.right = position.right + 'px'
-      image.style.top = position.top + 'px'
+      image.style.top = 50 + 'px'
+      image.style.transition = 'all ' + 10 + 's linear'
       image.onload = () => {
         this.$refs.demo_canvas.appendChild(image)
       }
       image.addEventListener('touchstart', this.getSun)
+      setTimeout(() => {
+        image.style.top = this.screenHeight + 10 + 'px'
+      }, 200)
     },
     // 获取位置
     getPosition () {
@@ -81,7 +86,6 @@ export default {
   }
   .sun_img {
     position: absolute;
-    transition: all 1s linear;
     z-index: 10;
     width: 50px;
     height: 50px;
