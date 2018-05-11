@@ -9,14 +9,18 @@
         <span style="right:5px">{{score}}分</span>
       </div>
     </div>
-
     <!-- 植物 -->
-    <div class="plant">
+    <div class="plant" v-for="(item, index) in palntList"
+        :style="{'right': item.position.right + 'px','top':item.position.top + 'px'}" :key="index">
       <!-- 种子 -->
-      <img :style="{'opacity': palntIndex == 1 ? '1' : '0'}" class="seed" src="./../../../static/images/plants/plant_01/plant_01.png" alt="">
-      <img :style="{'opacity': palntIndex == 2 ? '1' : '0'}" class="seedling" src="./../../../static/images/plants/plant_01/plant_02.png" alt="">
-      <img :style="{'opacity': palntIndex == 3 ? '1' : '0'}"  class="seedling" src="./../../../static/images/plants/plant_01/plant_03.png" alt="">
-      <img :style="{'opacity': palntIndex > 3 ? '1' : '0'}"  class="seedling" src="./../../../static/images/plants/plant_01/plant_04.png" alt="">
+      <img :style="{'opacity': item.progressIndex === 1 ? '1' : '0'}" class="seed" src="./../../../static/images/plants/plant_01/plant_01.png" alt="">
+      <img :style="{'opacity': item.progressIndex === 2 ? '1' : '0'}" class="seedling" src="./../../../static/images/plants/plant_01/plant_02.png" alt="">
+      <img :style="{'opacity': item.progressIndex === 3 ? '1' : '0'}"  class="seedling" src="./../../../static/images/plants/plant_01/plant_03.png" alt="">
+      <img :style="{'opacity': item.progressIndex > 3 ? '1' : '0'}"  class="seedling" src="./../../../static/images/plants/plant_01/plant_04.png" alt="">
+    </div>
+    <!-- 存放所有的图片 -->
+    <div style="opacity: 0;point-events: none">
+      <img v-for="(item, index) in allImg" :key="index" :src="item" alt="">
     </div>
   </div>
 </template>
@@ -28,10 +32,34 @@ export default {
     return {
       score: 0,
       time: 60,
-      palntIndex: 1
+      palntList: [],
+      intervalMap: {},
+      allImg: [
+        './static/images/plants/bg.jpg',
+        './static/images/plants/score.png',
+        './static/images/plants/sun.gif',
+        './static/images/plants/time.jpg',
+        './static/images/plants/plant_01/plant_01.png',
+        './static/images/plants/plant_01/plant_02.png',
+        './static/images/plants/plant_01/plant_03.png',
+        './static/images/plants/plant_01/plant_04.png'
+      ]
     }
   },
   methods: {
+    // 初始化游戏
+    initGame () {
+      let imgList = this.$refs.demo_canvas.getElementsByTagName('img')
+      let i = 0
+      for (let j = 0; j < imgList.length; j++) {
+        imgList[j].onload = () => {
+          i++
+          if (i === imgList.length) {
+            this.startGame()
+          }
+        }
+      }
+    },
     // 点击阳光
     getSun (event) {
       let ele = event.target
@@ -44,13 +72,17 @@ export default {
       ele.style['pointer-events'] = 'none'
       setTimeout(() => {
         this.$refs.demo_canvas.removeChild(ele)
-        this.score++
+        this.score += 10
+        // 当分数为50的时候则创造植物 植物的最大数不能超过9
+        if (this.score * 10 >= 50 && this.score % 50 === 0 && this.palntList.length <= 9) {
+          this.createPlant()
+        }
       }, 1100)
     },
 
     // 创造阳光
     createSun () {
-      let position = this.getPosition()
+      let position = this.getPosition(this.screenWidth - 50)
       let image = new Image()
       image.src = './static/images/plants/sun.gif'
       image.className += 'sun_img'
@@ -66,12 +98,47 @@ export default {
       }, 200)
     },
 
-    // 获取位置
-    getPosition () {
+    // 创造植物
+    createPlant () {
+      // top 19% 67%
+      let item = {
+        position: this.getPosition(this.screenWidth - 90, 0, this.screenHeight * 0.57, this.screenHeight * 0.30),
+        progressIndex: 1,
+        // 创造阳光
+        makeSun: () => {
+          this.createSun()
+          this.intervalMap['createPlant' + this.palntList.length] = setInterval(e => {
+            this.createSun()
+          }, 1000)
+        },
+        grow: function () {
+          let tempInterval = setInterval(e => {
+            this.progressIndex ++
+            if (this.progressIndex === 5) {
+              clearInterval(tempInterval)
+            }
+          }, 1000)
+        }
+      }
+      // 植物成长
+      item.grow()
+      // 创造阳光
+      item.makeSun()
+      this.palntList.push(item)
+    },
+
+    /**
+     * @name 获取位置
+     * @param maxRight 距离右边最大的距离
+     * @param minRight 距离右边最小的距离
+     * @param maxTop 距离顶部最大的距离
+     * @param minTop  距离顶部最小的距离
+     */
+    getPosition (maxRight = this.screenWidth, minRight = 0, maxTop = this.screenHeight, minTop = 0) {
       let right = Math.random() * this.screenWidth
       let top = Math.random() * this.screenHeight
-      if (right > this.screenWidth - 50 || top < 100 || top > this.screenHeight - 50) {
-        return this.getPosition()
+      if (right > maxRight || right < minRight || top > maxTop || top < minTop) {
+        return this.getPosition(maxRight, minRight, maxTop, minTop)
       }
       return {
         right, top
@@ -82,9 +149,12 @@ export default {
     timeStart () {
       let startTime = new Date()
       let allTime = this.time
-      setInterval(e => {
+      this.intervalMap['timeStart'] = setInterval(e => {
         let cha = new Date() - startTime
         this.time = allTime - parseInt(cha / 1000)
+        if (this.time <= 0) {
+          this.gameOver()
+        }
       }, 1000)
     },
 
@@ -92,19 +162,16 @@ export default {
     startGame () {
       // 计时开始
       this.timeStart()
-      // 创造阳光
-      setInterval(e => {
-        this.palntIndex ++
-        if (this.palntIndex == 5) {
-          this.palntIndex = 1
-        }
-        this.createSun()
-      }, 1000)
+      // 创造植物
+      this.createPlant()
     },
 
     // 游戏结束
     gameOver () {
       // @todu 清空所有计时器 清空页面数据
+      for (let key in this.intervalMap) {
+        clearInterval(this.intervalMap[key])
+      }
     }
   },
   beforeRouteEnter: (to, from, next) => {
@@ -119,7 +186,7 @@ export default {
     next()
   },
   mounted () {
-    this.startGame()
+    this.initGame()
   }
 }
 </script>
