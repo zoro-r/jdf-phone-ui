@@ -63,7 +63,7 @@ export default {
   mounted () {
     setInterval(e => {
       this.createSun()
-    }, 1000)
+    }, 200)
   }
 }
 </script>
