@@ -68,8 +68,6 @@ export default {
     drop (el) {
       this.clickTime++
       this.isStart = true
-      // el = this.$refs.gouwuche;
-      // el = el.target
       // 触发一次事件就会将所有小球进行遍历
       for (let i = 0; i < this.balls.length; i++) {
         let ball = this.balls[i]
@@ -97,10 +95,12 @@ export default {
           el.style.display = '' // 清空display
           el.style.top = y
           el.style.left = x
+          el.style.opacity = 1
           // 处理内层动画
           let inner = el.getElementsByClassName('inner-hook')[0] // 使用inner-hook类来单纯被js操作
           inner.style.top = y
           inner.style.left = x
+          inner.style.opacity = 1
         }
       }
     },
@@ -114,10 +114,12 @@ export default {
         // 让动画效果异步执行,提高性能
         el.style.top = '0px'
         el.style.left = window.innerWidth - 100 + 'px'
+        el.style.opacity = 0.3
         // 处理内层动画
         let inner = el.getElementsByClassName('inner-hook')[0] // 使用inner-hook类来单纯被js操作
         inner.style.top = 0
         inner.style.left = window.innerWidth - 100 + 'px'
+        inner.style.opacity = 0.3
         el.addEventListener('transitionend', done) // Vue为了知道过渡的完成，必须设置相应的事件监听器。
       })
     },
@@ -142,7 +144,6 @@ export default {
 .shop_car{
   width: 100px;
   height: 100px;
-  background: red;
   border-radius: 50%;
    .ball-container {
       .ball {

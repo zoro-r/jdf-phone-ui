@@ -97,7 +97,8 @@ export default {
       componentThree: [
         {name: '渲染组件', url: {name: 'n22Render'}},
         {name: '搜索页面', url: {name: 'n22Search'}},
-        {name: 'canvas动画', url: {name: 'n22Canvas'}}
+        {name: 'canvas动画', url: {name: 'n22Canvas'}},
+        {name: '植物大战僵尸', url: {name: 'n22Zombi'}}
       ]
     }
   },

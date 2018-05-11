@@ -2,7 +2,7 @@
  * @Author: jdf
  * @Date: 2018-01-04 15:14:45
  * @Last Modified by: jdf
- * @Last Modified time: 2018-05-09 10:05:33
+ * @Last Modified time: 2018-05-11 10:09:06
  * @desc 测试模块
  */
 const demo = r => { require.ensure([], () => r(require('../pages/demo/Demo.vue')), 'demo') }
@@ -37,6 +37,7 @@ const n22Search = r => { require.ensure([], () => r(require('../pages/demo/N22Se
 const n22JPush = r => { require.ensure([], () => r(require('../pages/demo/N22JPush.vue')), 'n22JPush') }
 const n22Picker = r => { require.ensure([], () => r(require('../pages/demo/N22Picker.vue')), 'n22Picker') }
 const n22Canvas = r => { require.ensure([], () => r(require('../pages/demo/N22Canvas.vue')), 'n22Canvas') }
+const n22Zombi = r => { require.ensure([], () => r(require('../pages/demo/N22Zombi.vue')), 'n22Zombi') }
 
 // 每个模块定义父路由 引入公共样式方法...
 export default [{
@@ -262,6 +263,13 @@ export default [{
       name: 'n22Canvas',
       path: '/n22Canvas',
       component: n22Canvas,
+      meta: {
+        login: false
+      }
+    }, {
+      name: 'n22Zombi',
+      path: '/n22Zombi',
+      component: n22Zombi,
       meta: {
         login: false
       }

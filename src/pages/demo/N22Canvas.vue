@@ -3,10 +3,14 @@
     <div class="score">
       {{score}}分
     </div>
-    <!-- <canvas :width="screenWidth + 'px'" :height="screenHeight + 'px'" ref="game_content" id='game_content'>
+    <canvas :width="screenWidth + 'px'" :height="screenHeight + 'px'" ref="game_content" id='game_content'>
       我是测试的
-    </canvas> -->
-    <n22-sun ref="sun_ball"></n22-sun>
+    </canvas>
+    <div style="position:absolute;opacity: 0;top:0px;z-index:-10">
+      <img v-for="(item, index) in imageList" :key="index"
+          :src="'./../../../static/images/plants/zombies/dieboom/dieboom_'+ (index < 10 ? '0' + index : index) +'.png'" alt="">
+    </div>
+    <!-- <n22-sun ref="sun_ball"></n22-sun> -->
   </div>
 </template>
 
@@ -19,83 +23,116 @@ export default {
   data () {
     return {
       score: 0,
-      keyframesOptions: {
-        iterations: 1,
-        iterationStart: 0,
-        delay: 0,
-        endDelay: 0,
-        direction: 'alternate',
-        duration: 1000,
-        fill: 'forwards',
-        easing: 'ease-out'
-      },
+      ctx: '',
       sunUrl: require('./../../../static/images/plants/sun.gif'),
-      plantUrl: require('./../../../static/images/plants/idle/idle_00.png')
+      plantUrl: '',
+      imageList: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
     }
   },
   methods: {
     // 获取分数
     getImg (ele) {
       ele.target.style['opacity'] = '0'
-      ele.target.style['pointer-events'] = '0'
-      // 禁止点击
-      // let left = ele.target.x,
-      //   top = ele.target.y
-      // console.log(left, top)
-      // let obj = [{
-      //   'transform': 'translate(0,0)',
-      //   'opacity': 1
-      // }, {
-      //   offset: 1,
-      //   transform: 'translate(' + (this.screenWidth - left - 100) + 'px,-' + top + 'px)',
-      //   opacity: 0
-      // }]
-      // let sunImg = document.getElementById('sun_img')
-      // ele.animate(obj, this.keyframesOptions)
-      // setTimeout(() => {
-      //   this.score ++
-      // }, 1000)
+      ele.target.style['pointer-events'] = 'none'
+      ele.target.style['z-index'] = '0'
+      console.log(ele)
       this.$refs.sun_ball.drop(ele.target)
       setTimeout(() => {
         this.$refs.demo_canvas.removeChild(ele.target)
         this.score++
-      }, 1000)
+      }, 1300)
     },
     // 创造太阳
     createSun (x, y) {
-      if (this.screenHeight * y < 80) return
+      console.log(x, y)
+      let left = this.screenWidth * Math.random(1)
+      let top = this.screenHeight * Math.random(1)
+      // 需要在植物的左右
+      if (left < x - 20 || left > x + 90 || top < y - 20 || y > y + 90) {
+        this.createSun(x, y)
+        return
+      }
+      // 不能超过屏幕
+      if (left < 0 || left > this.screenWidth - 78 || top < 100 || top > this.screenHeight - 78) {
+        this.createSun(x, y)
+        return
+      }
       let img = new Image()
       img.src = this.sunUrl
       img.className += ' sun_img'
-      img.style.left = this.screenWidth * x + 'px'
-      img.style.top = this.screenHeight * y + 'px'
+      img.style.left = left + 'px'
+      img.style.top = top + 'px'
       img.addEventListener('click', e => {
         this.getImg(e)
       })
       this.$refs.demo_canvas.appendChild(img)
     },
     // 创造植物
-    createPlant (x, y) {
+    createPlant () {
+      // let left = this.screenWidth * Math.random(1)
+      // let top = this.screenHeight * Math.random(1)
+      let left = 100
+      let top = 100
+      // 不能超过屏幕
+      if (left < 0 || left > this.screenWidth - 78 || top < 100 || top > this.screenHeight - 78) {
+        this.createPlant()
+        return
+      }
       let img = new Image()
       img.src = this.plantUrl
       img.className += ' sun_img plant'
-      img.style.left = this.screenWidth * x + 'px'
-      img.style.top = this.screenHeight * y + 'px'
+      img.style.left = left + 'px'
+      img.style.top = top + 'px'
       this.$refs.demo_canvas.appendChild(img)
+      // 创造阳光
+      // let num = 0
+      // let interVal = setInterval(() => {
+      //   num++
+      //   if (num > 21) {
+      //     clearInterval(interVal)
+      //   }
+      //   // this.createSun(left, top)
+      // }, 1000)
+    },
+    clearCanvas () {
+      this.ctx.clearRect(0, 0, this.screenWidth, this.screenHeight)
+    },
+    // 画植物
+    drawPlant (imgUrl, i) {
+      let bg = new Image()
+      bg.src = imgUrl
+      bg.onload = () => {
+        this.clearCanvas()
+        this.ctx.drawImage(bg, 0, 0, 49, 47)
+      }
+    },
+    // 画僵尸
+    drawZombi (imgUrl) {
+      let bg = new Image()
+      bg.src = imgUrl
+      bg.onload = () => {
+        this.clearCanvas()
+        this.ctx.drawImage(bg, 100, 100, 200, 200)
+      }
     }
   },
   mounted () {
-    this.createPlant(0.1, 0.1)
-    let num = 0
-    let interVal = setInterval(() => {
-      num++
-      if (num > 100) {
-        clearInterval(interVal)
+    // 初始化ctx
+    this.ctx = this.$refs.game_content.getContext('2d')
+    // this.drawPlant()
+    // this.createPlant()
+    let i = 0
+    setInterval(() => {
+      // let sunUrl = './../../../static/images/plants/idle/idle_' + (i >= 10 ? i : '0' + i) + '.png'
+      let zomBiUrl = './../../../static/images/plants/zombies/dieboom/dieboom_' + (i >= 10 ? i : '0' + i) + '.png'
+      // this.drawPlant(sunUrl, 1)
+      this.drawZombi(zomBiUrl, 2)
+      this.clearCanvas()
+      i++
+      if (i >= 18) {
+        i = 0
       }
-      let x = Math.random(1),
-        y = Math.random(1)
-      this.createSun(x, y)
-    }, 1000)
+    }, 200)
   }
 }
 </script>
@@ -104,8 +141,10 @@ export default {
 .demo_canvas{
   .sun_img {
     position: absolute;
+    z-index: 10;
   }
   .plant{
+    transition: all .2s linear;
     // z-index: 10;
     pointer-events: none;
   }
