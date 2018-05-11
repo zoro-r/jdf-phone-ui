@@ -67,6 +67,8 @@ body.native{
 body.modal-open {
   position: fixed;
   width: 100%;
+  height: 100vh;
+  overflow: hidden;
 }
 
 //-----------修改平台样式 增加在body上面 ios平台
