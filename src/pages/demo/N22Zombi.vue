@@ -61,6 +61,8 @@ export default {
     }
   },
   mounted () {
+    // 禁止页面滚动
+    window.utils.ui.disabledBodyScroll(true)
     setInterval(e => {
       this.createSun()
     }, 200)
