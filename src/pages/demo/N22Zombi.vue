@@ -11,7 +11,7 @@
     </div>
     <!-- 植物 -->
     <div class="plant" v-for="(item, index) in palntList"
-        :style="{'right': item.position.right + 'px','top':item.position.top + 'px'}" :key="index">
+        :style="{'right': item.position.right + 'px','top':item.position.top + 'px','z-index': parseInt(item.position.top)}" :key="index">
       <!-- 种子 -->
       <img :style="{'opacity': item.progressIndex === 1 ? '1' : '0'}" class="seed" src="./../../../static/images/plants/plant_01/plant_01.png" alt="">
       <img :style="{'opacity': item.progressIndex === 2 ? '1' : '0'}" class="seedling" src="./../../../static/images/plants/plant_01/plant_02.png" alt="">
@@ -38,6 +38,7 @@ export default {
         './static/images/plants/bg.jpg',
         './static/images/plants/score.png',
         './static/images/plants/sun.gif',
+        './static/images/plants/dust.png',
         './static/images/plants/time.jpg',
         './static/images/plants/plant_01/plant_01.png',
         './static/images/plants/plant_01/plant_02.png',
@@ -72,7 +73,12 @@ export default {
       ele.style['pointer-events'] = 'none'
       setTimeout(() => {
         this.$refs.demo_canvas.removeChild(ele)
-        this.score += 10
+        // 判断是否为灰尘
+        if (ele.classList.contains('dust_img')) {
+          this.score -= 10
+        } else {
+          this.score += 10
+        }
         // 当分数为50的时候则创造植物 植物的最大数不能超过9
         if (this.score * 10 >= 50 && this.score % 50 === 0 && this.palntList.length <= 9) {
           this.createPlant()
@@ -80,12 +86,15 @@ export default {
       }, 1100)
     },
 
-    // 创造阳光
-    createSun () {
+    /**
+     * @name 创造阳光
+     * @param isSun 是否为创造太阳
+     */
+    createSunOrDust (isSun) {
       let position = this.getPosition(this.screenWidth - 50)
       let image = new Image()
-      image.src = './static/images/plants/sun.gif'
-      image.className += 'sun_img'
+      image.src = isSun ? './static/images/plants/sun.gif' : './static/images/plants/dust.png'
+      image.className += (isSun ? ' sun_img' : 'dust_img sun_img')
       image.style.right = position.right + 'px'
       image.style.top = 50 + 'px'
       image.style.transition = 'all ' + 8 + 's linear'
@@ -100,15 +109,25 @@ export default {
 
     // 创造植物
     createPlant () {
+      let self = this
       // top 19% 67%
       let item = {
-        position: this.getPosition(this.screenWidth - 90, 0, this.screenHeight * 0.57, this.screenHeight * 0.30),
+        index: 0, // 记录创造的次数
+        position: self.getPosition(self.screenWidth - 90, 0, self.screenHeight * 0.57, self.screenHeight * 0.30),
         progressIndex: 1,
         // 创造阳光
-        makeSun: () => {
-          this.createSun()
-          this.intervalMap['createPlant' + this.palntList.length] = setInterval(e => {
-            this.createSun()
+        makeSun: function () {
+          self.createSunOrDust(true)
+          this.index ++
+          self.intervalMap['createPlant' + self.palntList.length] = setInterval(e => {
+            this.index ++
+            if (this.index === 4) {
+              self.createSunOrDust(this.index !== 4)
+              // 规制
+              this.index = 0
+            } else {
+              self.createSunOrDust(true)
+            }
           }, 1000)
         },
         grow: function () {
@@ -253,7 +272,7 @@ export default {
   }
   .sun_img {
     position: absolute;
-    z-index: 10;
+    z-index: 10000;
     width: 50px;
     height: 50px;
     // top: 200px;
