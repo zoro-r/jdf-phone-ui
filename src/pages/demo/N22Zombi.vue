@@ -21,7 +21,7 @@
         <div class="time item animated bounceIn">
           <span style="right:20px">{{time}}秒</span>
         </div>
-        <div class="score item animated bounceIn">
+        <div class="score item animated bounceIn" ref='score_ref'>
           <span style="right:5px">{{score}}分</span>
         </div>
       </div>
@@ -106,10 +106,13 @@ export default {
       ele.style.transition = 'all ' + 1 + 's linear'
       // 禁止点击
       ele.style['pointer-events'] = 'none'
+      this.palntList[this.palntList.length - 1].grow()
       setTimeout(() => {
         this.$refs.demo_canvas.removeChild(ele)
         // 判断是否为灰尘
         if (ele.classList.contains('dust_img')) {
+          // 加分
+          this.scoreAddOrSubtract('-10')
           // 如果当前分数为0则不计数
           if (this.score !== 0) {
             this.scoreObj.dustNum ++
@@ -125,6 +128,8 @@ export default {
             this.intervalMapIndex --
           }
         } else {
+          // 减分
+          this.scoreAddOrSubtract('+10')
           this.scoreObj.sunNum ++
         }
         // 当分数为50的时候则创造植物 植物的最大数不能超过9
@@ -193,16 +198,11 @@ export default {
           }, 1000)
         },
         grow: function () {
-          let tempInterval = setInterval(e => {
-            this.progressIndex ++
-            if (this.progressIndex === 5) {
-              clearInterval(tempInterval)
-            }
-          }, 1000)
+          this.progressIndex ++
         }
       }
       // 植物成长
-      item.grow()
+      // item.grow()
       // 创造阳光或者灰尘
       item.makeSunOrDust()
       this.palntList.push(item)
@@ -250,6 +250,17 @@ export default {
           clearInterval(timeOverInterval)
         }
       }, 1000)
+    },
+    // 加减分的效果
+    scoreAddOrSubtract (text) {
+      let ele = document.createElement('div')
+      ele.className = 'score_show'
+      ele.innerText = text
+      this.$refs.score_ref.appendChild(ele)
+      setTimeout(() => {
+        ele.style.top = -50 + 'px'
+        ele.style.opacity = 0.3
+      }, 300)
     },
     // 开始游戏
     startGame () {
@@ -311,10 +322,14 @@ export default {
       top: 40%;
       margin-left: 10%;
       width: 80%;
-      height: 80px;
+      height: 60px;
+      div{
+        border-radius: 5px;
+        overflow: hidden;
+      }
       img{
         bottom: 0px;
-        height: 20px;
+        height: 15px;
         width: 100%;
       }
     }
@@ -351,6 +366,15 @@ export default {
       align-items: center;
       padding: 10px;
       justify-content: space-between;
+      .score_show {
+        position: absolute;
+        right: 20px;
+        top: 0px;
+        opacity: 1;
+        transition: all 1s linear;
+        font-size: 13px;
+        color:gray;
+      }
       .item{
         font-size: 2rem;
         color: $primary-color;
