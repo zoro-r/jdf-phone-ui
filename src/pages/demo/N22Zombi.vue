@@ -1,7 +1,7 @@
 <template>
   <div class="page_zombi" ref="demo_canvas">
     <!-- 游戏加载 -->
-    <div class="game_loadding" v-show="!openGame" >
+    <div class="game_loadding" v-if="!openGame" >
       <!-- 进度条 -->
       <div class="loadding_main">
         <div style="position:absolute;bottom:-1px;transition:width .3s linear" :style="{width: progress}">
@@ -86,12 +86,11 @@ export default {
           this.progress = i * 100 / imgList.length + '%'
           console.log(this.progress)
           if (i === imgList.length) {
-            console.log('所有图片加载完毕--------------')
             setTimeout(() => {
               this.openGame = true
               // 启动游戏 倒计时
               this.timeOver()
-            }, 500)
+            }, 1500)
           }
         }
       }
@@ -146,13 +145,22 @@ export default {
       image.className += (isSun ? ' sun_img' : 'dust_img sun_img')
       image.style.right = position.right + 'px'
       image.style.top = 50 + 'px'
-      image.style.transition = 'all ' + 8 + 's linear'
+      image.style.transition = 'all ' + 6 + 's linear'
       image.onload = () => {
         this.$refs.demo_canvas.appendChild(image)
       }
       image.addEventListener('touchstart', this.getSun)
+      // 小球下落
       setTimeout(() => {
         image.style.top = this.screenHeight + 50 + 'px'
+        // 6s后移除当前数据
+        setTimeout(() => {
+          try {
+            this.$refs.demo_canvas.removeChild(image)
+          } catch (error) {
+            console.log('移除失败')
+          }
+        }, 6000)
       }, 200)
     },
 
@@ -325,7 +333,7 @@ export default {
       text-align: center;
       img{
         top: 200px;
-        height: 200px;
+        height: 100px;
         margin-top: 200px;
       }
     }
@@ -340,7 +348,7 @@ export default {
       .item{
         font-size: 2rem;
         color: $primary-color;
-        width: 150px;
+        width: 145px;
         height: 50px;
         border-radius: 3px;
         background-size: 100% 100%;
@@ -379,7 +387,7 @@ export default {
       }
       // 幼苗
       .seedling{
-        width: 80px;
+        width: 7rem;
         position: absolute;
         bottom: 0px;
       }
