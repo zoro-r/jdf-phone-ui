@@ -57,6 +57,7 @@ export default {
       overTime: 3, // 启动倒计时
       time: 30, // 整个游戏的倒计时
       palntList: [], // 存放的植物列表
+      intervalMapIndex: 0, // 数量
       intervalMap: {}, // 存放所有的页面定时器，方便结束的时候清除
       allImg: [ // 页面需要预加载的页面
         './static/images/plants/timeOver/time_1.png',
@@ -119,8 +120,9 @@ export default {
             this.palntList.pop()
             // 重新设定最小的生产植物的分数
             this.createScore = this.score + 50
-            // 清楚生成定时器
-            clearInterval(this.intervalMap['createPlant' + (this.palntList.length - 1)])
+            // 清除生成定时器
+            clearInterval(this.intervalMap['createPlant' + this.intervalMapIndex])
+            this.intervalMapIndex --
           }
         } else {
           this.scoreObj.sunNum ++
@@ -177,7 +179,8 @@ export default {
         makeSunOrDust: function () {
           self.createSunOrDust(true)
           this.index ++
-          self.intervalMap['createPlant' + self.palntList.length] = setInterval(e => {
+          self.intervalMapIndex ++
+          self.intervalMap['createPlant' + self.intervalMapIndex] = setInterval(e => {
             // 每隔一秒生产一个阳光
             self.createSunOrDust(true)
             this.index ++
@@ -258,6 +261,8 @@ export default {
 
     // 游戏结束
     gameOver () {
+      console.log('游戏结束')
+      console.log(this.intervalMap)
       // @todu 清空所有计时器 清空页面数据
       for (let key in this.intervalMap) {
         clearInterval(this.intervalMap[key])
@@ -327,6 +332,7 @@ export default {
     width: 100vw;
     height: 100vh;
     .time_over{
+      pointer-events: none;
       width: 100vw;
       height: 100vh;
       background: rgba(1,1,1,.5);
