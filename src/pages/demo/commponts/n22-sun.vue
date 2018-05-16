@@ -157,7 +157,7 @@ export default {
           height: 80px;
           background-size: 100%;
           border-radius: 50%;
-          background-image: url('./../../../../static/images/plants/sun.gif');
+          background-image: url('./../../../../static/images/plants/sun.png');
           transition: all 1s linear;
           z-index: 32131231;
         }
