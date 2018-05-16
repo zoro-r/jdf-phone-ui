@@ -55,7 +55,7 @@ export default {
         dustNum: 0 // 灰尘的数量
       },
       overTime: 3, // 启动倒计时
-      time: 60, // 整个游戏的倒计时
+      time: 30, // 整个游戏的倒计时
       palntList: [], // 存放的植物列表
       intervalMap: {}, // 存放所有的页面定时器，方便结束的时候清除
       allImg: [ // 页面需要预加载的页面
